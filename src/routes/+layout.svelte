@@ -5,12 +5,14 @@
 	import { onMount } from 'svelte';
 	import { cn } from '$lib/utils';
 	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
+	import Icon from '@iconify/svelte';
+	import '../lib/icons.js';  // Import offline icons configuration
 	
 	let { children } = $props();
 	
 	let isMenuOpen = $state(false);
 	let isLangMenuOpen = $state(false);
-	let Icon = $state(undefined);
+	let IconifyIcon = Icon;
 	let isDarkMode = $state(false);
 	let currentLang = $state('nb');
 	let isScrolling = $state(false);
@@ -68,9 +70,7 @@
 	};
 
 	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.Icon;
-		
+
 		// Check system dark mode preference
 		if (browser) {
 			isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
