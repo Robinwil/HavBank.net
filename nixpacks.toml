@@ -5,4 +5,4 @@ cmd = "npm install"
 cmd = "npm run build"
 
 [phases.start]
-cmd = "node build"  # Starts the SvelteKit Node.js server
+cmd = "node build"
