@@ -2,8 +2,7 @@
 cmds = ["npm install"]
 
 [phases.build]
+dependsOn = ["install"]
 cmds = ["npm run build"]
 
-[phases.start]
-dependsOn = ["build"]
-cmds = ["node build/index.js"]
+startCommand = "node build/index.js"
