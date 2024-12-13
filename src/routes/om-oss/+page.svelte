@@ -1,13 +1,9 @@
 <script>
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	
-	let Icon = $state(null);
+	import Icon from '@iconify/svelte';
 
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
+	const IconifyIcon = Icon;
+
 
 	const LOAD_TIMEOUT_MS = 10000; // 10 seconds timeout
 

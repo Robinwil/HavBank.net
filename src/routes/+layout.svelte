@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 	import { cn } from '$lib/utils';
 	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
+	
 	let { children } = $props();
 	
 	let isMenuOpen = $state(false);

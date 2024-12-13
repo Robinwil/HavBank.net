@@ -2,8 +2,8 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	
-	let Icon = $state(null);
+	import Icon from '@iconify/svelte';
+	let IconifyIcon = Icon;
 	let currentType = $state('open');
 	let formData = $state({
 		name: '',
@@ -42,10 +42,6 @@
 		}
 	});
 
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
 
 	function handleSubmit(event) {
 		event.preventDefault();

@@ -1,12 +1,9 @@
 <script>
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	let Icon = null;
+	import Icon from '@iconify/svelte';
 
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
+	const IconifyIcon = Icon;
+    
 
 	const accountTypes = [
 		{
@@ -35,7 +32,7 @@
 		},
 		{
 			name: 'Bedriftskonto Premium',
-			description: 'Komplett løsning for større bedrifter og konsern',
+			description: 'Komplett løsning for st��rre bedrifter og konsern',
 			features: [
 				'Dedikert kundeansvarlig',
 				'Gratis utenlandstransaksjoner',
@@ -118,8 +115,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<div class="flex items-center gap-x-4 mb-6">
 							{#if browser && Icon}
-								<svelte:component
-									this={Icon}
+								<Icon
 									icon={account.icon}
 									class="h-8 w-8 text-blue-700 dark:text-blue-400"
 								/>
@@ -131,8 +127,7 @@
 							{#each account.features as feature}
 								<li class="flex items-start gap-x-3">
 									{#if browser && Icon}
-										<svelte:component
-											this={Icon}
+										<Icon
 											icon="heroicons:check"
 											class="h-5 w-5 text-blue-700 dark:text-blue-400 mt-0.5"
 										/>
@@ -173,8 +168,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<svelte:component
-									this={Icon}
+								<Icon
 									icon={feature.icon}
 									class="h-6 w-6 text-blue-700 dark:text-blue-400"
 								/>
@@ -196,8 +190,7 @@
 				{#each legalInfo.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<svelte:component
-								this={Icon}
+							<Icon
 								icon="heroicons:document-text"
 								class="h-6 w-6 text-blue-700 dark:text-blue-400"
 							/>

@@ -1,13 +1,11 @@
 <script>
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	let Icon = null;
+	import Icon from '@iconify/svelte';
 
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
+	const IconifyIcon = Icon;
 
+    
 	const financingProducts = [
 		{
 			name: 'Driftskreditt',
@@ -144,8 +142,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<div class="flex items-center gap-x-4 mb-6">
 							{#if browser && Icon}
-								<svelte:component
-									this={Icon}
+								<Icon
 									icon={product.icon}
 									class="h-8 w-8 text-blue-700 dark:text-blue-400"
 								/>
@@ -160,11 +157,10 @@
 								{#each product.features as feature}
 									<li class="flex items-start gap-x-3">
 										{#if browser && Icon}
-											<svelte:component
-												this={Icon}
+											<Icon
 												icon="heroicons:check"
 												class="h-5 w-5 text-blue-700 dark:text-blue-400 mt-0.5"
-											/>
+												/>
 										{/if}
 										<span class="text-gray-600 dark:text-gray-300">{feature}</span>
 									</li>
@@ -178,11 +174,10 @@
 								{#each product.requirements as requirement}
 									<li class="flex items-start gap-x-3">
 										{#if browser && Icon}
-											<svelte:component
-												this={Icon}
+											<Icon
 												icon="heroicons:shield-check"
 												class="h-5 w-5 text-blue-700 dark:text-blue-400 mt-0.5"
-											/>
+												/>
 										{/if}
 										<span class="text-gray-600 dark:text-gray-300">{requirement}</span>
 									</li>
@@ -218,8 +213,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<svelte:component
-									this={Icon}
+								<Icon
 									icon={step.icon}
 									class="h-6 w-6 text-blue-700 dark:text-blue-400"
 								/>
@@ -249,8 +243,7 @@
 				{#each riskDisclosure.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<svelte:component
-								this={Icon}
+							<Icon
 								icon="heroicons:exclamation-triangle"
 								class="h-6 w-6 text-yellow-500"
 							/>
@@ -270,8 +263,7 @@
 				{#each legalInfo.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<svelte:component
-								this={Icon}
+							<Icon
 								icon="heroicons:information-circle"
 								class="h-6 w-6 text-blue-700 dark:text-blue-400"
 							/>

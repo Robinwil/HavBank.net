@@ -1,13 +1,8 @@
 <script>
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	
-	let Icon = $state(null);
+    import Icon from '@iconify/svelte';
+	let IconifyIcon = Icon;
 
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
 
 	function handleNavClick(e) {
 		const href = e.currentTarget.getAttribute('href');

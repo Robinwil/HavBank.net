@@ -1,8 +1,9 @@
 <script>
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	
-	let Icon = $state(null);
+	import Icon from '@iconify/svelte';
+
+	const IconifyIcon = Icon;
+
 	let email = $state('');
 	let subscribeStatus = $state('idle'); // idle, loading, success, error
 	let errorMessage = $state('');
@@ -66,10 +67,6 @@
 		{ href: '/om-oss', text: 'Om HavBank' }
 	];
 
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
 
 	function handleSubmit(event) {
 		event.preventDefault();

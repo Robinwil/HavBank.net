@@ -3,6 +3,7 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
+	let IconifyIcon = Icon;
 	
 	// Debug logs
 	$effect(() => {

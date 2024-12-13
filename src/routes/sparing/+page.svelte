@@ -1,5 +1,7 @@
 <script>
 	import Icon from '@iconify/svelte';
+	let IconifyIcon = Icon;
+
 	import { browser } from '$app/environment';
 
 	let isLoading = $state(true);

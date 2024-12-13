@@ -1,8 +1,10 @@
 <script>
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	
-	let Icon = $state(null);
+	import Icon from '@iconify/svelte';
+    import { onMount } from '@iconify/svelte';
+
+	const IconifyIcon = Icon;
+
 	let Chart;
 
 	// Financial metrics (to be updated with real data)
@@ -86,10 +88,8 @@
 
 	onMount(async () => {
 		const [iconModule, chartModule] = await Promise.all([
-			import('@iconify/svelte'),
 			import('chart.js/auto')
 		]);
-		Icon = iconModule.default;
 		Chart = chartModule.default;
 
 		// Common chart theme options

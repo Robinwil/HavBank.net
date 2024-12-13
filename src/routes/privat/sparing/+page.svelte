@@ -1,13 +1,9 @@
 <script>
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+    import Icon from '@iconify/svelte';
+	let IconifyIcon = Icon;
 	
-	let Icon = $state(null);
-
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
 
 	const products = [
 		{

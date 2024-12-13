@@ -1,12 +1,8 @@
 <script>
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	let Icon = null;
+	import Icon from '@iconify/svelte';
 
-	onMount(async () => {
-		const module = await import('@iconify/svelte');
-		Icon = module.default;
-	});
+	const IconifyIcon = Icon;
 
 	const features = [
 		{
@@ -178,7 +174,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-6 rounded-lg transition-transform hover:scale-105">
 						<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
-								<svelte:component this={Icon} icon={product.icon} width="24" height="24" class="flex-none text-blue-700 dark:text-blue-400" />
+								<Icon icon={product.icon} width="24" height="24" class="flex-none text-blue-700 dark:text-blue-400" />
 							{:else}
 								<span class="w-6 h-6"> </span>
 							{/if}
@@ -194,7 +190,7 @@
 								>
 									Les mer
 									{#if browser && Icon}
-										<svelte:component this={Icon} icon="heroicons:arrow-right" class="ml-1 w-4 h-4" />
+										<Icon icon="heroicons:arrow-right" class="ml-1 w-4 h-4" />
 									{:else}
 										<span aria-hidden="true">→</span>
 									{/if}
@@ -222,7 +218,7 @@
 				<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 					<dt class="flex items-center gap-x-3 font-semibold text-gray-900 dark:text-white">
 						{#if browser && Icon}
-							<svelte:component this={Icon} icon={feature.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+							<Icon icon={feature.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 						{/if}
 						{feature.name}
 					</dt>
@@ -236,7 +232,7 @@
 			{#each certifications as cert}
 				<div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
 					{#if browser && Icon}
-						<svelte:component this={Icon} icon={cert.icon} class="w-6 h-6" />
+						<Icon icon={cert.icon} class="w-6 h-6" />
 					{/if}
 					<span class="text-sm font-medium">{cert.name}</span>
 				</div>
@@ -260,7 +256,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
-								<svelte:component this={Icon} icon="heroicons:shield-check" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+								<Icon icon="heroicons:shield-check" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							Compliance og sikkerhet
 						</h3>
@@ -272,7 +268,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
-								<svelte:component this={Icon} icon="heroicons:sparkles" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+								<Icon icon="heroicons:sparkles" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							Bærekraftig finans
 						</h3>
@@ -286,7 +282,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
-								<svelte:component this={Icon} icon="heroicons:globe-europe" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+								<Icon icon="heroicons:globe-europe" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							Internasjonal handel
 						</h3>
@@ -298,7 +294,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
-								<svelte:component this={Icon} icon="heroicons:lock-closed" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+								<Icon icon="heroicons:lock-closed" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							Digital sikkerhet
 						</h3>
@@ -328,7 +324,7 @@
 				>
 					Bli bedriftskunde
 					{#if browser && Icon}
-						<svelte:component this={Icon} icon="heroicons:arrow-right" class="ml-2 w-5 h-5" />
+						<Icon icon="heroicons:arrow-right" class="ml-2 w-5 h-5" />
 					{:else}
 						<span aria-hidden="true">→</span>
 					{/if}
@@ -339,7 +335,7 @@
 				>
 					Kontakt oss
 					{#if browser && Icon}
-						<svelte:component this={Icon} icon="heroicons:arrow-right" class="inline-block ml-1 w-4 h-4" />
+						<Icon icon="heroicons:arrow-right" class="inline-block ml-1 w-4 h-4" />
 					{:else}
 						<span aria-hidden="true">→</span>
 					{/if}
@@ -364,7 +360,7 @@
 			{#each certifications as cert}
 				<div class="flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
 					{#if browser && Icon}
-						<svelte:component this={Icon} icon={cert.icon} class="w-12 h-12 text-blue-700 dark:text-blue-400 mb-4" />
+						<Icon icon={cert.icon} class="w-12 h-12 text-blue-700 dark:text-blue-400 mb-4" />
 					{/if}
 					<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{cert.name}</h3>
 					<p class="text-sm text-gray-600 dark:text-gray-400">{cert.description}</p>
@@ -378,7 +374,7 @@
 				<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 					<div class="flex items-center gap-x-3 mb-4">
 						{#if browser && Icon}
-							<svelte:component this={Icon} icon={info.icon} class="w-6 h-6 text-blue-700 dark:text-blue-400" />
+							<Icon icon={info.icon} class="w-6 h-6 text-blue-700 dark:text-blue-400" />
 						{/if}
 						<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{info.title}</h3>
 					</div>
