@@ -5,4 +5,4 @@ cmds = ["npm install"]
 dependsOn = ["install"]
 cmds = ["npm run build"]
 
-start = "node build/index.js"
+startCommand = "node build/index.js"
