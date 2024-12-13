@@ -1,7 +1,6 @@
 <script>
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
-    import { onMount } from '@iconify/svelte';
 
 	const IconifyIcon = Icon;
 
