@@ -485,11 +485,14 @@
 
 	input[type="range"] {
 		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
 		width: 100%;
 		height: 2px;
 		background: #1e293b;
 		border-radius: 8px;
 		margin: 1rem 0;
+		outline: none;
 	}
 
 	input[type="range"]::-webkit-slider-thumb {
