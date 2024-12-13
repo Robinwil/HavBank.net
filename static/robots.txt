@@ -1,0 +1,10 @@
+# HavBank - Norwegian Banking Services
+User-agent: *
+Disallow: /api/
+Allow: /
+
+# Relative path to sitemap that works in all environments
+Sitemap: /sitemap.xml
+
+# This is a fictional website created for educational purposes
+# No real banking or financial services are offered!
