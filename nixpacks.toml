@@ -5,4 +5,5 @@ cmds = ["npm install"]
 cmds = ["npm run build"]
 
 [phases.start]
-cmds = ["node build"]
+dependsOn = ["build"]
+cmds = ["node build/index.js"]
