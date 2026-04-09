@@ -165,7 +165,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 <div class="bg-white dark:bg-gray-900">
 	<!-- Hero Section -->
 	<div class="relative isolate overflow-hidden">
-		<div class="mx-auto max-w-7xl px-6 py-8 sm:py-16 lg:px-8">
+		<div class="page-container py-8 sm:py-16">
 			<div class="mx-auto max-w-2xl lg:mx-0">
 				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
 					Personvernerklæring
@@ -180,7 +180,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	</div>
 
 	<!-- Quick Navigation -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
+	<div class="page-container mb-16">
 		<nav class="flex flex-wrap gap-4 py-8" aria-label="Hurtignavigasjon">
 			{#each sections as section}
 				<a
@@ -197,7 +197,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	</div>
 
 	<!-- Main Content -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+	<div class="page-container mb-24">
 		<div class="space-y-16">
 			{#each sections as section}
 				<section id={section.id} class="scroll-mt-16">
@@ -218,7 +218,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	</div>
 
 	<!-- Last Updated -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+	<div class="page-container">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				Denne personvernerklæringen ble sist oppdatert 15. januar 2024. HavBank AS (org.nr. 476 83

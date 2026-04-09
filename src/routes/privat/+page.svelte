@@ -152,25 +152,25 @@
 <div class="bg-white dark:bg-gray-900">
 	<!-- Hero Section -->
 	<div class="relative isolate overflow-hidden">
-		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl text-center">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Din personlige bank
 				</h1>
-				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				<p class="page-lead">
 					Vi tilbyr skreddersydde løsninger for din personlige økonomi. Våre rådgivere hjelper deg med å
 					ta smarte økonomiske valg.
 				</p>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
 					<a
 						href="/bli-kunde"
-						class="rounded-md bg-blue-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:bg-blue-800 dark:hover:bg-blue-700"
+						class="btn-primary"
 					>
 						Bli kunde
 					</a>
 					<a
 						href="/bestill-time"
-						class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+						class="btn-secondary"
 					>
 						Snakk med rådgiver <span aria-hidden="true">→</span>
 					</a>
@@ -180,7 +180,7 @@
 	</div>
 
 	<!-- Quick Links -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+	<div class="page-container">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
 			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{#each quickLinks as link}
@@ -210,11 +210,11 @@
 	</div>
 
 	<!-- Products Grid -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-16">
+	<div class="page-container mt-16">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
 			<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
 				{#each products as product}
-					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-6 rounded-lg transition-transform hover:scale-105">
+					<div class="flex flex-col card-soft transition-transform hover:scale-105">
 						<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
 								<Icon
@@ -265,7 +265,7 @@
 	</div>
 
 	<!-- Market Rates -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32">
+	<div class="page-container mt-32">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
 			<div class="text-center">
 				<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
@@ -298,13 +298,13 @@
 
 	<!-- Stats Section -->
 	<div class="bg-gray-50 dark:bg-gray-800 py-24 sm:py-32 mt-32">
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="page-container">
 			<div class="mx-auto max-w-2xl lg:max-w-none">
 				<div class="text-center">
-					<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-						Trygt og enkelt å være kunde
-					</h2>
-					<p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				<h2 class="section-title">
+					Trygt og enkelt å være kunde
+				</h2>
+				<p class="section-lead mt-4">
 						Som kunde i HavBank får du tilgang til moderne banktjenester og personlig rådgivning.
 					</p>
 				</div>
@@ -350,7 +350,7 @@
 
 	<!-- Personal Advisory Section -->
 	<div class="relative isolate overflow-hidden bg-white dark:bg-gray-900 py-24 sm:py-32">
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="page-container">
 			<div class="mx-auto max-w-2xl lg:mx-0">
 				<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
 					Personlig rådgivning
@@ -454,7 +454,7 @@
 	</div>
 
 	<!-- Legal Disclaimer -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
+	<div class="page-container pb-24">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				Alle banktjenester tilbys av HavBank AS (org.nr. +00 000 00 000), under tilsyn av Finanstilsynet.

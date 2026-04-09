@@ -76,22 +76,30 @@ The project is built with:
 
 To get started with the project, follow these steps:
 
+> This project now uses **Bun** as the default package manager and runtime.
+
 1. **Install dependencies**
 
    ```bash
-   npm install
+   bun install
    ```
 
 2. **Start development server**
 
    ```bash
-   npm run dev
+   bun run dev
    ```
 
 3. **Build for production**
 
    ```bash
-   npm run build
+   bun run build
+   ```
+
+4. **Start the production server locally**
+
+   ```bash
+   bun run start
    ```
 
 ## Credits

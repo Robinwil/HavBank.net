@@ -16,17 +16,8 @@ export async function handle({ event, resolve }) {
 			'camera=(), microphone=(), geolocation=(), payment=()'
 		);
 
-		// Content Security Policy
-		response.headers.set(
-			'Content-Security-Policy',
-			"default-src 'self'; " +
-				"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google.com https://*.googletagmanager.com; " +
-				"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
-				"img-src 'self' data: https: https://*.google.com https://*.googleapis.com; " +
-				"font-src 'self' https://fonts.gstatic.com; " +
-				"connect-src 'self' https://*.google.com https://*.googleapis.com https://api.openai.com; " +
-				"frame-ancestors 'none';"
-		);
+		// Note: Content-Security-Policy is managed by SvelteKit's kit.csp config in svelte.config.js
+		// which uses nonce-based CSP for proper script-src security without unsafe-eval or unsafe-inline.
 
 		// Demo site warning header
 		response.headers.set(

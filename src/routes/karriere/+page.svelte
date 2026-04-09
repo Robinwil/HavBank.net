@@ -107,12 +107,12 @@
 <div class="bg-white dark:bg-gray-900">
 	<!-- Hero Section -->
 	<div class="relative isolate overflow-hidden bg-gradient-to-b from-blue-100 dark:from-blue-950 to-transparent">
-		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+		<div class="page-container py-16 sm:py-24">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Bli med på laget
 				</h1>
-				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				<p class="page-lead">
 					I HavBank jobber vi for å skape fremtidens bank. Vi søker engasjerte mennesker som vil være
 					med på reisen.
 				</p>
@@ -121,7 +121,7 @@
 	</div>
 
 	<!-- Quick Navigation -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 -mt-8 mb-16">
+	<div class="page-container -mt-8 mb-16">
 		<div class="flex flex-wrap gap-4 justify-center">
 			{#each navLinks as link}
 				<a
@@ -135,7 +135,7 @@
 	</div>
 
 	<!-- Current Openings -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
+	<div class="page-container mb-16">
 		<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-700 dark:to-blue-800">
 			<!-- Background Pattern -->
 			<div class="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]"> </div>
@@ -231,18 +231,18 @@
 	</div>
 
 	<!-- Benefits -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
+	<div class="page-container mb-16">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-				Fordeler i HavBank
-			</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+		<h2 class="section-title">
+			Fordeler i HavBank
+		</h2>
+		<p class="section-lead">
 				Vi tilbyr mer enn bare en jobb. Her er noen av fordelene ved å jobbe hos oss.
 			</p>
 		</div>
 		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
 			{#each benefits as benefit}
-				<div class="flex flex-col rounded-xl bg-white dark:bg-gray-800 p-6 ring-1 ring-gray-200 dark:ring-gray-700">
+					<div class="flex flex-col card-elevated">
 					<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600">
 						{#if browser && Icon}
 							<Icon icon={benefit.icon} class="h-6 w-6 text-white" />
@@ -260,7 +260,7 @@
 	</div>
 
 	<!-- Values -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
+	<div class="page-container mb-16">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
 				Våre verdier
@@ -271,7 +271,7 @@
 		</div>
 		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-4">
 			{#each values as value}
-				<div class="flex flex-col rounded-xl bg-white dark:bg-gray-800 p-6 ring-1 ring-gray-200 dark:ring-gray-700">
+				<div class="flex flex-col card-elevated">
 					<h3 class="text-lg font-semibold leading-8 text-gray-900 dark:text-white">
 						{value.title}
 					</h3>
@@ -284,7 +284,7 @@
 	</div>
 
 	<!-- Life at HavBank -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+	<div class="page-container mb-24">
 		<div class="rounded-2xl bg-blue-600 px-6 py-16 sm:p-16">
 			<div class="mx-auto max-w-2xl text-center">
 				<h2 class="text-3xl font-bold tracking-tight text-white">Livet i HavBank</h2>
@@ -295,7 +295,7 @@
 				<div class="mt-10 flex items-center justify-center gap-x-6">
 					<a
 						href="/karriere/historier"
-						class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-blue-600 shadow-sm hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+						class="btn-white text-blue-600"
 					>
 						Les våre historier
 					</a>

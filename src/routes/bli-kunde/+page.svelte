@@ -146,7 +146,7 @@
 <div class="bg-white dark:bg-gray-900">
 	<!-- Hero Section -->
 	<div class="relative isolate overflow-hidden">
-		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0">
 				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
 					Bli kunde i HavBank
@@ -160,7 +160,7 @@
 	</div>
 
 	<!-- Requirements Section -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+	<div class="page-container mb-24">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
 				Dette trenger du for å bli kunde
@@ -188,7 +188,7 @@
 	</div>
 
 	<!-- Booking Form Section -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+	<div class="page-container mb-24">
 		<div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2">
 			<div>
 				<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
@@ -504,7 +504,7 @@
 	</div>
 
 	<!-- Legal Disclaimer -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+	<div class="page-container">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				Ved å sende inn dette skjemaet samtykker du til at HavBank kan kontakte deg angående ditt

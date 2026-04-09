@@ -132,7 +132,7 @@
 <div class="bg-white dark:bg-gray-900">
 	<!-- Hero Section -->
 	<div class="relative isolate overflow-hidden">
-		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+		<div class="page-container py-16 sm:py-24">
 			<div class="mx-auto max-w-2xl lg:mx-0">
 				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
 					Bærekraft i alt vi gjør

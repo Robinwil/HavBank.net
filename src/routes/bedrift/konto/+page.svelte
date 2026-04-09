@@ -140,7 +140,7 @@
 							<p class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">{account.price}</p>
 							<a
 								href="/kontakt"
-								class="block w-full text-center rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 dark:bg-blue-800 dark:hover:bg-blue-700"
+								class="block w-full btn-primary"
 							>
 								Kom i gang
 							</a>

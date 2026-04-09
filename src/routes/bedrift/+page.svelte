@@ -129,9 +129,9 @@
 
 <div class="bg-white dark:bg-gray-900">
 	<div class="relative isolate overflow-hidden">
-		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Banktjenester for bedrifter
 				</h1>
 				<div class="mt-10 max-w-xl text-base leading-7 text-gray-700 dark:text-gray-300 lg:max-w-none">
@@ -167,11 +167,11 @@
 		</div>
 	</div>
 
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+	<div class="page-container">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
 			<div class="mt-16 grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
 				{#each products as product}
-					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-6 rounded-lg transition-transform hover:scale-105">
+						<div class="flex flex-col card-soft transition-transform hover:scale-105">
 						<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
 								<Icon icon={product.icon} width="24" height="24" class="flex-none text-blue-700 dark:text-blue-400" />
@@ -205,17 +205,17 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+			<h2 class="section-title">
 				Fordeler for bedriftskunder
 			</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+			<p class="section-lead">
 				Som bedriftskunde i HavBank får du tilgang til en rekke tjenester og fordeler som gjør
 				hverdagen enklere.
 			</p>
 		</div>
 		<dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4">
 			{#each features as feature}
-				<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+				<div class="card-soft">
 					<dt class="flex items-center gap-x-3 font-semibold text-gray-900 dark:text-white">
 						{#if browser && Icon}
 							<Icon icon={feature.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
@@ -242,10 +242,10 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-				Trygg partner for din bedrift
-			</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+		<h2 class="section-title">
+			Trygg partner for din bedrift
+		</h2>
+		<p class="section-lead">
 				HavBank er underlagt tilsyn av Finanstilsynet og følger alle norske og internasjonale
 				reguleringer for banktjenester.
 			</p>

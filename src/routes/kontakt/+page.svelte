@@ -101,12 +101,12 @@
 <div class="bg-white dark:bg-gray-900">
 	<!-- Hero Section -->
 	<div class="relative isolate overflow-hidden">
-		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Vi er her for å hjelpe
 				</h1>
-				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				<p class="page-lead">
 					Trenger du hjelp? Vi er tilgjengelige døgnet rundt for å hjelpe deg med dine bankbehov.
 					Velg den kontaktmetoden som passer deg best.
 				</p>
@@ -115,7 +115,7 @@
 	</div>
 
 	<!-- Contact Methods Grid -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+	<div class="page-container mb-24">
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
 			{#each contactMethods as method}
 				<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl">
@@ -141,10 +141,10 @@
 	</div>
 
 	<!-- Contact Form Section -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+	<div class="page-container mb-24">
 		<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 			<div>
-				<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Send oss en melding</h2>
+				<h2 class="section-title mb-6">Send oss en melding</h2>
 				<p class="text-gray-600 dark:text-gray-300 mb-8">
 					Fyll ut skjemaet under, så vil vi kontakte deg så snart som mulig. Vi svarer normalt
 					innen 24 timer på hverdager.
@@ -230,7 +230,7 @@
 			</div>
 
 			<div class="lg:pl-8">
-				<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Våre kontorer</h2>
+				<h2 class="section-title mb-6">Våre kontorer</h2>
 				<div class="space-y-8">
 					{#each offices as office}
 						<div class="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden">
@@ -253,9 +253,9 @@
 	</div>
 
 	<!-- FAQ Section -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+	<div class="page-container mb-24">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
-			<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Ofte stilte spørsmål</h2>
+			<h2 class="section-title mb-6">Ofte stilte spørsmål</h2>
 			<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 				<div>
 					<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">

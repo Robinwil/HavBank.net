@@ -12,10 +12,14 @@
 	
 	let isMenuOpen = $state(false);
 	let isLangMenuOpen = $state(false);
+	let isThemeMenuOpen = $state(false);
 	let IconifyIcon = Icon;
+	let themePreference = $state('system');
 	let isDarkMode = $state(false);
 	let currentLang = $state('nb');
 	let isScrolling = $state(false);
+	
+	const THEME_STORAGE_KEY = 'havbank-theme';
 	
 	// Track previous path for animation
 	let previousPath = $state('');
@@ -38,6 +42,12 @@
 	const languages = [
 		{ code: 'nb', name: 'Norsk bokmål' },
 		{ code: 'en', name: 'English' }
+	];
+
+	const themeOptions = [
+		{ value: 'system', label: 'System', icon: 'heroicons:computer-desktop' },
+		{ value: 'light', label: 'Lyst', icon: 'heroicons:sun' },
+		{ value: 'dark', label: 'Mørkt', icon: 'heroicons:moon' }
 	];
 	
 	const navigation = [
@@ -69,19 +79,68 @@
 		]
 	};
 
-	onMount(async () => {
+	function resolveTheme(theme = themePreference) {
+		if (!browser) return false;
+		if (theme === 'dark') return true;
+		if (theme === 'light') return false;
+		return window.matchMedia('(prefers-color-scheme: dark)').matches;
+	}
 
-		// Check system dark mode preference
-		if (browser) {
-			isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			document.documentElement.classList.toggle('dark', isDarkMode);
-		}
-	});
+	function applyTheme(theme = themePreference) {
+		if (!browser) return;
+		isDarkMode = resolveTheme(theme);
+		document.documentElement.classList.toggle('dark', isDarkMode);
+		document.documentElement.style.colorScheme = isDarkMode ? 'dark' : 'light';
+	}
 
-	$effect(() => {
+	function setTheme(theme) {
+		themePreference = theme;
+		isThemeMenuOpen = false;
 		if (browser) {
-			document.documentElement.classList.toggle('dark', isDarkMode);
+			if (theme === 'system') {
+				localStorage.removeItem(THEME_STORAGE_KEY);
+			} else {
+				localStorage.setItem(THEME_STORAGE_KEY, theme);
+			}
 		}
+		applyTheme(theme);
+	}
+
+	function getThemeLabel(theme = themePreference) {
+		return themeOptions.find((option) => option.value === theme)?.label ?? 'System';
+	}
+
+	function getThemeIcon(theme = themePreference) {
+		return themeOptions.find((option) => option.value === theme)?.icon ?? 'heroicons:computer-desktop';
+	}
+
+	onMount(() => {
+		if (!browser) return;
+
+		const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+		themePreference = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'system';
+		applyTheme(themePreference);
+
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		const handleSystemThemeChange = () => {
+			if (themePreference === 'system') {
+				applyTheme('system');
+			}
+		};
+
+		if (typeof mediaQuery.addEventListener === 'function') {
+			mediaQuery.addEventListener('change', handleSystemThemeChange);
+		} else {
+			mediaQuery.addListener(handleSystemThemeChange);
+		}
+
+		return () => {
+			if (typeof mediaQuery.removeEventListener === 'function') {
+				mediaQuery.removeEventListener('change', handleSystemThemeChange);
+			} else {
+				mediaQuery.removeListener(handleSystemThemeChange);
+			}
+		};
 	});
 
 	// Handle keyboard navigation
@@ -89,6 +148,7 @@
 		if (event.key === 'Escape') {
 			isMenuOpen = false;
 			isLangMenuOpen = false;
+			isThemeMenuOpen = false;
 		}
 	}
 
@@ -101,20 +161,10 @@
 <svelte:head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="theme-color" content="#1e3a8a" />
+	<meta name="theme-color" content={isDarkMode ? '#111827' : '#1e3a8a'} />
+	<meta name="color-scheme" content="light dark" />
 	<meta name="author" content="HavBank" />
-	 
-	
-	<!-- Security headers -->
-	<meta http-equiv="Content-Security-Policy" content="
-		default-src 'self'; 
-		img-src 'self' data: https:; 
-		script-src 'self' 'unsafe-inline';
-		style-src 'self' 'unsafe-inline';
-		connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com;
-	" />
-	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
-	
+
 	<!-- Open Graph tags -->
 	<meta property="og:site_name" content="HavBank" />
 	<meta property="og:type" content="website" />
@@ -169,7 +219,10 @@
 						<button
 							type="button"
 							class="flex items-center gap-x-2 rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-							onclick={() => (isLangMenuOpen = !isLangMenuOpen)}
+							onclick={() => {
+								isLangMenuOpen = !isLangMenuOpen;
+								isThemeMenuOpen = false;
+							}}
 							aria-expanded={isLangMenuOpen}
 							aria-haspopup="true"
 						>
@@ -208,17 +261,57 @@
 						{/if}
 					</div>
 
-					<!-- Dark Mode Toggle -->
-					<button
-						type="button"
-						class="rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-						onclick={() => (isDarkMode = !isDarkMode)}
-						aria-label={isDarkMode ? 'Bytt til lyst tema' : 'Bytt til mørkt tema'}
-					>
-						{#if browser && Icon}
-							<Icon icon={isDarkMode ? 'heroicons:sun' : 'heroicons:moon'} class="h-5 w-5" />
+					<!-- Theme Selector -->
+					<div class="relative">
+						<button
+							type="button"
+							class="flex items-center gap-x-2 rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+							onclick={() => {
+								isThemeMenuOpen = !isThemeMenuOpen;
+								isLangMenuOpen = false;
+							}}
+							aria-label={`Velg tema. Aktivt tema: ${getThemeLabel()}`}
+							aria-expanded={isThemeMenuOpen}
+							aria-haspopup="true"
+							title={`Aktivt tema: ${getThemeLabel()}`}
+						>
+							{#if browser && Icon}
+								<Icon icon={getThemeIcon()} class="h-5 w-5" />
+							{/if}
+							<span class="hidden sm:inline-block">{getThemeLabel()}</span>
+							{#if browser && Icon}
+								<Icon icon="heroicons:chevron-down" class="h-4 w-4" />
+							{/if}
+						</button>
+
+						{#if isThemeMenuOpen}
+							<div
+								class="absolute right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-white dark:bg-gray-800 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+								role="menu"
+								aria-orientation="vertical"
+							>
+								{#each themeOptions as option}
+									<button
+										type="button"
+										class={cn(
+											"flex w-full items-center gap-x-2 px-4 py-2 text-sm text-left hover:bg-gray-50 dark:hover:bg-gray-700",
+											themePreference === option.value
+												? "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+												: "text-gray-700 dark:text-gray-300"
+										)}
+										role="menuitemradio"
+										aria-checked={themePreference === option.value}
+										onclick={() => setTheme(option.value)}
+									>
+										{#if browser && Icon}
+											<Icon icon={option.icon} class="h-4 w-4" />
+										{/if}
+										<span>{option.label}</span>
+									</button>
+								{/each}
+							</div>
 						{/if}
-					</button>
+					</div>
 
 					<!-- Login Button -->
 					<a

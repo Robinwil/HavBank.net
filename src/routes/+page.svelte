@@ -65,30 +65,30 @@
 		></div>
 	</div>
 
-	<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+	<div class="page-container py-24 sm:py-32">
 		<div class="mx-auto max-w-2xl text-center">
 			<div class="mb-8 flex justify-center">
 				{#if browser && Icon}
 					<Icon icon="heroicons:building-library" class="h-16 w-16 text-blue-900 dark:text-blue-100" />
 				{/if}
 			</div>
-			<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
+			<h1 class="page-title">
 				Din trygge bank i Norge
 			</h1>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+			<p class="page-lead">
 				HavBank kombinerer moderne bankløsninger med tradisjonelle norske bankverdier. Vi er her for å
 				hjelpe deg med din personlige økonomi og fremtidige investeringer.
 			</p>
 			<div class="mt-10 flex items-center justify-center gap-x-6">
 				<a
 					href="/bli-kunde"
-					class="rounded-md bg-blue-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900 dark:bg-blue-800 dark:hover:bg-blue-700"
+					class="btn-primary"
 				>
 					Bli kunde
 				</a>
 				<a
 					href="/tjenester"
-					class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100"
+					class="btn-secondary"
 				>
 					Se våre tjenester <span aria-hidden="true">→</span>
 				</a>
@@ -117,15 +117,11 @@
 </div>
 
 <div class="bg-gray-50 dark:bg-gray-900 py-24 sm:py-32">
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+	<div class="page-container">
 		<div class="mx-auto max-w-2xl lg:text-center">
-			<h2 class="text-base font-semibold leading-7 text-blue-900 dark:text-blue-400">
-				Trygg og moderne
-			</h2>
-			<p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
-				Banktjenester for fremtiden
-			</p>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+			<p class="section-eyebrow">Trygg og moderne</p>
+			<p class="mt-2 section-title">Banktjenester for fremtiden</p>
+			<p class="section-lead">
 				Vi tilbyr et komplett utvalg av banktjenester for privatpersoner og bedrifter, med fokus på
 				sikkerhet og brukervennlighet.
 			</p>
@@ -154,7 +150,7 @@
 </div>
 
 <!-- Emergency Contact -->
-<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+<div class="page-container mb-24">
     <div class="relative overflow-hidden rounded-3xl shadow-2xl">
         <!-- Background Pattern -->
         <div class="absolute inset-0 bg-gradient-to-br from-red-500 via-red-600 to-blue-700 dark:from-red-800 dark:via-red-900 dark:to-blue-900"></div>
