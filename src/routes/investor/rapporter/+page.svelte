@@ -1,17 +1,16 @@
 <script>
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
 	function handleDemoDownload(event) {
 		event.preventDefault();
-		alert(
-			'Dette er en fiktiv demoside. Investorrapporter er ikke tilgjengelig for nedlasting.'
-		);
+		showDemoNotice({ detail: 'Investorrapporter er ikke tilgjengelig for nedlasting.' });
 	}
 
 	function handleSubscribe(event) {
 		event.preventDefault();
-		alert('Takk! I en reell tjeneste ville du nå få varsel når ny rapport publiseres.');
+		showDemoNotice({ detail: 'Ingen varsler blir sendt — e-postadressen din lagres ikke.' });
 	}
 
 	const types = ['Alle', 'Kvartal', 'Årsrapport', 'Pillar III'];

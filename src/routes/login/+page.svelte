@@ -1,6 +1,7 @@
 <script>
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
 	let showPassword = $state(false);
 	let formData = $state({
@@ -8,16 +9,13 @@
 		password: ''
 	});
 
-	const demoAlert =
-		'Dette er en fiktiv nettside laget for utdanningsformål. Ingen reelle banktjenester tilbys.';
-
 	function handleSubmit(event) {
 		event.preventDefault();
-		alert(demoAlert);
+		showDemoNotice({ detail: 'Innlogging er ikke mulig her.' });
 	}
 
 	function handleBankID() {
-		alert(demoAlert);
+		showDemoNotice({ detail: 'BankID-pålogging er ikke koblet til noe reelt system.' });
 	}
 </script>
 

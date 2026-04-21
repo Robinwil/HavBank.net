@@ -1,7 +1,8 @@
 <script>
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
+
 	let Icon = $state(null);
 	let Chart;
 
@@ -45,9 +46,7 @@
 
 	function handleDemoDownload(event) {
 		event.preventDefault();
-		alert(
-			'Dette er en fiktiv demoside. Bærekraftsrapporten er ikke tilgjengelig for nedlasting.'
-		);
+		showDemoNotice({ detail: 'Bærekraftsrapporten er ikke tilgjengelig for nedlasting.' });
 	}
 
 	// UN Sustainable Development Goals we focus on

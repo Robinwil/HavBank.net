@@ -1,15 +1,16 @@
 <script>
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
 	function handleDemoDownload(event) {
 		event.preventDefault();
-		alert('Dette er en fiktiv demoside. Presentasjonen er ikke tilgjengelig for nedlasting.');
+		showDemoNotice({ detail: 'Presentasjonen er ikke tilgjengelig for nedlasting.' });
 	}
 
 	function handleRegister(event) {
 		event.preventDefault();
-		alert('Dette er en fiktiv demoside. Påmelding er ikke mulig.');
+		showDemoNotice({ detail: 'Påmelding er ikke mulig — ingen data lagres.' });
 	}
 
 	const upcoming = [

@@ -1,6 +1,7 @@
 <script>
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
 	const IconifyIcon = Icon;
 
@@ -66,16 +67,14 @@
 
 	async function handleSubmit() {
 		isSubmitting = true;
-		// Simulate API call
-		await new Promise(resolve => setTimeout(resolve, 1000));
-		// Reset form
+		await new Promise(resolve => setTimeout(resolve, 400));
 		name = '';
 		email = '';
 		phone = '';
 		message = '';
 		category = 'general';
 		isSubmitting = false;
-		alert('Takk for din henvendelse! Vi vil kontakte deg snart.');
+		showDemoNotice({ detail: 'Henvendelsen er ikke sendt — ingen data lagres.' });
 	}
 </script>
 

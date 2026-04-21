@@ -83,36 +83,22 @@
 		submitError = '';
 		submitSuccess = false;
 
-		try {
-			const response = await fetch('/api/booking', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formData)
-			});
+		// No network call — this is a fictitious site, nothing is sent anywhere.
+		await new Promise((resolve) => setTimeout(resolve, 300));
 
-			if (!response.ok) {
-				throw new Error('Kunne ikke sende forespørselen. Prøv igjen senere.');
-			}
-
-			submitSuccess = true;
-			formData = {
-				type: 'private',
-				name: '',
-				email: '',
-				phone: '',
-				preferredDate: '',
-				preferredTime: '',
-				topic: 'bli-kunde',
-				message: '',
-				acceptTerms: false
-			};
-		} catch (error) {
-			submitError = error.message;
-		} finally {
-			isSubmitting = false;
-		}
+		formData = {
+			type: 'private',
+			name: '',
+			email: '',
+			phone: '',
+			preferredDate: '',
+			preferredTime: '',
+			topic: 'bli-kunde',
+			message: '',
+			acceptTerms: false
+		};
+		isSubmitting = false;
+		showDemoNotice({ detail: 'Ingen data ble sendt til noen — vi kan ikke opprette kundeforhold.' });
 	}
 
 	// Disable past dates in date picker

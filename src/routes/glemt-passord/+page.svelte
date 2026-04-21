@@ -1,19 +1,17 @@
 <script>
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
-
-	const demoAlert =
-		'Dette er en fiktiv nettside laget for utdanningsformål. Ingen reelle banktjenester tilbys.';
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
 	let showBankIDAlternative = $state(false);
 
 	function handleBankIDRecovery() {
-		alert(demoAlert);
+		showDemoNotice({ detail: 'Gjenoppretting med BankID er ikke koblet til noe reelt system.' });
 	}
 
 	function handleEmailSubmit(event) {
 		event.preventDefault();
-		alert(demoAlert);
+		showDemoNotice({ detail: 'Ingen e-post blir sendt.' });
 	}
 </script>
 

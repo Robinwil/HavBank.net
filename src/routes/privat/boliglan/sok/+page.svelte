@@ -2,9 +2,7 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
-
-	const demoAlert =
-		'Dette er en fiktiv nettside laget for utdanningsformål. Ingen reelle banktjenester tilbys. Søknaden er ikke sendt inn.';
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
 	let submitting = $state(false);
 
@@ -59,7 +57,7 @@
 		submitting = true;
 		setTimeout(() => {
 			submitting = false;
-			alert(demoAlert);
+			showDemoNotice({ detail: 'Søknaden er ikke sendt inn — ingen data lagres.' });
 		}, 400);
 	}
 

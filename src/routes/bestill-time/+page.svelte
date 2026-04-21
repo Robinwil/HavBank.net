@@ -1,6 +1,7 @@
 <script>
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
+	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
 	const IconifyIcon = Icon;
 
@@ -89,37 +90,24 @@
 		submitError = '';
 		submitSuccess = false;
 
-		try {
-			const response = await fetch('/api/booking', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formData)
-			});
+		// Simulate a short round-trip so the loading state is visible, but do NOT
+		// send any data anywhere — this is a fictitious site.
+		await new Promise((resolve) => setTimeout(resolve, 300));
 
-			if (!response.ok) {
-				throw new Error('Kunne ikke sende forespørselen. Prøv igjen senere.');
-			}
-
-			submitSuccess = true;
-			formData = {
-				type: 'private',
-				name: '',
-				email: '',
-				phone: '',
-				preferredDate: '',
-				preferredTime: '',
-				topic: 'radgivning',
-				message: '',
-				acceptTerms: false,
-				isExistingCustomer: true
-			};
-		} catch (error) {
-			submitError = error.message;
-		} finally {
-			isSubmitting = false;
-		}
+		formData = {
+			type: 'private',
+			name: '',
+			email: '',
+			phone: '',
+			preferredDate: '',
+			preferredTime: '',
+			topic: 'radgivning',
+			message: '',
+			acceptTerms: false,
+			isExistingCustomer: true
+		};
+		isSubmitting = false;
+		showDemoNotice({ detail: 'Møteforespørselen er ikke sendt — ingen data lagres.' });
 	}
 
 	// Disable past dates in date picker

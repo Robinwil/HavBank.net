@@ -6,6 +6,9 @@
 	import { onMount } from 'svelte';
 	import { cn } from '$lib/utils';
 	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
+	import DisclaimerModal from '$lib/components/DisclaimerModal.svelte';
+	import DemoNoticeToast from '$lib/components/DemoNoticeToast.svelte';
+	import SecurityContactDialog from '$lib/components/SecurityContactDialog.svelte';
 	import Icon from '@iconify/svelte';
 	import '../lib/icons.js';  // Import offline icons configuration
 	
@@ -159,6 +162,10 @@
 </a>
 
 <svelte:window onkeydown={handleKeyDown} />
+
+<DisclaimerModal />
+<DemoNoticeToast />
+<SecurityContactDialog />
 
 <div class="min-h-screen bg-white dark:bg-gray-900">
 	<header class="bg-white dark:bg-gray-900 shadow-sm relative z-50">
@@ -432,6 +439,11 @@
 						<li>
 							<a href="/tilgjengelighet" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
 								Tilgjengelighet
+							</a>
+						</li>
+						<li>
+							<a href="/om-prosjektet" class="text-sm leading-6 text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-200 font-medium">
+								Om prosjektet (ikke en ekte bank)
 							</a>
 						</li>
 					</ul>
