@@ -135,7 +135,7 @@ Vesentlige endringer vil bli kommunisert direkte til kundene.`
 			icon: 'heroicons:envelope',
 			content: `Personvernombud:
 E-post: personvern@havbank.no
-Telefon: +00 000 00 000
+Telefon: +47 00 00 00 00
 
 Datatilsynet:
 Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen, kan du klage til Datatilsynet.`
@@ -167,7 +167,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-8 sm:py-16">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Personvernerklæring
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -221,8 +221,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	<div class="page-container">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Denne personvernerklæringen ble sist oppdatert 15. januar 2024. HavBank AS (org.nr. 476 83
-				804) er behandlingsansvarlig for personopplysninger som samles inn og behandles i forbindelse med
+				Denne personvernerklæringen ble sist oppdatert 15. januar 2024. HavBank AS (org.nr. 924 850 771) er behandlingsansvarlig for personopplysninger som samles inn og behandles i forbindelse med
 				våre tjenester.
 			</p>
 		</div>

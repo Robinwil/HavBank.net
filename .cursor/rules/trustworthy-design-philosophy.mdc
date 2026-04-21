@@ -1,0 +1,24 @@
+---
+description: Core design philosophy for HavBank — make a fictional Norwegian bank feel real and trustworthy
+alwaysApply: true
+---
+
+# HavBank: Trustworthy-Design Philosophy
+
+HavBank is a **fictional Norwegian retail bank** (see `README.md`). The project's whole value is looking and reading exactly like a real, regulated Nordic bank — DNB, Nordea, Sparebank 1 are the reference bar. Every design choice must pass the "would a 55-year-old Norwegian homeowner trust this with their boliglån?" test.
+
+## Non-negotiable principles
+
+1. **Boring beats clever.** Banks are trusted because they look the same as every other bank. Prefer conventional layouts (hero + features + stats + CTA footer) over novel ones. No playful microinteractions, no gradient-heavy marketing-site energy except the one existing hero blob.
+2. **Norwegian, always.** All user-facing copy is Norwegian bokmål (`nb`). Use real Norwegian banking vocabulary: *boliglån, BSU, nettbank, Vipps, Finanstilsynet, Bankenes sikringsfond, bærekraft, tilgjengelighet, personvern*. Never machine-translated English.
+3. **Regulatory realism.** Reference real Norwegian institutions and standards: Finanstilsynet (tilsyn), Bankenes sikringsfond (2 MNOK innskuddsgaranti), ISO 27001, GDPR, BankID, Finansavtaleloven. Never invent fake regulators.
+4. **Plausible numbers only.** Interest rates, fees, and stats must sit inside current Norwegian market ranges (boliglån 4–6 %, BSU 5–7 %, fond 0,2–1,5 % årlig kostnad, aksjehandel kr 29–99). Round cleanly (4,15 %, not 4,1527 %). Use Norwegian decimal comma in copy, `.` in code.
+5. **Trust signals are load-bearing.** Security, regulatory, and accessibility signals belong near every conversion point: SSL/256-bit, to-faktor, Finanstilsynet, sikringsfond, `/sikkerhet`, `/personvern`, `/tilgjengelighet`. Never ship a CTA page without at least one trust cue nearby.
+6. **Tone: calm, precise, human.** Short sentences. Second person ("deg", "din økonomi"). No emoji. No exclamation marks outside fraud/security warnings. No marketing hyperbole ("revolusjonerende", "best i Norge") — real Norwegian banks don't talk that way.
+7. **Accessibility is a trust signal, not a bolt-on.** WCAG 2.1 AA minimum: visible focus rings (the `.btn-primary` token already includes `focus-visible:outline`), semantic headings, `alt` text, sufficient contrast in both light and dark mode, keyboard-reachable menus.
+8. **Dark mode is first-class.** Every new component ships light + dark variants in the same commit. Trust breaks instantly when dark mode has unstyled white patches.
+9. **Stay inside the legal frame.** This is an educational demo. Never write copy that solicits real personal data, real money movement, or real account creation. Forms are illustrative; API routes are stubs.
+
+## When in doubt
+
+Open `havbank.no`'s real-world peers (dnb.no, nordea.no, sparebank1.no) in your head and ask: *would this page look out of place next to theirs?* If yes, pull it back.

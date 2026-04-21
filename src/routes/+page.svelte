@@ -50,11 +50,14 @@
 		name="description"
 		content="HavBank tilbyr personlige og bedriftstjenester med fokus på bærekraft og digitale løsninger. Konkurransedyktige betingelser og personlig service."
 	/>
-	<meta property="og:title" content="HavBank - Din trygge bank i Norge" />
+	<meta property="og:title" content="HavBank – Din trygge bank i Norge" />
 	<meta
 		property="og:description"
 		content="Opplev moderne bankvirksomhet med personlig service. HavBank tilbyr konkurransedyktige lån, sparing og digitale løsninger for privatpersoner og bedrifter."
 	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="nb_NO" />
+	<link rel="canonical" href="https://havbank.no/" />
 </svelte:head>
 
 <div class="relative isolate">
@@ -87,7 +90,7 @@
 					Bli kunde
 				</a>
 				<a
-					href="/tjenester"
+					href="/privat"
 					class="btn-secondary"
 				>
 					Se våre tjenester <span aria-hidden="true">→</span>
@@ -190,7 +193,7 @@
                                 <h3 class="text-xl font-semibold text-white">Ring oss</h3>
                             </div>
                             <p class="text-lg text-gray-100 font-medium">
-                                +00 000 00 000
+                                +47 00 00 00 00
                                 <br />
                                 <span class="text-sm text-gray-300/80 font-normal">24/7 for sperring av kort</span>
                             </p>

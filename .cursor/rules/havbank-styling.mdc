@@ -1,0 +1,78 @@
+---
+description: Concrete Tailwind/Svelte styling conventions for HavBank pages and components
+globs: **/*.svelte
+alwaysApply: false
+---
+
+# HavBank Styling Conventions
+
+Every design token already lives in `src/app.css` under `@layer components`. **Use the token, don't re-invent it.** If a pattern is missing, add it to `app.css` rather than inlining one-off Tailwind chains across pages.
+
+## Palette (do not drift)
+
+- **Primary / trust:** `blue-900` (light) · `blue-800` (dark) · `blue-400` for accents on dark bg. This is HavBank's navy — it is the brand.
+- **Surfaces:** `white` / `gray-50` (light) · `gray-900` / `gray-800` (dark).
+- **Text:** `gray-900` / `gray-600` (light) · `white` / `gray-300` (dark).
+- **Alarm only:** `red-500`–`red-900` — reserved for fraud, sperring av kort, sikkerhetsvarsler. Never for marketing CTAs.
+- **Sustainability / success:** `green-600`–`green-800` only on `/baerekraft` and "grønt boliglån" contexts.
+- Never introduce a new hue (purple, teal, orange). Banks don't have brand rainbows.
+
+## Required tokens
+
+| Use case | Class |
+|---|---|
+| Outer page wrapper | `.page-container` |
+| Hero H1 | `.page-title` + `.page-lead` for subhead |
+| Section H2 | `.section-eyebrow` + `.section-title` + `.section-lead` |
+| Primary CTA | `.btn-primary` |
+| Secondary text link | `.btn-secondary` |
+| CTA on dark/colored hero | `.btn-white` |
+| Product / feature card | `.card-soft` |
+| Metric / data card | `.card-elevated` |
+| Navy icon tile | `.icon-box` |
+
+## Page skeleton
+
+```svelte
+<svelte:head>
+  <title>Sidenavn – HavBank</title>
+  <meta name="description" content="Kort norsk beskrivelse." />
+</svelte:head>
+
+<section class="page-container py-24 sm:py-32">
+  <h1 class="page-title">Sidetittel</h1>
+  <p class="page-lead">Ingress på norsk bokmål.</p>
+  <div class="mt-10 flex gap-x-6">
+    <a href="/bli-kunde" class="btn-primary">Bli kunde</a>
+    <a href="/kontakt" class="btn-secondary">Kontakt oss <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+```
+
+Every top-level page should include: **hero → features/products → stats or trust indicators → CTA/contact block.** Match the shape of `src/routes/+page.svelte` and `src/routes/privat/+page.svelte`.
+
+## Icons
+
+- Always `@iconify/svelte` with the `heroicons:*` set (matches existing pages).
+- Guard with `{#if browser && Icon}` so SSR doesn't flash.
+- Standard sizes: `h-5 w-5` inline, `h-8 w-8` trust row, `h-12 w-12` in `.icon-box`, `h-16 w-16` hero mark.
+
+## Dark mode checklist for every new block
+
+- Background: pair every `bg-*` with `dark:bg-*`.
+- Text: pair every `text-gray-*` with `dark:text-gray-*` (or `white`).
+- Borders/rings: pair `ring-gray-200` with `dark:ring-gray-700`.
+- Never ship a component without opening it in dark mode.
+
+## Numbers & formatting in templates
+
+- Currency: `kr 1 234` (non-breaking space thousands, lowercase `kr`).
+- Percent: `4,15 %` (comma decimal, thin space before `%`) in visible copy.
+- Phone: `+47 00 00 00 00`. Demo numbers use `+00 000 00 000` as in `+page.svelte`.
+
+## Don't
+
+- Don't inline long utility chains that duplicate an existing `.card-soft` / `.btn-primary` / `.page-title` — refactor to the token.
+- Don't add animations beyond the existing subtle hover/backdrop-blur patterns. No parallax, no scroll-jacking, no confetti.
+- Don't use stock-photo-style gradient hero images; the existing blue conic blob is the only decorative gradient.
+- Don't introduce component libraries beyond what `package.json` already ships.

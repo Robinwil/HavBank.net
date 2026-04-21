@@ -141,13 +141,14 @@
 </script>
 
 <svelte:head>
-	<title>{applicationTypes[currentType].title} | HavBank - Karriere</title>
+	<title>{applicationTypes[currentType].title} | HavBank – Karriere</title>
 	<meta name="description" content={applicationTypes[currentType].description} />
+	<link rel="canonical" href="https://havbank.no/karriere/soknad" />
 </svelte:head>
 
 <div class="relative isolate overflow-hidden">
 	<div class="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
-		<div class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-20" style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"></div>
+		<div class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-tr from-blue-800 to-blue-900 opacity-20" style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"></div>
 	</div>
 
 	<!-- Navigation -->
@@ -159,7 +160,7 @@
 						<a
 							href="/karriere/soknad?type={type}"
 							class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md {currentType === type 
-								? 'bg-blue-600 text-white'
+								? 'bg-blue-900 text-white dark:bg-blue-800'
 								: 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 shadow-sm ring-1 ring-gray-900/5 dark:ring-white/5 hover:bg-gray-50 dark:hover:bg-gray-700'} transition-colors"
 							aria-current={currentType === type ? 'page' : undefined}
 						>
@@ -175,7 +176,7 @@
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
 		<div class="max-w-2xl mx-auto">
 			<div class="text-center mb-12">
-				<h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+				<h1 class="section-title">
 					{applicationTypes[currentType].title}
 				</h1>
 				<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
@@ -476,24 +477,19 @@
 					<button
 						type="submit"
 						disabled={submitStatus === 'loading'}
-						class="group relative flex w-full sm:w-auto items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-blue-600 px-8 py-3 text-sm font-medium text-white shadow-lg hover:from-indigo-500 hover:to-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 overflow-hidden border border-transparent hover:border-blue-400/20"
+						class="flex w-full sm:w-auto btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
 					>
-						<span class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-						<span class="relative flex items-center gap-2">
+						<span class="flex items-center gap-2">
 							{#if submitStatus === 'loading'}
-								<div class="animate-spin">
-									{#if browser && Icon}
-										<Icon icon="heroicons:arrow-path" class="h-5 w-5" />
-									{/if}
-								</div>
-								<span>Sender...</span>
+								{#if browser && Icon}
+									<Icon icon="heroicons:arrow-path" class="h-5 w-5 animate-spin" />
+								{/if}
+								<span>Sender …</span>
 							{:else if submitStatus === 'success'}
-								<div class="success-icon">
-									{#if browser && Icon}
-										<Icon icon="heroicons:check" class="h-5 w-5" />
-									{/if}
-								</div>
-								<span>Sendt!</span>
+								{#if browser && Icon}
+									<Icon icon="heroicons:check" class="h-5 w-5" />
+								{/if}
+								<span>Sendt</span>
 							{:else}
 								<span>Send søknad</span>
 							{/if}

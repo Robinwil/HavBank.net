@@ -3,10 +3,12 @@
 	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
 
-	const IconifyIcon = Icon;
-
-
 	const LOAD_TIMEOUT_MS = 10000; // 10 seconds timeout
+
+	/** RFC 3966: tel URIs must not contain spaces; display text may stay formatted. */
+	function telHref(phone) {
+		return `tel:${phone.replace(/\s/g, '')}`;
+	}
 
 	// Use plain objects instead of Maps for better reactivity
 	let imageStates = $state({});
@@ -95,7 +97,7 @@
 			email: 'erik.hansen@havbank.no',
 			image: '/images/employees/erik-hansen.jpg',
 			linkedIn: 'https://linkedin.com/in/erik-hansen',
-			phone: '+00 000 00 000'
+			phone: '+47 00 00 00 00'
 		},
 		{
 			id: 'maria-olsen',
@@ -105,7 +107,7 @@
 			email: 'maria.olsen@havbank.no',
 			image: '/images/employees/maria-olsen.jpg',
 			linkedIn: 'https://linkedin.com/in/maria-olsen',
-			phone: '+00 000 00 000'
+			phone: '+47 00 00 00 00'
 		},
 		{
 			id: 'anders-berg',
@@ -115,7 +117,7 @@
 			email: 'anders.berg@havbank.no',
 			image: null,
 			linkedIn: 'https://linkedin.com/in/anders-berg',
-			phone: '+00 000 00 000'
+			phone: '+47 00 00 00 00'
 		},
 		{
 			id: 'kristine-dahl',
@@ -125,7 +127,7 @@
 			email: 'kristine.dahl@havbank.no',
 			image: '/images/employees/kristine-dahl.jpg',
 			linkedIn: 'https://linkedin.com/in/kristine-dahl',
-			phone: '+00 000 00 000'
+			phone: '+47 00 00 00 00'
 		}
 	];
 
@@ -145,7 +147,6 @@
 
 		// Set new timeout
 		const timeoutId = setTimeout(() => {
-			console.log('Image load timeout for:', employeeId);
 			imageStates[employeeId] = 'fallback';
 			delete timeouts[employeeId];
 			// Force reactivity update
@@ -157,7 +158,6 @@
 	}
 
 	function handleImageLoad(employeeId) {
-		console.log('Image loaded:', employeeId);
 		clearTimeout(timeouts[employeeId]);
 		delete timeouts[employeeId];
 		imageStates[employeeId] = 'loaded';
@@ -167,7 +167,6 @@
 	}
 
 	function handleImageError(employeeId) {
-		console.log('Image error:', employeeId);
 		clearTimeout(timeouts[employeeId]);
 		delete timeouts[employeeId];
 		imageStates[employeeId] = 'fallback';
@@ -185,17 +184,18 @@
 </script>
 
 <svelte:head>
-	<title>Om oss - HavBank | Vårt team og historie</title>
+	<title>Om oss – HavBank | Vårt team og historie</title>
 	<meta
 		name="description"
-		content="Møt teamet bak HavBank - erfarne fagfolk dedikert til sikker og moderne bankvirksomhet i Norge."
+		content="Møt teamet bak HavBank – erfarne fagfolk dedikert til sikker og moderne bankvirksomhet i Norge."
 	/>
+	<link rel="canonical" href="https://havbank.no/om-oss" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">
 	<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+			<h2 class="section-title">
 				Vårt team
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -271,7 +271,7 @@
 
 						<!-- Phone -->
 						<a
-							href={`tel:${employee.phone}`}
+							href={telHref(employee.phone)}
 							class="group/link flex items-center gap-x-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400"
 							aria-label={`Ring ${employee.name}`}
 						>
@@ -313,10 +313,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+				<h1 class="page-title">
 					En trygg bank siden 1924
 				</h1>
-				<p class="mt-6 text-lg leading-8 text-gray-600">
+				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					HavBank er en moderne norsk bank med røtter tilbake til 1924. Vi kombinerer tradisjonelle
 					bankverdier med innovative løsninger for å møte dagens og morgendagens behov.
 				</p>
@@ -326,15 +326,15 @@
 
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Våre verdier</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600">
+			<h2 class="section-title">Våre verdier</h2>
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Våre kjerneverdier reflekterer vår forpliktelse til kundene, samfunnet og norsk
 				banklovgivning.
 			</p>
 			<div class="mt-16 grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
 				{#each values as value}
 					<div class="flex flex-col">
-						<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+						<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							{#if browser && Icon}
 								<Icon 
 									icon={value.icon} 
@@ -347,7 +347,7 @@
 							{/if}
 							{value.name}
 						</dt>
-						<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+						<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
 							<p class="flex-auto">{value.description}</p>
 						</dd>
 					</div>
@@ -358,8 +358,8 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Vår historie</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600">
+			<h2 class="section-title">Vår historie</h2>
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Fra våre beskjedne begynnelser som en lokal sparebank til dagens posisjon som en ledende
 				finansinstitusjon.
 			</p>
@@ -372,8 +372,8 @@
 							{event.year}
 						</h3>
 						<div class="lg:flex-auto">
-							<h4 class="font-semibold text-gray-900">{event.title}</h4>
-							<p class="mt-1 text-base leading-7 text-gray-600">{event.description}</p>
+							<h4 class="font-semibold text-gray-900 dark:text-white">{event.title}</h4>
+							<p class="mt-1 text-base leading-7 text-gray-600 dark:text-gray-300">{event.description}</p>
 						</div>
 					</div>
 				{/each}
@@ -383,10 +383,10 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+			<h2 class="section-title">
 				Regulering og compliance
 			</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600">
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				HavBank opererer under streng regulering og tilsyn av Finanstilsynet, og følger alle gjeldende
 				lover og forskrifter for norsk bankvirksomhet.
 			</p>
@@ -394,29 +394,29 @@
 		<div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
 			<div class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
 				<div class="flex flex-col gap-y-8">
-					<div class="bg-gray-50 p-8 rounded-2xl">
-						<h3 class="text-base font-semibold leading-7 text-gray-900">
+					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl">
+						<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							Lisenser og tillatelser
 						</h3>
-						<p class="mt-4 text-sm leading-6 text-gray-600">
+						<p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
 							Vi har alle nødvendige lisenser og tillatelser fra Finanstilsynet for å drive
 							bankvirksomhet i Norge, inkludert:
 						</p>
-						<ul class="mt-4 text-sm leading-6 text-gray-600 list-disc pl-5 space-y-2">
+						<ul class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300 list-disc pl-5 space-y-2">
 							<li>Konsesjon for bank- og finansieringsvirksomhet</li>
 							<li>Tillatelse til verdipapirhandel</li>
 							<li>Konsesjon for forsikringsformidling</li>
 							<li>Autorisasjon for eiendomsmegling</li>
 						</ul>
 					</div>
-					<div class="bg-gray-50 p-8 rounded-2xl">
-						<h3 class="text-base font-semibold leading-7 text-gray-900">
+					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl">
+						<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							Sikkerhet og personvern
 						</h3>
-						<p class="mt-4 text-sm leading-6 text-gray-600">
+						<p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
 							Vi følger strenge sikkerhetsrutiner og personvernregler, inkludert:
 						</p>
-						<ul class="mt-4 text-sm leading-6 text-gray-600 list-disc pl-5 space-y-2">
+						<ul class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300 list-disc pl-5 space-y-2">
 							<li>GDPR og personopplysningsloven</li>
 							<li>Hvitvaskingsloven og terrorfinansiering</li>
 							<li>IKT-forskriften for banker</li>
@@ -425,28 +425,28 @@
 					</div>
 				</div>
 				<div class="flex flex-col gap-y-8">
-					<div class="bg-gray-50 p-8 rounded-2xl">
-						<h3 class="text-base font-semibold leading-7 text-gray-900">
+					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl">
+						<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							Medlemskap og garantier
 						</h3>
-						<p class="mt-4 text-sm leading-6 text-gray-600">
+						<p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
 							Som kunde i HavBank er du sikret gjennom:
 						</p>
-						<ul class="mt-4 text-sm leading-6 text-gray-600 list-disc pl-5 space-y-2">
+						<ul class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300 list-disc pl-5 space-y-2">
 							<li>Bankenes sikringsfond (inntil 2 millioner NOK)</li>
 							<li>Verdipapirforetakenes sikringsfond</li>
 							<li>Finansnæringens fellesorganisasjon (Finans Norge)</li>
 							<li>Den norske Revisorforening</li>
 						</ul>
 					</div>
-					<div class="bg-gray-50 p-8 rounded-2xl">
-						<h3 class="text-base font-semibold leading-7 text-gray-900">
+					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl">
+						<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">
 							Bærekraft og samfunnsansvar
 						</h3>
-						<p class="mt-4 text-sm leading-6 text-gray-600">
+						<p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
 							Vi er forpliktet til bærekraftig bankdrift og følger:
 						</p>
-						<ul class="mt-4 text-sm leading-6 text-gray-600 list-disc pl-5 space-y-2">
+						<ul class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300 list-disc pl-5 space-y-2">
 							<li>FNs prinsipper for bærekraftig bankdrift</li>
 							<li>EUs taksonomi for bærekraftig finans</li>
 							<li>Norske retningslinjer for bærekraftig finans</li>
@@ -460,8 +460,8 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">HavBank i tall</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600">
+			<h2 class="section-title">HavBank i tall</h2>
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi er stolte av vår posisjon som en ledende norsk bank og vår evne til å betjene et stort
 				antall kunder.
 			</p>
@@ -469,8 +469,8 @@
 		<dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4">
 			{#each stats as stat}
 				<div class="flex flex-col-reverse gap-y-3">
-					<dt class="text-base leading-7 text-gray-600">{stat.name}</dt>
-					<dd class="text-3xl font-semibold tracking-tight text-gray-900">{stat.value}</dd>
+					<dt class="text-base leading-7 text-gray-600 dark:text-gray-300">{stat.name}</dt>
+					<dd class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">{stat.value}</dd>
 				</div>
 			{/each}
 		</dl>
@@ -478,10 +478,10 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8 pb-24 sm:pb-32">
 		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+			<h2 class="section-title">
 				Bli en del av HavBank
 			</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600">
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi er alltid på utkikk etter dyktige medarbeidere som deler våre verdier og ønsker å bidra til
 				vår videre utvikling.
 			</p>
@@ -492,7 +492,7 @@
 				>
 					Se ledige stillinger
 				</a>
-				<a href="/kontakt" class="text-sm font-semibold leading-6 text-gray-900">
+				<a href="/kontakt" class="btn-secondary">
 					Kontakt oss <span aria-hidden="true">→</span>
 				</a>
 			</div>

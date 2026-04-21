@@ -2,12 +2,6 @@
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 
-	const IconifyIcon = Icon;
-
-	let email = $state('');
-	let subscribeStatus = $state('idle'); // idle, loading, success, error
-	let errorMessage = $state('');
-
 	// Company benefits
 	const benefits = [
 		{
@@ -66,42 +60,15 @@
 	const navLinks = [
 		{ href: '/om-oss', text: 'Om HavBank' }
 	];
-
-
-	function handleSubmit(event) {
-		event.preventDefault();
-		if (!email) {
-			errorMessage = 'Vennligst skriv inn din e-postadresse';
-			return;
-		}
-
-		if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-			errorMessage = 'Vennligst skriv inn en gyldig e-postadresse';
-			return;
-		}
-
-		subscribeStatus = 'loading';
-		errorMessage = '';
-
-		// Simulate API call
-		setTimeout(async () => {
-			subscribeStatus = 'success';
-			email = '';
-			
-			// Reset after 3 seconds
-			setTimeout(() => {
-				subscribeStatus = 'idle';
-			}, 3000);
-		}, 1000);
-	}
 </script>
 
 <svelte:head>
-	<title>Karriere | HavBank - Bli med på laget</title>
+	<title>Karriere | HavBank – Bli med på laget</title>
 	<meta
 		name="description"
 		content="Utforsk karrieremuligheter i HavBank. Vi søker engasjerte mennesker som vil være med å forme fremtidens bank."
 	/>
+	<link rel="canonical" href="https://havbank.no/karriere" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">
@@ -262,7 +229,7 @@
 	<!-- Values -->
 	<div class="page-container mb-16">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+			<h2 class="section-title">
 				Våre verdier
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -315,21 +282,4 @@
 			linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
 		background-size: 24px 24px;
 	}
-
-	/* Animation for success state */
-	@keyframes checkmark {
-		0% {
-			transform: scale(0);
-		}
-		50% {
-			transform: scale(1.2);
-		}
-		100% {
-			transform: scale(1);
-		}
-	}
-
-	:global(.success-icon) {
-		animation: checkmark 0.3s ease-in-out forwards;
-	}
-</style> 
+</style>

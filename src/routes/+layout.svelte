@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
+	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { cn } from '$lib/utils';
 	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
@@ -11,39 +12,45 @@
 	let { children } = $props();
 	
 	let isMenuOpen = $state(false);
-	let isLangMenuOpen = $state(false);
 	let isThemeMenuOpen = $state(false);
-	let IconifyIcon = Icon;
 	let themePreference = $state('system');
 	let isDarkMode = $state(false);
-	let currentLang = $state('nb');
 	let isScrolling = $state(false);
 	
 	const THEME_STORAGE_KEY = 'havbank-theme';
 	
-	// Track previous path for animation
 	let previousPath = $state('');
 	
-	// Handle page transitions
 	$effect(() => {
 		if (browser && previousPath !== $page.url.pathname) {
-			// Only animate if it's not the first load
 			if (previousPath !== '') {
 				isScrolling = true;
 				window.scrollTo({ top: 0, behavior: 'smooth' });
 				setTimeout(() => {
 					isScrolling = false;
-				}, 500); // Match this with the CSS transition duration
+				}, 500);
 			}
 			previousPath = $page.url.pathname;
 		}
 	});
-	
-	const languages = [
-		{ code: 'nb', name: 'Norsk bokmål' },
-		{ code: 'en', name: 'English' }
-	];
 
+	afterNavigate(() => {
+		isMenuOpen = false;
+		isThemeMenuOpen = false;
+	});
+
+	// Lock body scroll while the mobile menu overlay is open so the page
+	// underneath doesn't scroll behind the sheet on touch devices.
+	$effect(() => {
+		if (isMenuOpen) {
+			const previous = document.body.style.overflow;
+			document.body.style.overflow = 'hidden';
+			return () => {
+				document.body.style.overflow = previous;
+			};
+		}
+	});
+	
 	const themeOptions = [
 		{ value: 'system', label: 'System', icon: 'heroicons:computer-desktop' },
 		{ value: 'light', label: 'Lyst', icon: 'heroicons:sun' },
@@ -54,30 +61,8 @@
 		{ name: 'Hjem', href: '/' },
 		{ name: 'Privat', href: '/privat' },
 		{ name: 'Bedrift', href: '/bedrift' },
-		{ name: 'Sparing', href: '/sparing' },
 		{ name: 'Om oss', href: '/om-oss' }
 	];
-
-	const footerNavigation = {
-		tjenester: [
-			{ name: 'Dagligbank', href: '/tjenester/dagligbank' },
-			{ name: 'Lån', href: '/tjenester/lan' },
-			{ name: 'Sparing', href: '/tjenester/sparing' },
-			{ name: 'Forsikring', href: '/tjenester/forsikring' }
-		],
-		selskap: [
-			{ name: 'Om oss', href: '/om-oss' },
-			{ name: 'Karriere', href: '/karriere' },
-			{ name: 'Bærekraft', href: '/baerekraft' },
-			{ name: 'Investorrelasjoner', href: '/investorrelasjoner' }
-		],
-		hjelp: [
-			{ name: 'Kundeservice', href: '/kontakt' },
-			{ name: 'Sikkerhet', href: '/hjelp/sikkerhet' },
-			{ name: 'Personvern', href: '/hjelp/personvern' },
-			{ name: 'Tilgjengelighet', href: '/hjelp/tilgjengelighet' }
-		]
-	};
 
 	function resolveTheme(theme = themePreference) {
 		if (!browser) return false;
@@ -147,14 +132,8 @@
 	function handleKeyDown(event) {
 		if (event.key === 'Escape') {
 			isMenuOpen = false;
-			isLangMenuOpen = false;
 			isThemeMenuOpen = false;
 		}
-	}
-
-	function switchLanguage(lang) {
-		currentLang = lang;
-		isLangMenuOpen = false;
 	}
 </script>
 
@@ -179,7 +158,7 @@
 	Hopp til hovedinnhold
 </a>
 
-<svelte:window on:keydown={handleKeyDown} />
+<svelte:window onkeydown={handleKeyDown} />
 
 <div class="min-h-screen bg-white dark:bg-gray-900">
 	<header class="bg-white dark:bg-gray-900 shadow-sm relative z-50">
@@ -197,7 +176,7 @@
 						HavBank
 					</a>
 				</div>
-				<div class="hidden lg:flex lg:gap-x-8">
+				<div class="hidden md:flex md:gap-x-8">
 					{#each navigation as item}
 						<a
 							href={item.href}
@@ -213,54 +192,7 @@
 						</a>
 					{/each}
 				</div>
-				<div class="flex items-center gap-x-4">
-					<!-- Language Switcher -->
-					<div class="relative">
-						<button
-							type="button"
-							class="flex items-center gap-x-2 rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-							onclick={() => {
-								isLangMenuOpen = !isLangMenuOpen;
-								isThemeMenuOpen = false;
-							}}
-							aria-expanded={isLangMenuOpen}
-							aria-haspopup="true"
-						>
-							<span class="sr-only">Velg språk</span>
-							{#if browser && Icon}
-								<Icon icon="heroicons:language" class="h-5 w-5" />
-							{/if}
-							<span class="hidden sm:inline-block">{currentLang === 'nb' ? 'Norsk' : 'English'}</span>
-							{#if browser && Icon}
-								<Icon icon="heroicons:chevron-down" class="h-4 w-4" />
-							{/if}
-						</button>
-
-						{#if isLangMenuOpen}
-							<div
-								class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-800 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-								role="menu"
-								aria-orientation="vertical"
-								aria-labelledby="language-menu-button"
-							>
-								{#each languages as lang}
-									<button
-										class={cn(
-											"block w-full px-4 py-2 text-sm text-left hover:bg-gray-50 dark:hover:bg-gray-700",
-											currentLang === lang.code
-												? "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-												: "text-gray-700 dark:text-gray-300"
-										)}
-										role="menuitem"
-										onclick={() => switchLanguage(lang.code)}
-									>
-										{lang.name}
-									</button>
-								{/each}
-							</div>
-						{/if}
-					</div>
-
+				<div class="flex items-center gap-x-2 sm:gap-x-4">
 					<!-- Theme Selector -->
 					<div class="relative">
 						<button
@@ -268,7 +200,7 @@
 							class="flex items-center gap-x-2 rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
 							onclick={() => {
 								isThemeMenuOpen = !isThemeMenuOpen;
-								isLangMenuOpen = false;
+								isMenuOpen = false;
 							}}
 							aria-label={`Velg tema. Aktivt tema: ${getThemeLabel()}`}
 							aria-expanded={isThemeMenuOpen}
@@ -316,7 +248,7 @@
 					<!-- Login Button -->
 					<a
 						href="/login"
-						class="hidden lg:inline-flex items-center justify-center rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-800 dark:hover:bg-blue-700"
+						class="hidden md:inline-flex btn-primary"
 						aria-label="Logg inn på nettbank"
 					>
 						Logg inn
@@ -325,54 +257,62 @@
 					<!-- Mobile Menu Button -->
 					<button
 						type="button"
-						class="lg:hidden rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-						onclick={() => (isMenuOpen = !isMenuOpen)}
+						class="md:hidden rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+						onclick={() => {
+							isMenuOpen = !isMenuOpen;
+							isThemeMenuOpen = false;
+						}}
 						aria-expanded={isMenuOpen}
 						aria-controls="mobile-menu"
-						aria-label="Åpne meny"
+						aria-label={isMenuOpen ? 'Lukk meny' : 'Åpne meny'}
 					>
-						{#if isMenuOpen}
-							{#if browser && Icon}
-								<Icon icon="heroicons:x-mark" width="24" height="24" class="text-gray-700 dark:text-gray-300" />
-							{/if}
-						{:else}
-							{#if browser && Icon}
-								<Icon icon="heroicons:bars-3" width="24" height="24" class="text-gray-700 dark:text-gray-300" />
-							{/if}
+						{#if browser && Icon}
+							<Icon
+								icon={isMenuOpen ? 'heroicons:x-mark' : 'heroicons:bars-3'}
+								width="24"
+								height="24"
+								class="text-gray-700 dark:text-gray-300"
+							/>
 						{/if}
 					</button>
 				</div>
 			</div>
-
-			<!-- Mobile Menu -->
-			{#if isMenuOpen}
-				<div class="lg:hidden absolute inset-x-0 top-16 bg-white dark:bg-gray-900 shadow-lg" id="mobile-menu">
-					<div class="space-y-1 px-2 pb-3 pt-2">
-						{#each navigation as item}
-							<a
-								href={item.href}
-								class={cn(
-									"block rounded-md px-3 py-2 text-base font-medium",
-									$page.url.pathname === item.href
-										? "bg-blue-50 text-blue-900 dark:bg-blue-900/10 dark:text-blue-100"
-										: "text-gray-700 hover:bg-gray-50 hover:text-blue-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-blue-100"
-								)}
-								aria-current={$page.url.pathname === item.href ? 'page' : undefined}
-							>
-								{item.name}
-							</a>
-						{/each}
-						<a
-							href="/login"
-							class="block w-full rounded-md bg-blue-900 px-3 py-2 text-base font-medium text-white hover:bg-blue-800 dark:bg-blue-800 dark:hover:bg-blue-700"
-						>
-							Logg inn
-						</a>
-					</div>
-				</div>
-			{/if}
 		</nav>
 	</header>
+
+	<!-- Mobile Menu Overlay -->
+	{#if isMenuOpen}
+		<button
+			type="button"
+			class="md:hidden fixed inset-0 top-16 z-40 bg-gray-900/40 backdrop-blur-sm"
+			aria-label="Lukk meny"
+			onclick={() => (isMenuOpen = false)}
+		></button>
+		<div
+			class="md:hidden fixed inset-x-0 top-16 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800"
+			id="mobile-menu"
+		>
+			<nav class="space-y-1 px-4 py-4" aria-label="Mobilnavigasjon">
+				{#each navigation as item}
+					<a
+						href={item.href}
+						class={cn(
+							'block rounded-md px-3 py-3 text-base font-medium',
+							$page.url.pathname === item.href
+								? 'bg-blue-50 text-blue-900 dark:bg-blue-900/10 dark:text-blue-100'
+								: 'text-gray-700 hover:bg-gray-50 hover:text-blue-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-blue-100'
+						)}
+						aria-current={$page.url.pathname === item.href ? 'page' : undefined}
+					>
+						{item.name}
+					</a>
+				{/each}
+				<a href="/login" class="btn-primary w-full mt-2">
+					Logg inn
+				</a>
+			</nav>
+		</div>
+	{/if}
 
 	<main 
 		id="main-content" 
@@ -386,8 +326,8 @@
 	</main>
 
 	<footer class="bg-gray-50 dark:bg-gray-900">
-		<div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-			<div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+		<div class="page-container py-12 sm:py-16">
+			<div class="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-5">
 				
 				<!-- Privat -->
 				<div class="lg:col-span-1">
@@ -498,14 +438,14 @@
 				</div>
 
 				<!-- Contact -->
-				<div class="lg:col-span-1">
+				<div class="sm:col-span-2 lg:col-span-1 border-t border-gray-900/10 dark:border-gray-100/10 pt-8 sm:border-t-0 sm:pt-0">
 					<h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Kontakt oss</h3>
 					<ul role="list" class="mt-6 space-y-4">
 						<li class="text-sm leading-6 text-gray-600 dark:text-gray-400">
-							Telefon: +00 000 00 000
+							Telefon: +47 00 00 00 00
 						</li>
 						<li class="text-sm leading-6 text-gray-600 dark:text-gray-400">
-							Åpningstid: 07:00-24:00
+							Åpningstider: 07:00–23:00
 						</li>
 						<li>
 							<a href="/bestill-time" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
@@ -516,9 +456,9 @@
 				</div>
 			</div>
 
-			<div class="mt-16 border-t border-gray-900/10 dark:border-gray-100/10 pt-8">
+			<div class="mt-10 sm:mt-16 border-t border-gray-900/10 dark:border-gray-100/10 pt-8">
 				<p class="text-xs leading-5 text-gray-500 dark:text-gray-400">
-					&copy; {new Date().getFullYear()} HavBank AS. Org.nr: +00 000 00 000. All rights reserved.
+					&copy; {new Date().getFullYear()} HavBank AS. Org.nr: 924 850 771. Alle rettigheter forbeholdt.
 				</p>
 			</div>
 		</div>
@@ -526,33 +466,16 @@
 </div>
 
 <style>
-	/* Add smooth scrolling to the entire page */
 	:global(html) {
 		scroll-behavior: smooth;
-		/* For Safari and mobile browsers */
 		-webkit-overflow-scrolling: touch;
 	}
 
-	/* Add a subtle transform during scroll */
 	main {
 		will-change: opacity;
 	}
 
 	main.opacity-90 {
 		transition: opacity 0.5s ease-in-out;
-	}
-
-	/* Ensure smooth animations on page load */
-	:global(body) {
-		animation: fadeIn 0.3s ease-in-out;
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0.9;
-		}
-		to {
-			opacity: 1;
-		}
 	}
 </style>

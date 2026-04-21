@@ -123,7 +123,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Bedriftsfinansiering
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -201,7 +201,7 @@
 	<!-- Process Steps -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Søknadsprosessen</h2>
+			<h2 class="section-title">Søknadsprosessen</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi gjør finansiering enkelt og oversiktlig. Slik foregår prosessen:
 			</p>
@@ -237,7 +237,7 @@
 	<!-- Risk Disclosure -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{riskDisclosure.title}</h2>
+			<h2 class="section-title">{riskDisclosure.title}</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">{riskDisclosure.description}</p>
 			<ul class="mt-8 space-y-4">
 				{#each riskDisclosure.points as point}
@@ -279,7 +279,7 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle finansieringsløsninger tilbys av HavBank AS (org.nr. +00 000 00 000), under tilsyn av
+				Alle finansieringsløsninger tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av
 				Finanstilsynet. Lån og kreditter forutsetter kredittgodkjenning og tilfredsstillende sikkerhet.
 				Priser og betingelser er veiledende og kan endres i henhold til markedsforhold og bankens
 				retningslinjer. For fullstendige vilkår, se vår prisliste og låneavtale.

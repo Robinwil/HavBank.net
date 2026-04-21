@@ -9,11 +9,11 @@
 	const contactMethods = [
 		{
 			title: 'Ring oss',
-			description: 'Vi er tilgjengelige hverdager 07-24',
-			value: '+00 000 00 000',
+			description: 'Vi er tilgjengelige hverdager 07:00–23:00',
+			value: '+47 00 00 00 00',
 			icon: 'heroicons:phone',
 			action: 'Ring nå',
-			href: 'tel:91504800'
+			href: 'tel:+4700000000'
 		},
 		{
 			title: 'Chat med oss',
@@ -38,25 +38,22 @@
 			city: 'Oslo',
 			address: 'Karl Johans gate 7',
 			postal: '0154 Oslo',
-			hours: 'Man-Fre: 09-16',
-			phone: '+00 000 00 000',
-			image: '/images/oslo-office.jpg'
+			hours: 'Man–fre: 09:00–16:00',
+			phone: '+47 00 00 00 00'
 		},
 		{
 			city: 'Bergen',
 			address: 'Torgallmenningen 2',
 			postal: '5003 Bergen',
-			hours: 'Man-Fre: 09-16',
-			phone: '+00 000 00 000',
-			image: '/images/bergen-office.jpg'
+			hours: 'Man–fre: 09:00–16:00',
+			phone: '+47 00 00 00 00'
 		},
 		{
 			city: 'Trondheim',
 			address: 'Kongens gate 11',
 			postal: '7013 Trondheim',
-			hours: 'Man-Fre: 09-16',
-			phone: '+00 000 00 000',
-			image: '/images/trondheim-office.jpg'
+			hours: 'Man–fre: 09:00–16:00',
+			phone: '+47 00 00 00 00'
 		}
 	];
 
@@ -118,10 +115,10 @@
 	<div class="page-container mb-24">
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
 			{#each contactMethods as method}
-				<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl">
+				<div class="card-soft p-8">
 					<div class="flex items-center gap-x-3 mb-4">
 						{#if browser && Icon}
-							<Icon icon={method.icon} class="h-6 w-6 text-blue-600" />
+							<Icon icon={method.icon} class="h-6 w-6 text-blue-900 dark:text-blue-400" />
 						{/if}
 						<h2 class="text-xl font-semibold text-gray-900 dark:text-white">{method.title}</h2>
 					</div>
@@ -129,10 +126,7 @@
 					<div class="mb-6">
 						<span class="text-2xl font-bold text-gray-900 dark:text-white">{method.value}</span>
 					</div>
-					<a
-						href={method.href}
-						class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-					>
+					<a href={method.href} class="inline-flex w-full btn-primary">
 						{method.action}
 					</a>
 				</div>
@@ -222,9 +216,9 @@
 					<button
 						type="submit"
 						disabled={isSubmitting}
-						class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+						class="w-full flex justify-center btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
 					>
-						{isSubmitting ? 'Sender...' : 'Send melding'}
+						{isSubmitting ? 'Sender …' : 'Send melding'}
 					</button>
 				</form>
 			</div>
@@ -262,7 +256,7 @@
 						Når er kundeservice åpent?
 					</h3>
 					<p class="text-gray-600 dark:text-gray-300">
-						Vår kundeservice er tilgjengelig på telefon hverdager fra 07:00 til 24:00. Chat og e-post
+						Vår kundeservice er tilgjengelig på telefon hverdager fra 07:00 til 23:00. Chat og e-post
 						besvares innen 24 timer på hverdager.
 					</p>
 				</div>
@@ -272,8 +266,8 @@
 						Hvordan sperrer jeg kortet mitt?
 					</h3>
 					<p class="text-gray-600 dark:text-gray-300">
-						Ring oss på +00 000 00 000 for øyeblikkelig sperring av kort. Dette nummeret er tilgjengelig
-						24/7. Du kan også sperre kortet selv i mobilbanken.
+						Ring oss på +47 00 00 00 00 for øyeblikkelig sperring av kort. Dette nummeret er
+						tilgjengelig 24/7. Du kan også sperre kortet selv i mobilbanken.
 					</p>
 				</div>
 

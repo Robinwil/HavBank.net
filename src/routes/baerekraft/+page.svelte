@@ -43,6 +43,13 @@
 		governance: 85
 	};
 
+	function handleDemoDownload(event) {
+		event.preventDefault();
+		alert(
+			'Dette er en fiktiv demoside. Bærekraftsrapporten er ikke tilgjengelig for nedlasting.'
+		);
+	}
+
 	// UN Sustainable Development Goals we focus on
 	const sdgFocus = [
 		{ number: 7, name: 'Ren energi', progress: 75 },
@@ -122,11 +129,12 @@
 </script>
 
 <svelte:head>
-	<title>Bærekraft | HavBank - Vår innsats for en bærekraftig fremtid</title>
+	<title>Bærekraft | HavBank – Vår innsats for en bærekraftig fremtid</title>
 	<meta
 		name="description"
 		content="HavBank jobber aktivt med bærekraft gjennom grønne investeringer, redusert klimaavtrykk og sosial ansvarlighet."
 	/>
+	<link rel="canonical" href="https://havbank.no/baerekraft" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">
@@ -134,7 +142,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-16 sm:py-24">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Bærekraft i alt vi gjør
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -265,48 +273,48 @@
 		<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">ESG-score</h2>
 		<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
 			<!-- Environmental Score -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div class="card-elevated">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-lg font-medium text-gray-900 dark:text-white">Miljø</h3>
-					<span class="text-2xl font-bold text-green-500">{esgScores.environmental}</span>
+					<span class="text-2xl font-bold text-green-700 dark:text-green-400">{esgScores.environmental}</span>
 				</div>
 				<div class="relative pt-1">
-					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200 dark:bg-green-900">
+					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-100 dark:bg-green-900/40">
 						<div
 							style="width: {esgScores.environmental}%"
-							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-700 dark:bg-green-500"
 						></div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Social Score -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div class="card-elevated">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-lg font-medium text-gray-900 dark:text-white">Sosialt</h3>
-					<span class="text-2xl font-bold text-blue-500">{esgScores.social}</span>
+					<span class="text-2xl font-bold text-blue-900 dark:text-blue-400">{esgScores.social}</span>
 				</div>
 				<div class="relative pt-1">
-					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200 dark:bg-blue-900">
+					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-100 dark:bg-blue-900/40">
 						<div
 							style="width: {esgScores.social}%"
-							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
+							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900 dark:bg-blue-500"
 						></div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Governance Score -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div class="card-elevated">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-lg font-medium text-gray-900 dark:text-white">Styring</h3>
-					<span class="text-2xl font-bold text-purple-500">{esgScores.governance}</span>
+					<span class="text-2xl font-bold text-gray-700 dark:text-gray-200">{esgScores.governance}</span>
 				</div>
 				<div class="relative pt-1">
-					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-purple-200 dark:bg-purple-900">
+					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200 dark:bg-gray-700">
 						<div
 							style="width: {esgScores.governance}%"
-							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"
+							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gray-700 dark:bg-gray-400"
 						></div>
 					</div>
 				</div>
@@ -315,20 +323,17 @@
 	</div>
 
 	<!-- Download Report Section -->
-	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
-		<div class="rounded-2xl bg-blue-600 px-6 py-16 sm:p-16">
+	<div class="page-container mb-24">
+		<div class="rounded-2xl bg-blue-900 dark:bg-blue-800 px-6 py-16 sm:p-16">
 			<div class="mx-auto max-w-2xl text-center">
 				<h2 class="text-3xl font-bold tracking-tight text-white">Last ned vår bærekraftsrapport</h2>
 				<p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-blue-100">
 					Få detaljert innsikt i vårt bærekraftsarbeid, mål og resultater i vår årlige rapport.
 				</p>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
-					<a
-						href="/reports/baerekraft-2023.pdf"
-						class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-blue-600 shadow-sm hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-					>
+					<button type="button" onclick={handleDemoDownload} class="btn-white text-blue-900">
 						Last ned rapport (PDF)
-					</a>
+					</button>
 					<a href="/baerekraft/historikk" class="text-sm font-semibold leading-6 text-white">
 						Se tidligere rapporter <span aria-hidden="true">→</span>
 					</a>

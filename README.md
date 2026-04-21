@@ -62,13 +62,13 @@ This project MUST NOT be used for:
 
 The project is built with:
 
-- SvelteKit
+- SvelteKit 2 (Svelte 5 runes)
 
-- Tailwind CSS
+- Tailwind CSS with a small set of design tokens in `src/app.css`
 
-- Shadcn UI components
+- `@iconify/svelte` with the Heroicons set
 
-- Modern web security practices
+- Modern web security headers (HSTS, nonce-based CSP, X-Frame-Options, Permissions-Policy) wired up in `svelte.config.js` and `src/hooks.server.js`
 
 ## Development
 

@@ -148,7 +148,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Bli kunde i HavBank
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -162,7 +162,7 @@
 	<!-- Requirements Section -->
 	<div class="page-container mb-24">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Dette trenger du for å bli kunde
 			</h2>
 		</div>
@@ -191,7 +191,7 @@
 	<div class="page-container mb-24">
 		<div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2">
 			<div>
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+				<h2 class="section-title mb-6">
 					Book et møte
 				</h2>
 				<p class="text-lg text-gray-600 dark:text-gray-400 mb-8">

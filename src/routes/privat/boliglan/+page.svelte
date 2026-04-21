@@ -255,7 +255,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Boliglån
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -544,7 +544,7 @@
 	<!-- Current Rates -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+			<h2 class="section-title">
 				Våre boliglån
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -584,7 +584,7 @@
 	<!-- Features -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Fordeler med boliglån hos oss
 			</h2>
 			<div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -610,7 +610,7 @@
 	<!-- Requirements -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Krav til låntaker</h2>
+			<h2 class="section-title">Krav til låntaker</h2>
 			<div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
 				{#each requirements as requirement}
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
@@ -636,7 +636,7 @@
 	<!-- Required Documents -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Nødvendig dokumentasjon
 			</h2>
 			<div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">

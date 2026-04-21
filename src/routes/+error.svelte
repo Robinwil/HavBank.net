@@ -1,15 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
-	
-	// Debug logs
-	$effect(() => {
-		console.log('Browser:', browser);
-		console.log('Icon:', Icon);
-	});
 </script>
 
 <svelte:head>
@@ -25,7 +17,7 @@
 			</p>
 			<div class="sm:ml-6">
 				<div class="sm:border-l sm:border-gray-200 dark:border-gray-700 sm:pl-6">
-					<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
+					<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
 						{#if $page.status === 404}
 							Siden finnes ikke
 						{:else}
@@ -40,11 +32,8 @@
 						{/if}
 					</p>
 				</div>
-				<div class="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
-					<a
-						href="/"
-						class="inline-flex items-center rounded-md bg-blue-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900 dark:bg-blue-800 dark:hover:bg-blue-700"
-					>
+				<div class="mt-10 flex flex-wrap gap-3 sm:border-l sm:border-transparent sm:pl-6">
+					<a href="/" class="inline-flex items-center btn-primary">
 						{#if browser && Icon}
 							<Icon icon="heroicons:home" class="mr-2 h-5 w-5" />
 						{/if}
@@ -63,4 +52,4 @@
 			</div>
 		</main>
 	</div>
-</div> 
+</div>

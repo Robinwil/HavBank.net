@@ -149,7 +149,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Næringsmegling
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -163,7 +163,7 @@
 	<!-- Services -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Våre tjenester</h2>
+			<h2 class="section-title">Våre tjenester</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Komplette meglertjenester for næringseiendom.
 			</p>
@@ -223,7 +223,7 @@
 	<!-- Expertise Areas -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Spesialkompetanse
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -254,7 +254,7 @@
 	<!-- Process Steps -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Salgsprosessen</h2>
+			<h2 class="section-title">Salgsprosessen</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				En strukturert og effektiv prosess for best mulig resultat.
 			</p>
@@ -290,7 +290,7 @@
 	<!-- Market Information -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{marketInfo.title}</h2>
+			<h2 class="section-title">{marketInfo.title}</h2>
 			<ul class="mt-8 space-y-4">
 				{#each marketInfo.points as point}
 					<li class="flex gap-x-3">
@@ -310,7 +310,7 @@
 	<!-- Compliance Information -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Sikkerhet og etterlevelse
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -341,7 +341,7 @@
 	<!-- Risk Disclosure -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{riskDisclosure.title}</h2>
+			<h2 class="section-title">{riskDisclosure.title}</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">{riskDisclosure.description}</p>
 			<ul class="mt-8 space-y-4">
 				{#each riskDisclosure.points as point}
@@ -363,7 +363,7 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle meglertjenester tilbys av HavBank Næringsmegling AS (org.nr. +00 000 00 000), under tilsyn av
+				Alle meglertjenester tilbys av HavBank Næringsmegling AS (org.nr. 924 850 772), under tilsyn av
 				Finanstilsynet. Honorarer og betingelser er veiledende og kan endres i henhold til oppdragets art
 				og omfang. For fullstendige vilkår, se vår oppdragsavtale. Alle verdivurderinger er indikative og
 				ikke bindende. Historisk avkastning er ingen garanti for fremtidig avkastning.

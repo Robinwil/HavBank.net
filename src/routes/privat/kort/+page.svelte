@@ -40,7 +40,7 @@
 				'45 dagers rentefri betalingsutsettelse'
 			],
 			benefits: [
-				'0.5% cashback på alle kjøp',
+				'0,5 % cashback på alle kjøp',
 				'Rabatt på drivstoff',
 				'Reisefordeler',
 				'Ingen årsavgift første år'
@@ -119,7 +119,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Kredittkort
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -228,7 +228,7 @@
 	<!-- Insurance Section -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32" id="forsikring">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+			<h2 class="section-title mb-6">
 				Omfattende reiseforsikring
 			</h2>
 			<p class="text-lg text-gray-600 dark:text-gray-300 mb-12">

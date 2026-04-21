@@ -13,7 +13,7 @@
 		{
 			id: 'bsu',
 			name: 'BSU',
-			rate: '6.5% rente',
+			rate: '6,5 % rente',
 			icon: 'heroicons:home'
 		},
 		{
@@ -25,7 +25,7 @@
 		{
 			id: 'lan',
 			name: 'Førstehjemslån',
-			rate: 'Fra 4.35%',
+			rate: 'Fra 4,35 %',
 			icon: 'heroicons:key'
 		}
 	];
@@ -33,8 +33,8 @@
 	const youthProducts = [
 		{
 			name: 'BSU',
-			description: 'Boligsparing for Ungdom - markedets beste sparerente',
-			rate: '6.5%',
+			description: 'Boligsparing for Ungdom – markedets beste sparerente',
+			rate: '6,5 %',
 			features: [
 				'Markedets beste rente på 6,5%',
 				'Spar opptil 27 500 kr årlig',
@@ -145,8 +145,8 @@
 	}
 
 	function formatPercent(value) {
-		if (typeof value !== 'number' || !isFinite(value)) return '0.00%';
-		return value.toFixed(2) + '%';
+		if (typeof value !== 'number' || !isFinite(value)) return '0,00 %';
+		return value.toFixed(2).replace('.', ',') + ' %';
 	}
 
 	function selectProduct(product) {
@@ -175,7 +175,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Bank for unge
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -353,7 +353,7 @@
 								class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
 							/>
 							<label for="hasIncome" class="text-sm text-gray-300">
-								Jeg har fast inntekt (0.5% lavere rente)
+								Jeg har fast inntekt (0,5 % lavere rente)
 							</label>
 						</div>
 					{/if}

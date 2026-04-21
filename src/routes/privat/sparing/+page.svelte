@@ -9,13 +9,13 @@
 		{
 			id: 'bsu',
 			name: 'BSU',
-			rate: '6.5% rente',
+			rate: '6,5 % rente',
 			icon: 'heroicons:home'
 		},
 		{
 			id: 'high-interest',
 			name: 'Høyrentekonto',
-			rate: '4.5% rente',
+			rate: '4,5 % rente',
 			icon: 'heroicons:banknotes'
 		},
 		{
@@ -127,18 +127,6 @@
 		selectedProduct = product;
 	}
 
-	$effect(() => {
-		console.log('Current values:', {
-			selectedProduct,
-			initialAmount,
-			monthlyAmount,
-			years,
-			effectiveRate,
-			totalSavings,
-			totalInterest,
-			taxBenefit
-		});
-	});
 </script>
 
 <svelte:head>
@@ -162,7 +150,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Spar smart med oss
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">

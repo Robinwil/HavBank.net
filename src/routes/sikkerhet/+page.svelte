@@ -174,7 +174,7 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 	<header class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-16 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Din sikkerhet er vår høyeste prioritet
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -277,7 +277,7 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 									<h3 class="text-xl font-semibold text-white">Ring oss</h3>
 								</div>
 								<p class="text-lg text-gray-100 font-medium">
-									+00 000 00 000
+									+47 00 00 00 00
 									<br />
 									<span class="text-sm text-gray-300/80 font-normal">24/7 for sperring av kort</span>
 								</p>

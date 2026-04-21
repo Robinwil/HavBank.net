@@ -116,6 +116,7 @@
 		name="keywords"
 		content="tilgjengelighet, universell utforming, WCAG, bankfilialer, kundeservice, nettbank, mobilbank"
 	/>
+	<link rel="canonical" href="https://havbank.no/tilgjengelighet" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">
@@ -123,7 +124,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-16 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Banktjenester for alle
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">

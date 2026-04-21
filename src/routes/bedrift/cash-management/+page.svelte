@@ -150,7 +150,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Cash Management
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -164,7 +164,7 @@
 	<!-- Solutions -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Våre løsninger</h2>
+			<h2 class="section-title">Våre løsninger</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Skreddersydde løsninger for effektiv likviditets- og betalingshåndtering.
 			</p>
@@ -233,7 +233,7 @@
 	<!-- Integrations -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Integrasjoner og API
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -277,7 +277,7 @@
 	<!-- Security Features -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Sikkerhet i verdensklasse
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -308,7 +308,7 @@
 	<!-- Market Information -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{marketInfo.title}</h2>
+			<h2 class="section-title">{marketInfo.title}</h2>
 			<ul class="mt-8 space-y-4">
 				{#each marketInfo.points as point}
 					<li class="flex gap-x-3">
@@ -328,7 +328,7 @@
 	<!-- Compliance Information -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+			<h2 class="section-title">
 				Sikkerhet og etterlevelse
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -360,7 +360,7 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle cash management-tjenester tilbys av HavBank AS (org.nr. +00 000 00 000), under tilsyn av
+				Alle cash management-tjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av
 				Finanstilsynet. Priser og betingelser er veiledende og kan endres i henhold til markedsforhold og
 				bankens retningslinjer. For fullstendige vilkår, se vår prisliste og tjenesteavtaler.
 				Transaksjonstider er veiledende og kan variere basert på type transaksjon og mottakerbank.

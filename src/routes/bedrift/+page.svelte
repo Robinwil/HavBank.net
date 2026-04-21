@@ -98,7 +98,7 @@
 	const complianceInfo = [
 		{
 			title: 'Regulatorisk etterlevelse',
-			description: 'HavBank opererer under konsesjon fra Finanstilsynet (org.nr. +00 000 00 000) og følger alle gjeldende lover og forskrifter for norske banker.',
+			description: 'HavBank opererer under konsesjon fra Finanstilsynet (org.nr. 924 850 771) og følger alle gjeldende lover og forskrifter for norske banker.',
 			icon: 'heroicons:document-check'
 		},
 		{
@@ -310,7 +310,7 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8 pb-24 sm:pb-32">
 		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+			<h2 class="section-title">
 				Kom i gang med HavBank
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -347,7 +347,7 @@
 	<!-- Trust and Compliance Section -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+			<h2 class="section-title">
 				Sikkerhet og etterlevelse
 			</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -388,7 +388,7 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle banktjenester tilbys av HavBank AS (org.nr. +00 000 00 000), under tilsyn av Finanstilsynet. 
+				Alle banktjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av Finanstilsynet. 
 				Innskudd er sikret gjennom Bankenes Sikringsfond opptil 2 millioner kroner. 
 				Lån og kreditter forutsetter kredittgodkjenning og tilfredsstillende sikkerhet. 
 				Priser og vilkår er veiledende og kan endres i henhold til markedsforhold og bankens retningslinjer.

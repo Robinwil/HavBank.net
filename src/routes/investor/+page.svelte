@@ -1,8 +1,7 @@
 <script>
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
-
-	const IconifyIcon = Icon;
 
 	let Chart;
 
@@ -86,9 +85,7 @@
 	];
 
 	onMount(async () => {
-		const [iconModule, chartModule] = await Promise.all([
-			import('chart.js/auto')
-		]);
+		const chartModule = await import('chart.js/auto');
 		Chart = chartModule.default;
 
 		// Common chart theme options
@@ -300,11 +297,12 @@
 </script>
 
 <svelte:head>
-	<title>Investor Relations | HavBank - Informasjon for investorer</title>
+	<title>Investorrelasjoner | HavBank – Informasjon for investorer</title>
 	<meta
 		name="description"
 		content="Finansiell informasjon, aksjekurs, rapporter og selskapsstyring for investorer i HavBank."
 	/>
+	<link rel="canonical" href="https://havbank.no/investor" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">
@@ -312,7 +310,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+				<h1 class="page-title">
 					Investor Relations
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">

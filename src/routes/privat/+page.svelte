@@ -52,8 +52,8 @@
 
 	const stats = [
 		{ name: 'Kundetilfredshet', value: '4.8/5', icon: 'heroicons:star' },
-		{ name: 'Boliglånsrente fra', value: '4.15%', icon: 'heroicons:home' },
-		{ name: 'BSU-rente', value: '6.50%', icon: 'heroicons:banknotes' },
+		{ name: 'Boliglånsrente fra', value: '4,15 %', icon: 'heroicons:home' },
+		{ name: 'BSU-rente', value: '6,50 %', icon: 'heroicons:banknotes' },
 		{ name: 'Mobilbank rating', value: '4.7/5', icon: 'heroicons:device-phone-mobile' }
 	];
 
@@ -268,7 +268,7 @@
 	<div class="page-container mt-32">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
 			<div class="text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+				<h2 class="section-title">
 					{marketRates.title}
 				</h2>
 				<p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -282,7 +282,7 @@
 							{rate.name}
 						</dt>
 						<dd class="mt-2">
-							<div class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+							<div class="section-title">
 								{rate.nominal}
 							</div>
 							<div class="text-sm text-gray-600 dark:text-gray-400">
@@ -320,7 +320,7 @@
 								{/if}
 								{stat.name}
 							</dt>
-							<dd class="order-first text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+							<dd class="order-first section-title">
 								{stat.value}
 							</dd>
 						</div>
@@ -352,7 +352,7 @@
 	<div class="relative isolate overflow-hidden bg-white dark:bg-gray-900 py-24 sm:py-32">
 		<div class="page-container">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+				<h2 class="section-title">
 					Personlig rådgivning
 				</h2>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -457,7 +457,7 @@
 	<div class="page-container pb-24">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle banktjenester tilbys av HavBank AS (org.nr. +00 000 00 000), under tilsyn av Finanstilsynet.
+				Alle banktjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av Finanstilsynet.
 				Innskudd er sikret gjennom Bankenes Sikringsfond opptil 2 millioner kroner. Nominelle og
 				effektive renter er oppgitt per 01.01.2024 og kan endres i henhold til markedsforhold og bankens
 				retningslinjer. For fullstendige vilkår, se vår prisliste og produktinformasjon.
