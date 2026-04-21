@@ -6,7 +6,10 @@
 		securityContactState,
 		closeSecurityContact,
 		SECURITY_EMAIL,
-		SECURITY_PGP_KEY
+		SECURITY_PGP_KEY,
+		SECURITY_PGP_FINGERPRINT,
+		SECURITY_PGP_KEY_URL,
+		SECURITY_TXT_URL
 	} from '$lib/stores/securityContact.svelte.js';
 
 	/** @type {HTMLButtonElement | undefined} */
@@ -165,7 +168,6 @@
 								type="button"
 								onclick={() => copy(SECURITY_EMAIL, 'email')}
 								class="inline-flex items-center gap-1.5 rounded-md bg-white dark:bg-gray-700 px-3 py-1.5 text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-100 ring-1 ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900"
-								aria-live="polite"
 							>
 								{#if browser && Icon}
 									<Icon
@@ -178,6 +180,12 @@
 							</button>
 						</div>
 					</div>
+					<!-- Dedicated live region (see RFC-adjacent ARIA authoring practices):
+					     `role="status"` + aria-live="polite" belongs on the announcer, not
+					     the trigger. Screen readers read this once on each state change. -->
+					<span role="status" aria-live="polite" class="sr-only">
+						{emailCopied ? 'E-postadresse kopiert til utklippstavlen.' : ''}
+					</span>
 				</div>
 
 				<!-- PGP key -->
@@ -195,7 +203,6 @@
 							type="button"
 							onclick={() => copy(SECURITY_PGP_KEY, 'key')}
 							class="shrink-0 inline-flex items-center gap-1.5 rounded-md bg-white dark:bg-gray-700 px-3 py-1.5 text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-100 ring-1 ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900"
-							aria-live="polite"
 						>
 							{#if browser && Icon}
 								<Icon
@@ -211,12 +218,53 @@
 						class="mt-3 max-h-60 overflow-auto rounded-md bg-gray-900 text-gray-100 p-3 text-[0.7rem] sm:text-xs leading-snug font-mono ring-1 ring-gray-700 select-all whitespace-pre"
 						aria-label="PGP public key block"
 >{SECURITY_PGP_KEY}</pre>
+					<span role="status" aria-live="polite" class="sr-only">
+						{keyCopied ? 'PGP-nøkkel kopiert til utklippstavlen.' : ''}
+					</span>
+
+					<!-- Fingerprint + out-of-band verification. Without a second source
+					     to cross-check the key against, someone MITM'ing this page could
+					     in principle swap it. The fingerprint + the r01.no copy make
+					     that substantially harder. -->
+					<dl class="mt-4 space-y-2 text-xs sm:text-sm">
+						<div class="flex flex-col sm:flex-row sm:gap-2">
+							<dt class="font-semibold text-gray-700 dark:text-gray-300 shrink-0">
+								Fingeravtrykk:
+							</dt>
+							<dd class="font-mono break-all text-gray-800 dark:text-gray-100 select-all">
+								{SECURITY_PGP_FINGERPRINT}
+							</dd>
+						</div>
+						<div class="flex flex-col sm:flex-row sm:gap-2">
+							<dt class="font-semibold text-gray-700 dark:text-gray-300 shrink-0">
+								Verifiser:
+							</dt>
+							<dd class="text-gray-600 dark:text-gray-400">
+								Samme nøkkel er publisert på
+								<a
+									href={SECURITY_PGP_KEY_URL}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="font-mono underline underline-offset-4 hover:text-blue-800 dark:hover:text-blue-300 break-all"
+								>
+									r01.no/.well-known/pgp-key.txt
+								</a>. Sammenlign fingeravtrykket for en ekstra verifiseringskanal.
+							</dd>
+						</div>
+					</dl>
 				</div>
 
 				<p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
 					Denne nøkkelen er knyttet til <span class="font-mono">{SECURITY_EMAIL}</span>. Vennligst
 					ikke send ekte personopplysninger (fødselsnummer, kontonummer o.l.) — HavBank behandler
-					ikke slike data.
+					ikke slike data. Automatiserte skannere finner samme kontaktinformasjon på
+					<a
+						href={SECURITY_TXT_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="font-mono underline underline-offset-4 hover:text-blue-800 dark:hover:text-blue-300"
+					>/.well-known/security.txt</a>
+					(RFC 9116).
 				</p>
 			</div>
 

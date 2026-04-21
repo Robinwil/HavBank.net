@@ -468,9 +468,37 @@
 				</div>
 			</div>
 
-			<div class="mt-10 sm:mt-16 border-t border-gray-900/10 dark:border-gray-100/10 pt-8">
+			<!-- Sitewide disclosure banner: HavBank is a fictitious hobby project. -->
+			<div
+				class="mt-10 sm:mt-16 rounded-lg border border-red-300 dark:border-red-900/70 bg-red-50 dark:bg-red-950/40 px-4 py-4 sm:px-6 sm:py-5"
+				role="note"
+				aria-label="Viktig informasjon om HavBank"
+			>
+				<p class="text-sm leading-6 text-red-900 dark:text-red-100">
+					<strong class="font-semibold">HavBank er ikke en ekte bank.</strong>
+					Nettsiden er et fiktivt hobbyprosjekt uten konsesjon fra Finanstilsynet, uten
+					organisasjonsnummer og uten reelle banktjenester.
+					<a
+						href="/om-prosjektet"
+						class="font-semibold underline underline-offset-4 decoration-2 hover:text-red-800 dark:hover:text-red-200"
+					>
+						Les hele redegjørelsen på «Om prosjektet»
+					</a>
+					· <a
+						href="https://www.finanstilsynet.no/nyhetsarkiv/nyheter/2026/finanstilsynet-advarer-mot-havbank/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline underline-offset-4 decoration-2 hover:text-red-800 dark:hover:text-red-200"
+					>
+						Finanstilsynets advarsel (6. mars 2026)
+					</a>
+				</p>
+			</div>
+
+			<div class="mt-6 border-t border-gray-900/10 dark:border-gray-100/10 pt-6">
 				<p class="text-xs leading-5 text-gray-500 dark:text-gray-400">
-					&copy; {new Date().getFullYear()} HavBank AS. Org.nr: 924 850 771. Alle rettigheter forbeholdt.
+					Hobbyprosjekt · Ikke en juridisk enhet · Ingen organisasjonsnummer, ikke registrert i
+					Brønnøysundregisteret. Kildekoden er et personlig designprosjekt.
 				</p>
 			</div>
 		</div>

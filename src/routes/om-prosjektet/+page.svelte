@@ -3,6 +3,10 @@
 	import Icon from '@iconify/svelte';
 	import { openSecurityContact } from '$lib/stores/securityContact.svelte.js';
 
+	const SITE_ORIGIN = 'https://havbank.no';
+	const CANONICAL_URL = `${SITE_ORIGIN}/om-prosjektet`;
+	const LOGO_URL = `${SITE_ORIGIN}/favicon.png`;
+
 	const FINANSTILSYNET_URL =
 		'https://www.finanstilsynet.no/nyhetsarkiv/nyheter/2026/finanstilsynet-advarer-mot-havbank/';
 
@@ -10,9 +14,14 @@
 	const advarselIso = '2026-03-06';
 	const advarselLabel = '6. mars 2026';
 
-	// This article (our response) was first published on:
+	// This article (our response). Bump `modifiedIso` whenever the content changes.
 	const publishedIso = '2026-04-21';
 	const publishedLabel = '21. april 2026';
+	const modifiedIso = '2026-04-21';
+
+	const HEADLINE = 'HavBank er et hobbyprosjekt — ikke en ekte bank';
+	const DESCRIPTION =
+		'HavBank.net er et fiktivt hobbyprosjekt — ikke en reell bank. Les prosjekteiers respons på Finanstilsynets advarsel fra 6. mars 2026, teknisk bakgrunn, mediedekning og hvordan du selv kan verifisere at HavBank ikke tilbyr reelle banktjenester.';
 
 	const tableOfContents = [
 		{ id: 'kort-fortalt', label: 'Kort fortalt' },
@@ -71,22 +80,182 @@
 			body: 'Nåværende versjon er statisk — skjema sender ingen informasjon noe sted.'
 		}
 	];
+
+	// --- Structured data (JSON-LD) ----------------------------------------
+	//
+	// Two graphs are emitted:
+	//   1. NewsArticle — the primary entity of the page, with author, publisher,
+	//      datePublished, dateModified, canonical URL, language, and explicit
+	//      `about`/`mentions`/`citation` links to Finanstilsynet's warning and
+	//      the press coverage. This is what we want search engines to use when
+	//      surfacing "HavBank" queries next to Finanstilsynet's own result.
+	//   2. BreadcrumbList — trivial trail so Google can render breadcrumbs in
+	//      the SERP.
+	//
+	// Serialised via JSON.stringify + a conservative escape for `<`/`>` to
+	// prevent premature closing-script-tag termination if the data ever
+	// contains those characters.
+
+	const publisher = {
+		'@type': 'Organization',
+		name: 'HavBank (hobbyprosjekt)',
+		url: SITE_ORIGIN,
+		logo: {
+			'@type': 'ImageObject',
+			url: LOGO_URL
+		},
+		description:
+			'HavBank.net er et åpent, ikke-kommersielt hobbyprosjekt. Det er ikke en bank og tilbyr ingen finansielle tjenester.'
+	};
+
+	const author = {
+		'@type': 'Person',
+		name: 'HavBank-prosjekteier',
+		email: 'security@r01.no',
+		url: CANONICAL_URL
+	};
+
+	const newsArticleJsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'NewsArticle',
+		'@id': `${CANONICAL_URL}#article`,
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': CANONICAL_URL
+		},
+		url: CANONICAL_URL,
+		headline: HEADLINE,
+		alternativeHeadline: 'Prosjekteiers respons på Finanstilsynets advarsel mot HavBank',
+		description: DESCRIPTION,
+		inLanguage: 'nb-NO',
+		isAccessibleForFree: true,
+		datePublished: publishedIso,
+		dateModified: modifiedIso,
+		articleSection: 'Om prosjektet',
+		keywords: [
+			'HavBank',
+			'Finanstilsynet',
+			'advarsel',
+			'fiktiv nettside',
+			'hobbyprosjekt',
+			'ikke en ekte bank',
+			'SvelteKit',
+			'responsible disclosure'
+		].join(', '),
+		author,
+		publisher,
+		about: {
+			'@type': 'Thing',
+			name: 'Finanstilsynets advarsel mot HavBank',
+			url: FINANSTILSYNET_URL,
+			sameAs: FINANSTILSYNET_URL
+		},
+		mentions: [
+			{ '@type': 'GovernmentOrganization', name: 'Finanstilsynet', url: 'https://www.finanstilsynet.no/' },
+			{ '@type': 'GovernmentOrganization', name: 'Brønnøysundregistrene', url: 'https://www.brreg.no/' },
+			{ '@type': 'Organization', name: 'BankID Norge', url: 'https://www.bankid.no/' }
+		],
+		citation: [
+			{
+				'@type': 'NewsArticle',
+				headline: 'Finanstilsynet advarer mot HavBank',
+				url: FINANSTILSYNET_URL,
+				datePublished: advarselIso,
+				publisher: {
+					'@type': 'GovernmentOrganization',
+					name: 'Finanstilsynet',
+					url: 'https://www.finanstilsynet.no/'
+				}
+			},
+			...pressCoverage.map((item) => ({
+				'@type': 'NewsArticle',
+				headline: item.title,
+				url: item.url,
+				datePublished: item.dateIso,
+				publisher: { '@type': 'Organization', name: item.outlet },
+				...(item.byline ? { author: { '@type': 'Person', name: item.byline } } : {})
+			}))
+		],
+		potentialAction: {
+			'@type': 'ReadAction',
+			target: [CANONICAL_URL]
+		}
+	};
+
+	const breadcrumbJsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Hjem', item: `${SITE_ORIGIN}/` },
+			{ '@type': 'ListItem', position: 2, name: 'Om prosjektet', item: CANONICAL_URL }
+		]
+	};
+
+	/** Escape `<`/`>` and `&` so the serialised JSON can't break out of the script tag. */
+	function toJsonLd(data) {
+		return JSON.stringify(data)
+			.replace(/</g, '\\u003c')
+			.replace(/>/g, '\\u003e')
+			.replace(/&/g, '\\u0026');
+	}
+
+	// Full <script type="application/ld+json"> tags, ready to be injected via
+	// {@html ...} inside <svelte:head>. We build them here (instead of inline
+	// in the template) so the literal "</" never appears next to "script" in
+	// the same source expression — that keeps every parser in the toolchain
+	// happy.
+	const LD_OPEN = '<' + 'script type="application/ld+json">';
+	const LD_CLOSE = '<' + '/script>';
+
+	const newsArticleLdTag = LD_OPEN + toJsonLd(newsArticleJsonLd) + LD_CLOSE;
+	const breadcrumbLdTag = LD_OPEN + toJsonLd(breadcrumbJsonLd) + LD_CLOSE;
 </script>
 
 <svelte:head>
-	<title>Om prosjektet – HavBank</title>
+	<title>HavBank er et hobbyprosjekt — ikke en ekte bank | Om prosjektet</title>
+	<meta name="description" content={DESCRIPTION} />
 	<meta
-		name="description"
-		content="HavBank.net er et fiktivt hobbyprosjekt. Les vår respons på Finanstilsynets advarsel, teknisk bakgrunn, og hvordan du selv kan verifisere at dette ikke er en ekte bank."
+		name="robots"
+		content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
 	/>
-	<meta name="robots" content="index, follow" />
-	<meta property="og:title" content="Om prosjektet – HavBank" />
 	<meta
-		property="og:description"
-		content="HavBank.net er et fiktivt hobbyprosjekt. Les vår respons på Finanstilsynets advarsel og teknisk bakgrunn."
+		name="keywords"
+		content="HavBank, Finanstilsynet, advarsel, fiktiv nettside, hobbyprosjekt, ikke en ekte bank"
 	/>
+	<meta name="author" content="HavBank-prosjekteier" />
+	<link rel="canonical" href={CANONICAL_URL} />
+
+	<!-- Open Graph -->
+	<meta property="og:title" content={HEADLINE} />
+	<meta property="og:description" content={DESCRIPTION} />
 	<meta property="og:type" content="article" />
+	<meta property="og:url" content={CANONICAL_URL} />
+	<meta property="og:site_name" content="HavBank (hobbyprosjekt)" />
+	<meta property="og:locale" content="nb_NO" />
+	<meta property="og:image" content={LOGO_URL} />
 	<meta property="article:published_time" content={publishedIso} />
+	<meta property="article:modified_time" content={modifiedIso} />
+	<meta property="article:author" content="HavBank-prosjekteier" />
+	<meta property="article:section" content="Om prosjektet" />
+	<meta property="article:tag" content="Finanstilsynet" />
+	<meta property="article:tag" content="HavBank" />
+	<meta property="article:tag" content="fiktiv nettside" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={HEADLINE} />
+	<meta name="twitter:description" content={DESCRIPTION} />
+	<meta name="twitter:image" content={LOGO_URL} />
+
+	<!-- JSON-LD: NewsArticle + BreadcrumbList. Injected as raw HTML so Svelte
+	     doesn't treat the inner <script> as a raw-text component block. The
+	     payload is built entirely from static data via JSON.stringify with
+	     explicit escaping of <, > and & (see toJsonLd above), so there is no
+	     untrusted input and the eslint XSS rule is a false positive here. -->
+	<!-- eslint-disable svelte/no-at-html-tags -->
+	{@html newsArticleLdTag}
+	{@html breadcrumbLdTag}
+	<!-- eslint-enable svelte/no-at-html-tags -->
 </svelte:head>
 
 <article class="page-container py-16 sm:py-20 lg:py-24">
@@ -397,6 +566,13 @@
 					>
 						Ta gjerne kontakt.
 					</button>
+					Sikkerhetsforskere og automatiserte skannere finner samme kontaktinformasjon —
+					inkludert PGP-nøkkel og fingeravtrykk — i vår maskinlesbare
+					<a
+						href="/.well-known/security.txt"
+						class="font-mono text-blue-900 dark:text-blue-300 underline underline-offset-4 hover:text-blue-800 dark:hover:text-blue-200"
+					>/.well-known/security.txt</a>
+					etter RFC 9116.
 				</p>
 			</section>
 

@@ -7,6 +7,21 @@
 
 export const SECURITY_EMAIL = 'security@r01.no';
 
+/**
+ * Canonical OpenPGP v4 fingerprint of the primary key embedded below
+ * (ed25519). Verify any key you receive by comparing against this value
+ * and against the copy published on r01.no.
+ *
+ *   gpg --show-keys --with-fingerprint <(curl -s https://r01.no/.well-known/pgp-key.txt)
+ */
+export const SECURITY_PGP_FINGERPRINT = '9F3B D11F 20C1 6C9C B39A  85C5 37A9 71DF 2A56 D06E';
+
+/** Second, independent source for the same public key (out-of-band verification). */
+export const SECURITY_PGP_KEY_URL = 'https://r01.no/.well-known/pgp-key.txt';
+
+/** Machine-readable security contact (RFC 9116). */
+export const SECURITY_TXT_URL = 'https://havbank.no/.well-known/security.txt';
+
 export const SECURITY_PGP_KEY = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 xjMEaVOekRYJKwYBBAHaRw8BAQdAW9BElvkYMiLP98nHZGdKSHVGzZpOR4/d

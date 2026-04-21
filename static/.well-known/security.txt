@@ -1,0 +1,24 @@
+# HavBank.net - security contact (RFC 9116)
+#
+# HavBank is a fictional banking website and a personal hobby project.
+# It is NOT a bank, does NOT process personal data, and has NO
+# authorisation from Finanstilsynet (the Financial Supervisory
+# Authority of Norway).
+#
+# See https://havbank.no/om-prosjektet for the full public disclosure,
+# including Finanstilsynet's warning (6 March 2026) and media coverage.
+#
+# PGP key fingerprint (ed25519, primary key):
+#   9F3B D11F 20C1 6C9C B39A  85C5 37A9 71DF 2A56 D06E
+#
+# The same public key is also published at
+# https://r01.no/.well-known/pgp-key.txt - compare fingerprints before
+# trusting any key obtained from this host.
+
+Contact: mailto:security@r01.no
+Contact: https://r01.no/
+Encryption: https://r01.no/.well-known/pgp-key.txt
+Preferred-Languages: no, en
+Canonical: https://havbank.no/.well-known/security.txt
+Policy: https://havbank.no/om-prosjektet
+Expires: 2027-04-20T23:59:59.000Z
