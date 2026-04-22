@@ -91,7 +91,7 @@
 		name="description"
 		content="Møt kulturen i HavBank. Fire kjerneverdier, hybrid arbeidshverdag, kompetansebudsjett på kr 25 000 og ansatteordninger som boliglån til personalrente."
 	/>
-	<link rel="canonical" href="https://havbank.no/karriere/kultur" />
+	<link rel="canonical" href="https://havbank.net/karriere/kultur" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

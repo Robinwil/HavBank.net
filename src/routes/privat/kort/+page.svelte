@@ -111,7 +111,7 @@
 		content="Fleksible kredittkort med reiseforsikring og ingen årsavgift første år."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/privat/kort" />
+	<link rel="canonical" href="https://havbank.net/privat/kort" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

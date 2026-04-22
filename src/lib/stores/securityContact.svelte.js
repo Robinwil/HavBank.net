@@ -20,7 +20,7 @@ export const SECURITY_PGP_FINGERPRINT = '9F3B D11F 20C1 6C9C B39A  85C5 37A9 71D
 export const SECURITY_PGP_KEY_URL = 'https://r01.no/.well-known/pgp-key.txt';
 
 /** Machine-readable security contact (RFC 9116). */
-export const SECURITY_TXT_URL = 'https://havbank.no/.well-known/security.txt';
+export const SECURITY_TXT_URL = 'https://havbank.net/.well-known/security.txt';
 
 export const SECURITY_PGP_KEY = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 

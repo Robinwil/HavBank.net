@@ -111,7 +111,7 @@
 		content="Komplette valuta- og handelsløsninger for norske bedrifter. Konkurransedyktige kurser og personlig oppfølging."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bedrift/valuta" />
+	<link rel="canonical" href="https://havbank.net/bedrift/valuta" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

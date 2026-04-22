@@ -141,7 +141,7 @@
 		content="Profesjonell næringsmegling for kjøp, salg og utleie av næringseiendom."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bedrift/naringsmegling" />
+	<link rel="canonical" href="https://havbank.net/bedrift/naringsmegling" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

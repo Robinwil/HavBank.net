@@ -143,7 +143,7 @@
 <svelte:head>
 	<title>{applicationTypes[currentType].title} | HavBank – Karriere</title>
 	<meta name="description" content={applicationTypes[currentType].description} />
-	<link rel="canonical" href="https://havbank.no/karriere/soknad" />
+	<link rel="canonical" href="https://havbank.net/karriere/soknad" />
 </svelte:head>
 
 <div class="relative isolate overflow-hidden">

@@ -126,7 +126,7 @@
 		content="Book et møte med våre rådgivere og start ditt kundeforhold i HavBank."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bli-kunde" />
+	<link rel="canonical" href="https://havbank.net/bli-kunde" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

@@ -134,7 +134,7 @@ Vesentlige endringer vil bli kommunisert direkte til kundene.`
 			title: 'Kontaktinformasjon',
 			icon: 'heroicons:envelope',
 			content: `Personvernombud:
-E-post: personvern@havbank.no
+E-post: personvern@havbank.net
 Telefon: +47 00 00 00 00
 
 Datatilsynet:
@@ -159,7 +159,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 		content="Les hvordan HavBank beskytter og behandler dine personopplysninger i henhold til GDPR og norsk lov."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/personvern" />
+	<link rel="canonical" href="https://havbank.net/personvern" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

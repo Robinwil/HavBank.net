@@ -175,7 +175,7 @@
 		content="Invester smart med HavBank. Velg mellom fond, aksjer og aksjesparekonto."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/privat/investering" />
+	<link rel="canonical" href="https://havbank.net/privat/investering" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

@@ -101,7 +101,7 @@
 		content="Søk om boliglån digitalt hos HavBank. Signer med BankID og få foreløpig svar på e-post innen 2 virkedager."
 	/>
 	<meta name="robots" content="noindex, nofollow" />
-	<link rel="canonical" href="https://havbank.no/privat/boliglan/sok" />
+	<link rel="canonical" href="https://havbank.net/privat/boliglan/sok" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

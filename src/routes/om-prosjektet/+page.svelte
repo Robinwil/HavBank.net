@@ -3,7 +3,7 @@
 	import Icon from '@iconify/svelte';
 	import { openSecurityContact } from '$lib/stores/securityContact.svelte.js';
 
-	const SITE_ORIGIN = 'https://havbank.no';
+	const SITE_ORIGIN = 'https://havbank.net';
 	const CANONICAL_URL = `${SITE_ORIGIN}/om-prosjektet`;
 	const LOGO_URL = `${SITE_ORIGIN}/favicon.png`;
 

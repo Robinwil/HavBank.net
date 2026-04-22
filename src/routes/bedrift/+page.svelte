@@ -124,7 +124,7 @@
 	<meta property="og:title" content="Bedriftstjenester | HavBank" />
 	<meta property="og:description" content="Komplette banktjenester for bedrifter under tilsyn av Finanstilsynet." />
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bedrift" />
+	<link rel="canonical" href="https://havbank.net/bedrift" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

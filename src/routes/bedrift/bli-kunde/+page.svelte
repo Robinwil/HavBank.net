@@ -136,7 +136,7 @@
 		content="Åpne bedriftskonto i HavBank med full digital onboarding via BankID. Klar til bruk på én virkedag."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bedrift/bli-kunde" />
+	<link rel="canonical" href="https://havbank.net/bedrift/bli-kunde" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

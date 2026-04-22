@@ -142,7 +142,7 @@
 		content="Markedets beste BSU-rente på 6,5% og høyrentekonto med opptil 4,50% rente."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/privat/sparing" />
+	<link rel="canonical" href="https://havbank.net/privat/sparing" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

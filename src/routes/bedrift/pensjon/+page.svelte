@@ -140,7 +140,7 @@
 		content="Komplette pensjons- og forsikringsløsninger for norske bedrifter. Godkjent av Finanstilsynet."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bedrift/pensjon" />
+	<link rel="canonical" href="https://havbank.net/bedrift/pensjon" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

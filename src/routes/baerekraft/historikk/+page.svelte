@@ -120,7 +120,7 @@
 		name="description"
 		content="Arkiv over HavBanks bærekraftsrapporter fra 2021 til 2024. Rapporteringen følger GRI, TCFD og EU-taksonomien og er verifisert av KPMG."
 	/>
-	<link rel="canonical" href="https://havbank.no/baerekraft/historikk" />
+	<link rel="canonical" href="https://havbank.net/baerekraft/historikk" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

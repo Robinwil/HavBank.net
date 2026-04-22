@@ -142,7 +142,7 @@
 		content="Avanserte cash management-løsninger for effektiv likviditetsstyring og betalingshåndtering."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bedrift/cash-management" />
+	<link rel="canonical" href="https://havbank.net/bedrift/cash-management" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

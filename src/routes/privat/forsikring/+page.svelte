@@ -163,7 +163,7 @@
 		content="Omfattende forsikringsløsninger for deg og din familie hos HavBank."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/privat/forsikring" />
+	<link rel="canonical" href="https://havbank.net/privat/forsikring" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

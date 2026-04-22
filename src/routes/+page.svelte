@@ -57,7 +57,7 @@
 	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="nb_NO" />
-	<link rel="canonical" href="https://havbank.no/" />
+	<link rel="canonical" href="https://havbank.net/" />
 </svelte:head>
 
 <div class="relative isolate">
@@ -213,7 +213,7 @@
                                 <h3 class="text-xl font-semibold text-white">Send e-post</h3>
                             </div>
                             <p class="text-lg text-gray-100 font-medium">
-                                sikkerhet@havbank.no
+                                sikkerhet@havbank.net
                                 <br />
                                 <span class="text-sm text-gray-300/80 font-normal">Svartid innen 1 time</span>
                             </p>

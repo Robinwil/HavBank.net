@@ -94,7 +94,7 @@
 			name: 'Erik Hansen',
 			title: 'Administrerende Direktør',
 			department: 'Ledelse',
-			email: 'erik.hansen@havbank.no',
+			email: 'erik.hansen@havbank.net',
 			image: '/images/employees/erik-hansen.jpg',
 			linkedIn: 'https://linkedin.com/in/erik-hansen',
 			phone: '+47 00 00 00 00'
@@ -104,7 +104,7 @@
 			name: 'Maria Olsen',
 			title: 'Sikkerhetssjef',
 			department: 'IT-Sikkerhet',
-			email: 'maria.olsen@havbank.no',
+			email: 'maria.olsen@havbank.net',
 			image: '/images/employees/maria-olsen.jpg',
 			linkedIn: 'https://linkedin.com/in/maria-olsen',
 			phone: '+47 00 00 00 00'
@@ -114,7 +114,7 @@
 			name: 'Anders Berg',
 			title: 'Finansdirektør',
 			department: 'Økonomi',
-			email: 'anders.berg@havbank.no',
+			email: 'anders.berg@havbank.net',
 			image: null,
 			linkedIn: 'https://linkedin.com/in/anders-berg',
 			phone: '+47 00 00 00 00'
@@ -124,7 +124,7 @@
 			name: 'Kristine Dahl',
 			title: 'Personvernombud',
 			department: 'Compliance',
-			email: 'kristine.dahl@havbank.no',
+			email: 'kristine.dahl@havbank.net',
 			image: '/images/employees/kristine-dahl.jpg',
 			linkedIn: 'https://linkedin.com/in/kristine-dahl',
 			phone: '+47 00 00 00 00'
@@ -189,7 +189,7 @@
 		name="description"
 		content="Møt teamet bak HavBank – erfarne fagfolk dedikert til sikker og moderne bankvirksomhet i Norge."
 	/>
-	<link rel="canonical" href="https://havbank.no/om-oss" />
+	<link rel="canonical" href="https://havbank.net/om-oss" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

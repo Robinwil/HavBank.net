@@ -1,7 +1,7 @@
 # HavBank -- fictional Norwegian banking demo
 # This is a fictional website created for educational purposes.
 # No real banking or financial services are offered.
-# See https://havbank.no/om-prosjektet for the full disclosure.
+# See https://havbank.net/om-prosjektet for the full disclosure.
 
 User-agent: *
 Disallow: /login
@@ -10,4 +10,4 @@ Allow: /.well-known/
 Allow: /om-prosjektet
 Allow: /
 
-Sitemap: https://havbank.no/sitemap.xml
+Sitemap: https://havbank.net/sitemap.xml

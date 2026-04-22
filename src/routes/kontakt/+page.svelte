@@ -27,10 +27,10 @@
 		{
 			title: 'Send e-post',
 			description: 'Vi svarer innen 24 timer',
-			value: 'post@havbank.no',
+			value: 'post@havbank.net',
 			icon: 'heroicons:envelope',
 			action: 'Send e-post',
-			href: 'mailto:post@havbank.no'
+			href: 'mailto:post@havbank.net'
 		}
 	];
 
@@ -91,7 +91,7 @@
 		content="Vi er her for å hjelpe deg med dine bankbehov. Kontakt oss på telefon, chat eller e-post."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/kontakt" />
+	<link rel="canonical" href="https://havbank.net/kontakt" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

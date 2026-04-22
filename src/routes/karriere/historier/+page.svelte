@@ -75,7 +75,7 @@
 		name="description"
 		content="Møt seks ansatte i HavBank som forteller hva de faktisk gjør i jobben — fra graduate til 14-åring i huset. Les om kulturen, bredden og graduateprogrammet."
 	/>
-	<link rel="canonical" href="https://havbank.no/karriere/historier" />
+	<link rel="canonical" href="https://havbank.net/karriere/historier" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

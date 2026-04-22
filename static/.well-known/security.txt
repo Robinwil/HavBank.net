@@ -5,7 +5,7 @@
 # authorisation from Finanstilsynet (the Financial Supervisory
 # Authority of Norway).
 #
-# See https://havbank.no/om-prosjektet for the full public disclosure,
+# See https://havbank.net/om-prosjektet for the full public disclosure,
 # including Finanstilsynet's warning (6 March 2026) and media coverage.
 #
 # PGP key fingerprint (ed25519, primary key):
@@ -19,6 +19,6 @@ Contact: mailto:security@r01.no
 Contact: https://r01.no/
 Encryption: https://r01.no/.well-known/pgp-key.txt
 Preferred-Languages: no, en
-Canonical: https://havbank.no/.well-known/security.txt
-Policy: https://havbank.no/om-prosjektet
+Canonical: https://havbank.net/.well-known/security.txt
+Policy: https://havbank.net/om-prosjektet
 Expires: 2027-04-20T23:59:59.000Z

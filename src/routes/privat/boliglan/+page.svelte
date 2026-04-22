@@ -183,7 +183,7 @@
 		content="Konkurransedyktige boliglån med fleksible betingelser. Beregn ditt lån med vår kalkulator."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/privat/boliglan" />
+	<link rel="canonical" href="https://havbank.net/privat/boliglan" />
 </svelte:head>
 
 <style>

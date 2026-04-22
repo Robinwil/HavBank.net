@@ -116,7 +116,7 @@
 		name="keywords"
 		content="tilgjengelighet, universell utforming, WCAG, bankfilialer, kundeservice, nettbank, mobilbank"
 	/>
-	<link rel="canonical" href="https://havbank.no/tilgjengelighet" />
+	<link rel="canonical" href="https://havbank.net/tilgjengelighet" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

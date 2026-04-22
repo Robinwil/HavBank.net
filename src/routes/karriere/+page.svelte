@@ -68,7 +68,7 @@
 		name="description"
 		content="Utforsk karrieremuligheter i HavBank. Vi søker engasjerte mennesker som vil være med å forme fremtidens bank."
 	/>
-	<link rel="canonical" href="https://havbank.no/karriere" />
+	<link rel="canonical" href="https://havbank.net/karriere" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

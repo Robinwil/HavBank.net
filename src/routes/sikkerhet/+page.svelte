@@ -166,7 +166,7 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 		content="HavBank beskytter dine verdier med markedsledende sikkerhetsteknologi og strenge rutiner."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/sikkerhet" />
+	<link rel="canonical" href="https://havbank.net/sikkerhet" />
 </svelte:head>
 
 <div class="min-h-screen bg-white dark:bg-gray-900">
@@ -297,7 +297,7 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 									<h3 class="text-xl font-semibold text-white">Send e-post</h3>
 								</div>
 								<p class="text-lg text-gray-100 font-medium">
-									sikkerhet@havbank.no
+									sikkerhet@havbank.net
 									<br />
 									<span class="text-sm text-gray-300/80 font-normal">Svartid innen 1 time</span>
 								</p>

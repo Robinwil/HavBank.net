@@ -133,7 +133,7 @@
 		name="description"
 		content="HavBank jobber aktivt med bærekraft gjennom grønne investeringer, redusert klimaavtrykk og sosial ansvarlighet."
 	/>
-	<link rel="canonical" href="https://havbank.no/baerekraft" />
+	<link rel="canonical" href="https://havbank.net/baerekraft" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

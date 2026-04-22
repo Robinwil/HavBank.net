@@ -92,7 +92,7 @@
 		name="description"
 		content="Kommende presentasjoner, webcast og arkiv fra HavBanks Investor Relations. Se kvartalspresentasjoner, Capital Markets Day og generalforsamling."
 	/>
-	<link rel="canonical" href="https://havbank.no/investor/presentasjoner" />
+	<link rel="canonical" href="https://havbank.net/investor/presentasjoner" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">
@@ -124,7 +124,7 @@
 			<h2 class="section-title">Kommende hendelser</h2>
 			<p class="section-lead">
 				Alle tider er oppgitt i sentraleuropeisk tid (CET). Webcast strømmes fra
-				havbank.no/investor.
+				havbank.net/investor.
 			</p>
 		</div>
 		<div class="mx-auto mt-12 max-w-4xl space-y-4">
@@ -285,9 +285,9 @@
 							/>
 						{/if}
 						<a
-							href="mailto:ir@havbank.no"
+							href="mailto:ir@havbank.net"
 							class="font-medium text-blue-900 hover:text-blue-800 dark:text-blue-400"
-							>ir@havbank.no</a
+							>ir@havbank.net</a
 						>
 					</div>
 					<div class="flex gap-x-3">

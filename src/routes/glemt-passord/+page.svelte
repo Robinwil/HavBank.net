@@ -22,7 +22,7 @@
 		content="Gjenopprett tilgang til nettbanken med BankID. HavBank spør aldri om passord, PIN eller BankID-koder på e-post eller telefon."
 	/>
 	<meta name="robots" content="noindex, nofollow" />
-	<link rel="canonical" href="https://havbank.no/glemt-passord" />
+	<link rel="canonical" href="https://havbank.net/glemt-passord" />
 </svelte:head>
 
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">

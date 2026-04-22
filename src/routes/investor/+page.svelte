@@ -302,7 +302,7 @@
 		name="description"
 		content="Finansiell informasjon, aksjekurs, rapporter og selskapsstyring for investorer i HavBank."
 	/>
-	<link rel="canonical" href="https://havbank.no/investor" />
+	<link rel="canonical" href="https://havbank.net/investor" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

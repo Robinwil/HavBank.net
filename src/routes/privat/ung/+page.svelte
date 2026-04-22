@@ -167,7 +167,7 @@
 		content="Spesialtilpassede banktjenester for unge under 34 år hos HavBank."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/privat/ung" />
+	<link rel="canonical" href="https://havbank.net/privat/ung" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

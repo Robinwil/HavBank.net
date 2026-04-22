@@ -146,7 +146,7 @@
 		content="Personlige banktjenester med konkurransedyktige betingelser. Norsk bank med fokus på trygghet og service."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/privat" />
+	<link rel="canonical" href="https://havbank.net/privat" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

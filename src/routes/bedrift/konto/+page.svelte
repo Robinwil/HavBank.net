@@ -88,7 +88,7 @@
 	<meta property="og:title" content="Bedriftskonto | HavBank" />
 	<meta property="og:description" content="Trygge og effektive bedriftskontoer med moderne betalingsløsninger." />
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bedrift/konto" />
+	<link rel="canonical" href="https://havbank.net/bedrift/konto" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

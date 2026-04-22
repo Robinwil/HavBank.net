@@ -135,7 +135,7 @@
 		content="Book et møte med våre rådgivere og få profesjonell veiledning om din økonomi."
 	/>
 	<meta property="og:type" content="website" />
-	<link rel="canonical" href="https://havbank.no/bestill-time" />
+	<link rel="canonical" href="https://havbank.net/bestill-time" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">

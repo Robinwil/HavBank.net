@@ -116,7 +116,7 @@
 		name="description"
 		content="Last ned HavBanks kvartalsrapporter, årsrapporter og Pillar III-rapporter. Abonner på varsel når nye rapporter publiseres."
 	/>
-	<link rel="canonical" href="https://havbank.no/investor/rapporter" />
+	<link rel="canonical" href="https://havbank.net/investor/rapporter" />
 </svelte:head>
 
 <div class="bg-white dark:bg-gray-900">
