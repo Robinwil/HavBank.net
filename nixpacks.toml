@@ -1,3 +1,14 @@
+# Nixpacks build configuration.
+#
+# We use Bun for install/build/run, but Nixpacks' auto-detected Node provider
+# would otherwise guess a Node version based on heuristics (historically
+# Node 18, which is EOL and has been removed from nixpkgs). We pin both the
+# Node and Bun runtimes explicitly here to avoid that trap. Bump these
+# alongside the .nvmrc / package.json engines fields.
+
+[phases.setup]
+nixPkgs = ["nodejs_22", "bun"]
+
 [phases.install]
 cmds = ["bun install --frozen-lockfile"]
 
