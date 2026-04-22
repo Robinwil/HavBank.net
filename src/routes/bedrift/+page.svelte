@@ -330,7 +330,7 @@
 					{/if}
 				</a>
 				<a
-					href='/kontakt?id="bedrift"'
+					href="/kontakt"
 					class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 hover:text-blue-700 dark:hover:text-blue-400"
 				>
 					Kontakt oss
