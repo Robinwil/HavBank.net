@@ -1,3 +1,26 @@
+import { registerWithRegistry } from './register';
+
+// Fire-and-forget registration with the r01.no fleet registry.
+// Silent if any required env var is missing (e.g. local dev).
+const env = process.env;
+if (
+	env.REGISTRY_URL &&
+	env.REGISTRY_SIGNING_SECRET &&
+	env.REGISTRY_FQDN &&
+	env.REGISTRY_NAME
+) {
+	registerWithRegistry({
+		fqdn: env.REGISTRY_FQDN,
+		parent_fqdn: env.REGISTRY_PARENT_FQDN,
+		name: env.REGISTRY_NAME,
+		description: env.REGISTRY_DESCRIPTION,
+		registry_url: env.REGISTRY_URL,
+		signing_secret: env.REGISTRY_SIGNING_SECRET
+	}).catch((err) => {
+		console.error('[registry] registration error:', err);
+	});
+}
+
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
 	try {
