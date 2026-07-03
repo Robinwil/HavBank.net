@@ -10,13 +10,13 @@ or regenerate from `~/projects/github/www/CLAUDE.md` instructions.
 | **Branch tracked** | `main` |
 | **Coolify panel** | https://panel.r01.no/applications/wrhw53n5bd1rbyuj1x49puqd |
 | **Coolify app uuid** | `wrhw53n5bd1rbyuj1x49puqd` |
-| **Build pack** | `nixpacks` |
+| **Build pack** | `dockerfile` |
 | **Container port** | `3000` |
 | **Persistent storage** | none (stateless) |
 
 ## Env vars (production)
 
-NIXPACKS_NODE_VERSION
+NIXPACKS_NODE_VERSION (obsolete since the dockerfile migration — safe to remove in Coolify)
 
 ## Deploy
 
