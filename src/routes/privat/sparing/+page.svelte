@@ -1,9 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-    import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
-	
+	import Icon from '@iconify/svelte';
 
 	const products = [
 		{
@@ -91,19 +88,20 @@
 
 	// Derived values using runes
 	let effectiveRate = $derived(selectedProduct === 'bsu' ? 6.5 : 4.5);
-	
+
 	let totalSavings = $derived(() => {
 		const monthlyRate = effectiveRate / 1200; // Convert annual rate to monthly (divide by 100 * 12)
 		const months = years * 12;
-		
+
 		const initialFutureValue = initialAmount * Math.pow(1 + monthlyRate, months);
-		const monthlyFutureValue = monthlyAmount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
-		
+		const monthlyFutureValue =
+			monthlyAmount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+
 		return Math.round(initialFutureValue + monthlyFutureValue);
 	});
 
 	let totalInterest = $derived(() => {
-		const totalDeposits = initialAmount + (monthlyAmount * years * 12);
+		const totalDeposits = initialAmount + monthlyAmount * years * 12;
 		return Math.round(Math.max(0, totalSavings() - totalDeposits));
 	});
 
@@ -113,7 +111,7 @@
 		return Math.round(Math.min(yearlyAmount, 27500) * 0.2);
 	});
 
-	function formatCurrency(amount) {
+	function formatCurrency(amount: number) {
 		if (typeof amount !== 'number' || !isFinite(amount)) return 'kr 0';
 		return new Intl.NumberFormat('nb-NO', {
 			style: 'currency',
@@ -123,10 +121,9 @@
 		}).format(amount);
 	}
 
-	function selectProduct(product) {
+	function selectProduct(product: string) {
 		selectedProduct = product;
 	}
-
 </script>
 
 <svelte:head>
@@ -135,7 +132,10 @@
 		name="description"
 		content="HavBank tilbyr markedets beste BSU-rente på 6,5% og høyrentekonto med opptil 4,50% rente. Start sparingen i dag!"
 	/>
-	<meta name="keywords" content="BSU, høyrentekonto, sparekonto, ungdomssparing, bank, sparing, norge" />
+	<meta
+		name="keywords"
+		content="BSU, høyrentekonto, sparekonto, ungdomssparing, bank, sparing, norge"
+	/>
 	<meta property="og:title" content="Sparing | HavBank" />
 	<meta
 		property="og:description"
@@ -150,9 +150,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Spar smart med oss
-				</h1>
+				<h1 class="page-title">Spar smart med oss</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Vi tilbyr markedets beste BSU-rente på 6,5% og høyrentekonto med opptil 4,50% rente. Start
 					sparingen i dag og bygg en trygg økonomisk fremtid.
@@ -164,7 +162,10 @@
 					>
 						Bli kunde
 					</a>
-					<a href="#kalkulator" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+					<a
+						href="#kalkulator"
+						class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+					>
 						Prøv vår sparekalkulator <span aria-hidden="true">→</span>
 					</a>
 				</div>
@@ -239,7 +240,7 @@
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
 				{#each products as product}
-					<button 
+					<button
 						class="product-card {selectedProduct === product.id ? 'active' : ''}"
 						onclick={() => selectProduct(product.id)}
 					>
@@ -301,14 +302,7 @@
 							<label for="yearsInput" class="text-sm text-gray-300">Antall år</label>
 							<span class="text-sm text-white">{years} år</span>
 						</div>
-						<input
-							type="range"
-							id="yearsInput"
-							bind:value={years}
-							min="1"
-							max="40"
-							step="1"
-						/>
+						<input type="range" id="yearsInput" bind:value={years} min="1" max="40" step="1" />
 						<div class="flex justify-between text-xs text-gray-500">
 							<span>1 år</span>
 							<span>40 år</span>
@@ -319,7 +313,10 @@
 						<div class="bg-blue-900/20 p-4 rounded-lg border border-blue-500/20">
 							<div class="flex items-start gap-3">
 								{#if browser && Icon}
-									<Icon icon="heroicons:information-circle" class="h-5 w-5 text-blue-400 flex-shrink-0" />
+									<Icon
+										icon="heroicons:information-circle"
+										class="h-5 w-5 text-blue-400 flex-shrink-0"
+									/>
 								{/if}
 								<div class="text-sm text-gray-300">
 									<span class="font-medium text-white block mb-1">BSU-fordeler</span>
@@ -333,7 +330,10 @@
 				<div>
 					<div
 						class="results-circle"
-						style="--progress: {Math.min((totalSavings() / Math.max(initialAmount + monthlyAmount * years * 12, 1)) * 100, 100)}%"
+						style="--progress: {Math.min(
+							(totalSavings() / Math.max(initialAmount + monthlyAmount * years * 12, 1)) * 100,
+							100
+						)}%"
 					>
 						<div class="results-content">
 							<div class="text-3xl font-bold text-white">{formatCurrency(totalSavings())}</div>
@@ -365,7 +365,9 @@
 						{/if}
 					</div>
 
-					<button class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors">
+					<button
+						class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors"
+					>
 						Start sparingen
 					</button>
 				</div>
@@ -423,10 +425,10 @@
 		margin: 2rem 0;
 	}
 
-	input[type="range"] {
+	input[type='range'] {
 		-webkit-appearance: none;
-		-moz-appearance: none; 
-		appearance: none; 
+		-moz-appearance: none;
+		appearance: none;
 		width: 100%;
 		height: 2px;
 		background: #1e293b;
@@ -434,7 +436,7 @@
 		margin: 1rem 0;
 	}
 
-	input[type="range"]::-webkit-slider-thumb {
+	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		width: 20px;
 		height: 20px;
@@ -446,7 +448,7 @@
 		margin-top: -9px;
 	}
 
-	input[type="range"]::-moz-range-thumb {
+	input[type='range']::-moz-range-thumb {
 		width: 20px;
 		height: 20px;
 		background: white;
@@ -495,4 +497,4 @@
 		padding: 1rem;
 		margin: 0.5rem;
 	}
-</style> 
+</style>

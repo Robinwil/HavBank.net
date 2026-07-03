@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 
@@ -57,9 +57,7 @@
 	];
 
 	// Update the navigation links
-	const navLinks = [
-		{ href: '/om-oss', text: 'Om HavBank' }
-	];
+	const navLinks = [{ href: '/om-oss', text: 'Om HavBank' }];
 </script>
 
 <svelte:head>
@@ -73,15 +71,15 @@
 
 <div class="bg-white dark:bg-gray-900">
 	<!-- Hero Section -->
-	<div class="relative isolate overflow-hidden bg-gradient-to-b from-blue-100 dark:from-blue-950 to-transparent">
+	<div
+		class="relative isolate overflow-hidden bg-gradient-to-b from-blue-100 dark:from-blue-950 to-transparent"
+	>
 		<div class="page-container py-16 sm:py-24">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Bli med på laget
-				</h1>
+				<h1 class="page-title">Bli med på laget</h1>
 				<p class="page-lead">
-					I HavBank jobber vi for å skape fremtidens bank. Vi søker engasjerte mennesker som vil være
-					med på reisen.
+					I HavBank jobber vi for å skape fremtidens bank. Vi søker engasjerte mennesker som vil
+					være med på reisen.
 				</p>
 			</div>
 		</div>
@@ -103,10 +101,14 @@
 
 	<!-- Current Openings -->
 	<div class="page-container mb-16">
-		<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-700 dark:to-blue-800">
+		<div
+			class="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-700 dark:to-blue-800"
+		>
 			<!-- Background Pattern -->
-			<div class="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]"> </div>
-			
+			<div
+				class="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]"
+			></div>
+
 			<div class="relative p-8 lg:p-12">
 				<div class="mx-auto max-w-2xl text-center">
 					<div class="inline-flex items-center justify-center rounded-lg bg-white/10 p-2 mb-8">
@@ -139,9 +141,9 @@
 								<div class="mt-4 flex items-center text-sm text-white">
 									<span>Les mer</span>
 									{#if browser && Icon}
-										<Icon 
-											icon="heroicons:arrow-right" 
-											class="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" 
+										<Icon
+											icon="heroicons:arrow-right"
+											class="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1"
 										/>
 									{/if}
 								</div>
@@ -161,9 +163,9 @@
 								<div class="mt-4 flex items-center text-sm text-white">
 									<span>Les mer</span>
 									{#if browser && Icon}
-										<Icon 
-											icon="heroicons:arrow-right" 
-											class="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" 
+										<Icon
+											icon="heroicons:arrow-right"
+											class="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1"
 										/>
 									{/if}
 								</div>
@@ -183,9 +185,9 @@
 								<div class="mt-4 flex items-center text-sm text-white">
 									<span>Les mer</span>
 									{#if browser && Icon}
-										<Icon 
-											icon="heroicons:arrow-right" 
-											class="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" 
+										<Icon
+											icon="heroicons:arrow-right"
+											class="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1"
 										/>
 									{/if}
 								</div>
@@ -200,16 +202,16 @@
 	<!-- Benefits -->
 	<div class="page-container mb-16">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-		<h2 class="section-title">
-			Fordeler i HavBank
-		</h2>
-		<p class="section-lead">
+			<h2 class="section-title">Fordeler i HavBank</h2>
+			<p class="section-lead">
 				Vi tilbyr mer enn bare en jobb. Her er noen av fordelene ved å jobbe hos oss.
 			</p>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+		<div
+			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+		>
 			{#each benefits as benefit}
-					<div class="flex flex-col card-elevated">
+				<div class="flex flex-col card-elevated">
 					<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600">
 						{#if browser && Icon}
 							<Icon icon={benefit.icon} class="h-6 w-6 text-white" />
@@ -229,14 +231,14 @@
 	<!-- Values -->
 	<div class="page-container mb-16">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Våre verdier
-			</h2>
+			<h2 class="section-title">Våre verdier</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Verdiene våre definerer hvem vi er og hvordan vi jobber sammen.
 			</p>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+		<div
+			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-4"
+		>
 			{#each values as value}
 				<div class="flex flex-col card-elevated">
 					<h3 class="text-lg font-semibold leading-8 text-gray-900 dark:text-white">
@@ -260,12 +262,7 @@
 					opplevelser.
 				</p>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
-					<a
-						href="/karriere/historier"
-						class="btn-white text-blue-600"
-					>
-						Les våre historier
-					</a>
+					<a href="/karriere/historier" class="btn-white text-blue-600"> Les våre historier </a>
 					<a href="/karriere/kultur" class="text-sm font-semibold leading-6 text-white">
 						Vår kultur <span aria-hidden="true">→</span>
 					</a>
@@ -278,7 +275,8 @@
 <style>
 	/* Grid background pattern */
 	.bg-grid-white\/10 {
-		background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+		background-image:
+			linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
 			linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
 		background-size: 24px 24px;
 	}

@@ -1,9 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
-
-	const IconifyIcon = Icon;
-
 
 	const sections = [
 		{
@@ -167,9 +164,7 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-8 sm:py-16">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Personvernerklæring
-				</h1>
+				<h1 class="page-title">Personvernerklæring</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					HavBank er forpliktet til å beskytte dine personopplysninger. Denne erklæringen beskriver
 					hvordan vi samler inn, bruker og beskytter dine data i samsvar med personvernforordningen
@@ -210,6 +205,8 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 						</h2>
 					</div>
 					<div class="prose prose-lg dark:prose-invert max-w-none">
+						<!-- `content` is static text authored in this file above, not user input. -->
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						{@html section.content.replace(/\n/g, '<br>')}
 					</div>
 				</section>
@@ -221,8 +218,9 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	<div class="page-container">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Denne personvernerklæringen ble sist oppdatert 15. januar 2024. HavBank AS (org.nr. 924 850 771) er behandlingsansvarlig for personopplysninger som samles inn og behandles i forbindelse med
-				våre tjenester.
+				Denne personvernerklæringen ble sist oppdatert 15. januar 2024. HavBank AS (org.nr. 924 850
+				771) er behandlingsansvarlig for personopplysninger som samles inn og behandles i
+				forbindelse med våre tjenester.
 			</p>
 		</div>
 	</div>
@@ -267,4 +265,4 @@ Hvis du mener vi behandler personopplysninger i strid med personvernlovgivningen
 	:global(.dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4) {
 		color: theme(colors.white);
 	}
-</style> 
+</style>

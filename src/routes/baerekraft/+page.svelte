@@ -1,10 +1,12 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
+	import type IconComponent from '@iconify/svelte';
+	import type { Chart as ChartJS } from 'chart.js';
 
-	let Icon = $state(null);
-	let Chart;
+	let Icon: typeof IconComponent | null = $state(null);
+	let Chart: typeof ChartJS | undefined;
 
 	// Sustainability metrics (to be updated with real data)
 	const metrics = {
@@ -44,7 +46,7 @@
 		governance: 85
 	};
 
-	function handleDemoDownload(event) {
+	function handleDemoDownload(event: MouseEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Bærekraftsrapporten er ikke tilgjengelig for nedlasting.' });
 	}
@@ -67,19 +69,21 @@
 		Chart = chartModule.default;
 
 		// Carbon Footprint Chart
-		const carbonCtx = document.getElementById('carbonChart');
+		const carbonCtx = document.getElementById('carbonChart') as HTMLCanvasElement;
 		new Chart(carbonCtx, {
 			type: 'line',
 			data: {
 				labels: ['2020', '2021', '2022', '2023'],
-				datasets: [{
-					label: 'CO₂-utslipp (tonn)',
-					data: metrics.carbonFootprint.yearlyData,
-					borderColor: '#22c55e',
-					backgroundColor: 'rgba(34, 197, 94, 0.1)',
-					tension: 0.4,
-					fill: true
-				}]
+				datasets: [
+					{
+						label: 'CO₂-utslipp (tonn)',
+						data: metrics.carbonFootprint.yearlyData,
+						borderColor: '#22c55e',
+						backgroundColor: 'rgba(34, 197, 94, 0.1)',
+						tension: 0.4,
+						fill: true
+					}
+				]
 			},
 			options: {
 				responsive: true,
@@ -100,20 +104,17 @@
 		});
 
 		// Green Investments Chart
-		const investmentCtx = document.getElementById('investmentChart');
+		const investmentCtx = document.getElementById('investmentChart') as HTMLCanvasElement;
 		new Chart(investmentCtx, {
 			type: 'doughnut',
 			data: {
-				labels: metrics.greenInvestments.sectors.map(s => s.name),
-				datasets: [{
-					data: metrics.greenInvestments.sectors.map(s => s.value),
-					backgroundColor: [
-						'#22c55e',
-						'#3b82f6',
-						'#a855f7',
-						'#f59e0b'
-					]
-				}]
+				labels: metrics.greenInvestments.sectors.map((s) => s.name),
+				datasets: [
+					{
+						data: metrics.greenInvestments.sectors.map((s) => s.value),
+						backgroundColor: ['#22c55e', '#3b82f6', '#a855f7', '#f59e0b']
+					}
+				]
 			},
 			options: {
 				responsive: true,
@@ -141,9 +142,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-16 sm:py-24">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Bærekraft i alt vi gjør
-				</h1>
+				<h1 class="page-title">Bærekraft i alt vi gjør</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Vi tar ansvar for miljøet, samfunnet og fremtidige generasjoner. Gjennom målrettede tiltak
 					og grønne investeringer bidrar vi til en bærekraftig fremtid.
@@ -156,7 +155,9 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
 		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 			<!-- Carbon Footprint -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:globe-europe-africa" class="h-6 w-6 text-green-500" />
@@ -170,7 +171,9 @@
 			</div>
 
 			<!-- Green Investments -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:banknotes" class="h-6 w-6 text-green-500" />
@@ -184,7 +187,9 @@
 			</div>
 
 			<!-- Social Impact -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:users" class="h-6 w-6 text-green-500" />
@@ -198,7 +203,9 @@
 			</div>
 
 			<!-- Sustainable Products -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:sparkles" class="h-6 w-6 text-green-500" />
@@ -217,14 +224,22 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 			<!-- Carbon Footprint Chart -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-				<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Karbonfotavtrykk utvikling</h3>
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
+				<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+					Karbonfotavtrykk utvikling
+				</h3>
 				<canvas id="carbonChart"></canvas>
 			</div>
 
 			<!-- Green Investments Chart -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-				<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Fordeling grønne investeringer</h3>
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
+				<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+					Fordeling grønne investeringer
+				</h3>
 				<canvas id="investmentChart"></canvas>
 			</div>
 		</div>
@@ -232,10 +247,14 @@
 
 	<!-- UN SDG Section -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
-		<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">FNs bærekraftsmål vi fokuserer på</h2>
+		<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+			FNs bærekraftsmål vi fokuserer på
+		</h2>
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each sdgFocus as goal}
-				<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+				<div
+					class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+				>
 					<div class="flex items-center gap-x-3 mb-4">
 						<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600">
 							<span class="text-xl font-bold text-white">{goal.number}</span>
@@ -275,10 +294,14 @@
 			<div class="card-elevated">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-lg font-medium text-gray-900 dark:text-white">Miljø</h3>
-					<span class="text-2xl font-bold text-green-700 dark:text-green-400">{esgScores.environmental}</span>
+					<span class="text-2xl font-bold text-green-700 dark:text-green-400"
+						>{esgScores.environmental}</span
+					>
 				</div>
 				<div class="relative pt-1">
-					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-100 dark:bg-green-900/40">
+					<div
+						class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-100 dark:bg-green-900/40"
+					>
 						<div
 							style="width: {esgScores.environmental}%"
 							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-700 dark:bg-green-500"
@@ -291,10 +314,13 @@
 			<div class="card-elevated">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-lg font-medium text-gray-900 dark:text-white">Sosialt</h3>
-					<span class="text-2xl font-bold text-blue-900 dark:text-blue-400">{esgScores.social}</span>
+					<span class="text-2xl font-bold text-blue-900 dark:text-blue-400">{esgScores.social}</span
+					>
 				</div>
 				<div class="relative pt-1">
-					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-100 dark:bg-blue-900/40">
+					<div
+						class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-100 dark:bg-blue-900/40"
+					>
 						<div
 							style="width: {esgScores.social}%"
 							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900 dark:bg-blue-500"
@@ -307,7 +333,9 @@
 			<div class="card-elevated">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-lg font-medium text-gray-900 dark:text-white">Styring</h3>
-					<span class="text-2xl font-bold text-gray-700 dark:text-gray-200">{esgScores.governance}</span>
+					<span class="text-2xl font-bold text-gray-700 dark:text-gray-200"
+						>{esgScores.governance}</span
+					>
 				</div>
 				<div class="relative pt-1">
 					<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200 dark:bg-gray-700">
@@ -347,4 +375,4 @@
 	:global(.dark) canvas {
 		filter: brightness(0.8) contrast(1.2);
 	}
-</style> 
+</style>

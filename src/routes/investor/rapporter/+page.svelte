@@ -1,14 +1,14 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
-	function handleDemoDownload(event) {
+	function handleDemoDownload(event: MouseEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Investorrapporter er ikke tilgjengelig for nedlasting.' });
 	}
 
-	function handleSubscribe(event) {
+	function handleSubscribe(event: SubmitEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Ingen varsler blir sendt — e-postadressen din lagres ikke.' });
 	}
@@ -127,8 +127,8 @@
 				<p class="section-eyebrow">Investor Relations</p>
 				<h1 class="page-title mt-2">Finansielle rapporter</h1>
 				<p class="page-lead">
-					Alle kvartalsrapporter, årsrapporter og Pillar III-dokumenter fra HavBank ASA.
-					Rapportene publiseres i tråd med Oslo Børs' løpende informasjonsplikt.
+					Alle kvartalsrapporter, årsrapporter og Pillar III-dokumenter fra HavBank ASA. Rapportene
+					publiseres i tråd med Oslo Børs' løpende informasjonsplikt.
 				</p>
 				<div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
 					<a href="/investor" class="btn-secondary">
@@ -170,7 +170,8 @@
 
 		<div class="mt-8 flex flex-wrap gap-x-6 gap-y-4">
 			<div>
-				<span class="block text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400"
+				<span
+					class="block text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400"
 					>Type</span
 				>
 				<div class="mt-2 flex flex-wrap gap-2">
@@ -190,7 +191,8 @@
 			</div>
 
 			<div>
-				<span class="block text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400"
+				<span
+					class="block text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400"
 					>År</span
 				>
 				<div class="mt-2 flex flex-wrap gap-2">
@@ -227,10 +229,7 @@
 						<div class="flex gap-x-4">
 							<div class="icon-box">
 								{#if browser && Icon}
-									<Icon
-										icon="heroicons:document-chart-bar"
-										class="h-6 w-6 text-white"
-									/>
+									<Icon icon="heroicons:document-chart-bar" class="h-6 w-6 text-white" />
 								{/if}
 							</div>
 							<div>
@@ -262,9 +261,7 @@
 					</div>
 				</article>
 			{:else}
-				<p class="text-sm text-gray-500 dark:text-gray-400">
-					Ingen rapporter matchet filteret.
-				</p>
+				<p class="text-sm text-gray-500 dark:text-gray-400">Ingen rapporter matchet filteret.</p>
 			{/each}
 		</div>
 	</div>
@@ -301,10 +298,10 @@
 	<div class="page-container">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				HavBank ASA (org.nr. 924 850 771) er notert på Oslo Børs og publiserer kvartalsrapporter
-				i tråd med Verdipapirhandelloven og Oslo Børs' løpende informasjonsplikt. Pillar
-				III-rapporten utgis etter CRR/CRD-regelverket. Historisk avkastning er ingen garanti for
-				fremtidig avkastning.
+				HavBank ASA (org.nr. 924 850 771) er notert på Oslo Børs og publiserer kvartalsrapporter i
+				tråd med Verdipapirhandelloven og Oslo Børs' løpende informasjonsplikt. Pillar III-rapporten
+				utgis etter CRR/CRD-regelverket. Historisk avkastning er ingen garanti for fremtidig
+				avkastning.
 			</p>
 		</div>
 	</div>

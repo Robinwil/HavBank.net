@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
+	import type { Chart as ChartJS } from 'chart.js';
 
-	let Chart;
+	let Chart: typeof ChartJS | undefined;
 
 	// Financial metrics (to be updated with real data)
 	const financials = {
@@ -22,10 +23,10 @@
 			{ quarter: 'Q1 2023', revenue: 3.1, profit: 1.1, eps: 3.6 }
 		],
 		stockInfo: {
-			currentPrice: 187.50, // NOK
+			currentPrice: 187.5, // NOK
 			dayChange: 2.3, // percentage
-			yearHigh: 195.20,
-			yearLow: 142.30,
+			yearHigh: 195.2,
+			yearLow: 142.3,
 			volume: 245000,
 			marketCap: 45.2 // billion NOK
 		}
@@ -116,35 +117,50 @@
 		const theme = isDark ? chartTheme.dark : chartTheme.light;
 
 		// Stock price chart - Enhanced to show growth
-		const stockCtx = document.getElementById('stockChart');
+		const stockCtx = document.getElementById('stockChart') as HTMLCanvasElement;
 		new Chart(stockCtx, {
 			type: 'line',
 			data: {
-				labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
-				datasets: [{
-					label: 'Aksjekurs (NOK)',
-					data: [165, 170, 168, 172, 175, 180, 178, 182, 185, 183, 186, 187.5],
-					borderColor: '#10B981', // Consistent green for growth
-					borderWidth: 3,
-					backgroundColor: (context) => {
-						const chart = context.chart;
-						const { ctx, chartArea } = chart;
-						if (!chartArea) return null;
-						
-						const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-						gradient.addColorStop(0, theme.successGradient.end);
-						gradient.addColorStop(0.5, theme.successGradient.mid);
-						gradient.addColorStop(1, theme.successGradient.start);
-						return gradient;
-					},
-					tension: 0.4,
-					fill: true,
-					pointBackgroundColor: '#10B981',
-					pointBorderColor: '#fff',
-					pointBorderWidth: 2,
-					pointRadius: 4,
-					pointHoverRadius: 6
-				}]
+				labels: [
+					'Jan',
+					'Feb',
+					'Mar',
+					'Apr',
+					'Mai',
+					'Jun',
+					'Jul',
+					'Aug',
+					'Sep',
+					'Okt',
+					'Nov',
+					'Des'
+				],
+				datasets: [
+					{
+						label: 'Aksjekurs (NOK)',
+						data: [165, 170, 168, 172, 175, 180, 178, 182, 185, 183, 186, 187.5],
+						borderColor: '#10B981', // Consistent green for growth
+						borderWidth: 3,
+						backgroundColor: (context) => {
+							const chart = context.chart;
+							const { ctx, chartArea } = chart;
+							if (!chartArea) return undefined;
+
+							const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+							gradient.addColorStop(0, theme.successGradient.end);
+							gradient.addColorStop(0.5, theme.successGradient.mid);
+							gradient.addColorStop(1, theme.successGradient.start);
+							return gradient;
+						},
+						tension: 0.4,
+						fill: true,
+						pointBackgroundColor: '#10B981',
+						pointBorderColor: '#fff',
+						pointBorderWidth: 2,
+						pointRadius: 4,
+						pointHoverRadius: 6
+					}
+				]
 			},
 			options: {
 				responsive: true,
@@ -162,7 +178,7 @@
 						padding: 12,
 						displayColors: false,
 						callbacks: {
-							label: (context) => `NOK ${context.parsed.y.toFixed(2)}`
+							label: (context) => `NOK ${context.parsed.y!.toFixed(2)}`
 						}
 					}
 				},
@@ -181,9 +197,14 @@
 					y: {
 						position: 'right',
 						beginAtZero: false,
-						suggestedMin: Math.min(...[165, 170, 168, 172, 175, 180, 178, 182, 185, 183, 186, 187.5]) * 0.95,
+						suggestedMin:
+							Math.min(...[165, 170, 168, 172, 175, 180, 178, 182, 185, 183, 186, 187.5]) * 0.95,
 						grid: {
 							color: theme.gridColor,
+							// @ts-expect-error -- pre-existing: `drawBorder` was removed from Chart.js's grid
+							// options in v4 (replaced by `border.display`); this project is already on
+							// chart.js ^4, so this option is a silent no-op today. Flagging rather than
+							// removing/migrating it to avoid any behavior change; see conversion report.
 							drawBorder: false
 						},
 						ticks: {
@@ -203,28 +224,30 @@
 		});
 
 		// Revenue chart - Enhanced to emphasize growth
-		const revenueCtx = document.getElementById('revenueChart');
+		const revenueCtx = document.getElementById('revenueChart') as HTMLCanvasElement;
 		new Chart(revenueCtx, {
 			type: 'bar',
 			data: {
-				labels: financials.quarterlyResults.map(q => q.quarter),
-				datasets: [{
-					label: 'Inntekter (mrd NOK)',
-					data: financials.quarterlyResults.map(q => q.revenue),
-					backgroundColor: (context) => {
-						const chart = context.chart;
-						const { ctx, chartArea } = chart;
-						if (!chartArea) return null;
-						
-						const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-						gradient.addColorStop(0, theme.successGradient.end);
-						gradient.addColorStop(0.5, theme.successGradient.mid);
-						gradient.addColorStop(1, theme.successGradient.start);
-						return gradient;
-					},
-					borderRadius: 6,
-					borderSkipped: false
-				}]
+				labels: financials.quarterlyResults.map((q) => q.quarter),
+				datasets: [
+					{
+						label: 'Inntekter (mrd NOK)',
+						data: financials.quarterlyResults.map((q) => q.revenue),
+						backgroundColor: (context) => {
+							const chart = context.chart;
+							const { ctx, chartArea } = chart;
+							if (!chartArea) return undefined;
+
+							const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+							gradient.addColorStop(0, theme.successGradient.end);
+							gradient.addColorStop(0.5, theme.successGradient.mid);
+							gradient.addColorStop(1, theme.successGradient.start);
+							return gradient;
+						},
+						borderRadius: 6,
+						borderSkipped: false
+					}
+				]
 			},
 			options: {
 				responsive: true,
@@ -242,7 +265,7 @@
 						padding: 12,
 						displayColors: false,
 						callbacks: {
-							label: (context) => `${context.parsed.y.toFixed(1)} mrd NOK`
+							label: (context) => `${context.parsed.y!.toFixed(1)} mrd NOK`
 						}
 					}
 				},
@@ -263,6 +286,10 @@
 						beginAtZero: true,
 						grid: {
 							color: theme.gridColor,
+							// @ts-expect-error -- pre-existing: `drawBorder` was removed from Chart.js's grid
+							// options in v4 (replaced by `border.display`); this project is already on
+							// chart.js ^4, so this option is a silent no-op today. Flagging rather than
+							// removing/migrating it to avoid any behavior change; see conversion report.
 							drawBorder: false
 						},
 						ticks: {
@@ -279,7 +306,7 @@
 	});
 
 	// Format numbers with Norwegian locale
-	function formatNumber(number, decimals = 2) {
+	function formatNumber(number: number, decimals = 2) {
 		return number.toLocaleString('nb-NO', {
 			minimumFractionDigits: decimals,
 			maximumFractionDigits: decimals
@@ -287,7 +314,7 @@
 	}
 
 	// Format dates
-	function formatDate(dateString) {
+	function formatDate(dateString: string) {
 		return new Date(dateString).toLocaleDateString('nb-NO', {
 			year: 'numeric',
 			month: 'long',
@@ -310,9 +337,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Investor Relations
-				</h1>
+				<h1 class="page-title">Investor Relations</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Velkommen til HavBanks investorsider. Her finner du oppdatert finansiell informasjon,
 					rapporter og presentasjoner.
@@ -323,7 +348,9 @@
 
 	<!-- Stock Information -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
-		<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+		<div
+			class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+		>
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 				<!-- Current Stock Info -->
 				<div class="space-y-4">
@@ -379,7 +406,9 @@
 		<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Nøkkeltall</h2>
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 			<!-- Revenue -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:banknotes" class="h-6 w-6 text-blue-500" />
@@ -393,7 +422,9 @@
 			</div>
 
 			<!-- Operating Profit -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:chart-bar" class="h-6 w-6 text-blue-500" />
@@ -407,7 +438,9 @@
 			</div>
 
 			<!-- EPS -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:currency-dollar" class="h-6 w-6 text-blue-500" />
@@ -421,7 +454,9 @@
 			</div>
 
 			<!-- ROE -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:arrow-trending-up" class="h-6 w-6 text-blue-500" />
@@ -435,12 +470,16 @@
 			</div>
 
 			<!-- CET1 -->
-			<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+			<div
+				class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+			>
 				<div class="flex items-center gap-x-3">
 					{#if browser && Icon}
 						<Icon icon="heroicons:shield-check" class="h-6 w-6 text-blue-500" />
 					{/if}
-					<h3 class="text-sm font-medium text-gray-900 dark:text-white">Ren kjernekapitaldekning</h3>
+					<h3 class="text-sm font-medium text-gray-900 dark:text-white">
+						Ren kjernekapitaldekning
+					</h3>
 				</div>
 				<p class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">
 					{formatNumber(financials.keyMetrics.cet1)}%
@@ -453,7 +492,9 @@
 	<!-- Quarterly Results -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
 		<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Kvartalsresultater</h2>
-		<div class="rounded-xl bg-white dark:bg-gray-800 overflow-hidden shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+		<div
+			class="rounded-xl bg-white dark:bg-gray-800 overflow-hidden shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+		>
 			<div class="p-6">
 				<div class="chart-container">
 					<canvas id="revenueChart"></canvas>
@@ -463,16 +504,24 @@
 				<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 					<thead>
 						<tr class="bg-gray-50 dark:bg-gray-800">
-							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+							<th
+								class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+							>
 								Kvartal
 							</th>
-							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+							<th
+								class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+							>
 								Inntekter (mrd)
 							</th>
-							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+							<th
+								class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+							>
 								Resultat (mrd)
 							</th>
-							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+							<th
+								class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+							>
 								EPS (NOK)
 							</th>
 						</tr>
@@ -480,7 +529,9 @@
 					<tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
 						{#each financials.quarterlyResults as result}
 							<tr>
-								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+								<td
+									class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white"
+								>
 									{result.quarter}
 								</td>
 								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
@@ -503,7 +554,9 @@
 	<!-- Financial Calendar -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
 		<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Finanskalender</h2>
-		<div class="rounded-xl bg-white dark:bg-gray-800 overflow-hidden shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+		<div
+			class="rounded-xl bg-white dark:bg-gray-800 overflow-hidden shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+		>
 			<ul class="divide-y divide-gray-200 dark:divide-gray-700">
 				{#each calendar as event}
 					<li class="p-6">
@@ -551,9 +604,13 @@
 		<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Styret</h2>
 		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each board as member}
-				<div class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+				<div
+					class="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700"
+				>
 					<div class="flex items-start gap-x-3">
-						<div class="h-12 w-12 rounded-full bg-blue-50 dark:bg-blue-900 flex items-center justify-center">
+						<div
+							class="h-12 w-12 rounded-full bg-blue-50 dark:bg-blue-900 flex items-center justify-center"
+						>
 							{#if browser && Icon}
 								<Icon icon="heroicons:user" class="h-6 w-6 text-blue-600 dark:text-blue-400" />
 							{/if}
@@ -619,4 +676,4 @@
 	:global(.dark) canvas {
 		filter: contrast(1.1);
 	}
-</style> 
+</style>

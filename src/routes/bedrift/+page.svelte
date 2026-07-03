@@ -1,8 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
-
-	const IconifyIcon = Icon;
 
 	const features = [
 		{
@@ -30,42 +28,48 @@
 	const products = [
 		{
 			name: 'Bedriftskonto',
-			description: 'Fleksible kontoløsninger med konkurransedyktige vilkår. Innskuddssikring opptil 2 millioner NOK gjennom Bankenes Sikringsfond.',
+			description:
+				'Fleksible kontoløsninger med konkurransedyktige vilkår. Innskuddssikring opptil 2 millioner NOK gjennom Bankenes Sikringsfond.',
 			icon: 'heroicons:banknotes',
 			href: '/bedrift/konto',
 			features: ['Realtidsbetalinger', 'API-integrasjon', 'Fleksibel tilgangsstyring']
 		},
 		{
 			name: 'Bedriftsfinansiering',
-			description: 'Skreddersydde finansieringsløsninger i henhold til Finansavtaleloven. Transparent prising og fleksible nedbetalingsplaner.',
+			description:
+				'Skreddersydde finansieringsløsninger i henhold til Finansavtaleloven. Transparent prising og fleksible nedbetalingsplaner.',
 			icon: 'heroicons:building-office',
 			href: '/bedrift/finansiering',
 			features: ['Driftskreditt', 'Investeringslån', 'Grønn finansiering']
 		},
 		{
 			name: 'Valuta og handel',
-			description: 'Sikre og effektive løsninger for internasjonal handel. Følger EUs betalingstjenestedirektiv (PSD2) og norske valutaforskrifter.',
+			description:
+				'Sikre og effektive løsninger for internasjonal handel. Følger EUs betalingstjenestedirektiv (PSD2) og norske valutaforskrifter.',
 			icon: 'heroicons:currency-euro',
 			href: '/bedrift/valuta',
 			features: ['Valutasikring', 'SWIFT-overføringer', 'Trade finance']
 		},
 		{
 			name: 'Pensjon og forsikring',
-			description: 'Omfattende pensjons- og forsikringsløsninger i samarbeid med ledende forsikringsselskaper. Godkjent av Finanstilsynet.',
+			description:
+				'Omfattende pensjons- og forsikringsløsninger i samarbeid med ledende forsikringsselskaper. Godkjent av Finanstilsynet.',
 			icon: 'heroicons:shield-check',
 			href: '/bedrift/pensjon',
 			features: ['Tjenestepensjon', 'Gruppeliv', 'Nøkkelpersonforsikring']
 		},
 		{
 			name: 'Cash Management',
-			description: 'Avanserte likviditetsstyringsverktøy som følger norske og internasjonale standarder for betalingsformidling.',
+			description:
+				'Avanserte likviditetsstyringsverktøy som følger norske og internasjonale standarder for betalingsformidling.',
 			icon: 'heroicons:chart-bar',
 			href: '/bedrift/cash-management',
 			features: ['Konsernkonto', 'Likviditetsprognoser', 'Betalingsoptimalisering']
 		},
 		{
 			name: 'Næringsmegling',
-			description: 'Profesjonell bistand ved kjøp og salg av næringseiendom. Lisensiert eiendomsmegling under Finanstilsynets tilsyn.',
+			description:
+				'Profesjonell bistand ved kjøp og salg av næringseiendom. Lisensiert eiendomsmegling under Finanstilsynets tilsyn.',
 			icon: 'heroicons:building-library',
 			href: '/bedrift/naringsmegling',
 			features: ['Verdivurdering', 'Due diligence', 'Transaksjonsrådgivning']
@@ -73,22 +77,22 @@
 	];
 
 	const certifications = [
-		{ 
+		{
 			name: 'Finanstilsynet',
 			icon: 'heroicons:shield-check',
 			description: 'Under tilsyn av Finanstilsynet'
 		},
-		{ 
+		{
 			name: 'Bankenes Sikringsfond',
 			icon: 'heroicons:building-library',
 			description: 'Medlem av Bankenes Sikringsfond'
 		},
-		{ 
+		{
 			name: 'ISO 27001',
 			icon: 'heroicons:lock-closed',
 			description: 'Sertifisert informasjonssikkerhet'
 		},
-		{ 
+		{
 			name: 'PSD2-kompatibel',
 			icon: 'heroicons:currency-euro',
 			description: 'Følger EUs betalingstjenestedirektiv'
@@ -98,17 +102,20 @@
 	const complianceInfo = [
 		{
 			title: 'Regulatorisk etterlevelse',
-			description: 'HavBank opererer under konsesjon fra Finanstilsynet (org.nr. 924 850 771) og følger alle gjeldende lover og forskrifter for norske banker.',
+			description:
+				'HavBank opererer under konsesjon fra Finanstilsynet (org.nr. 924 850 771) og følger alle gjeldende lover og forskrifter for norske banker.',
 			icon: 'heroicons:document-check'
 		},
 		{
 			title: 'Antihvitvasking',
-			description: 'Vi følger strenge rutiner for kundekontroll og transaksjonsovervåking i henhold til hvitvaskingsloven.',
+			description:
+				'Vi følger strenge rutiner for kundekontroll og transaksjonsovervåking i henhold til hvitvaskingsloven.',
 			icon: 'heroicons:shield-check'
 		},
 		{
 			title: 'Personvern og GDPR',
-			description: 'Behandling av personopplysninger skjer i samsvar med personopplysningsloven og EUs personvernforordning (GDPR).',
+			description:
+				'Behandling av personopplysninger skjer i samsvar med personopplysningsloven og EUs personvernforordning (GDPR).',
 			icon: 'heroicons:lock-closed'
 		}
 	];
@@ -120,9 +127,15 @@
 		name="description"
 		content="HavBank tilbyr komplette banktjenester for bedrifter under tilsyn av Finanstilsynet. Skreddersydde løsninger for norske virksomheter med fokus på sikkerhet og bærekraft."
 	/>
-	<meta name="keywords" content="bedriftsbank, næringsliv, finansiering, bedriftskonto, norge, bank" />
+	<meta
+		name="keywords"
+		content="bedriftsbank, næringsliv, finansiering, bedriftskonto, norge, bank"
+	/>
 	<meta property="og:title" content="Bedriftstjenester | HavBank" />
-	<meta property="og:description" content="Komplette banktjenester for bedrifter under tilsyn av Finanstilsynet." />
+	<meta
+		property="og:description"
+		content="Komplette banktjenester for bedrifter under tilsyn av Finanstilsynet."
+	/>
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://havbank.net/bedrift" />
 </svelte:head>
@@ -131,34 +144,46 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-				<h1 class="page-title">
-					Banktjenester for bedrifter
-				</h1>
-				<div class="mt-10 max-w-xl text-base leading-7 text-gray-700 dark:text-gray-300 lg:max-w-none">
+				<h1 class="page-title">Banktjenester for bedrifter</h1>
+				<div
+					class="mt-10 max-w-xl text-base leading-7 text-gray-700 dark:text-gray-300 lg:max-w-none"
+				>
 					<p>
-						HavBank er en solid partner for norske bedrifter. Vi tilbyr skreddersydde løsninger for alt
-						fra enkeltpersonforetak til store konsern.
+						HavBank er en solid partner for norske bedrifter. Vi tilbyr skreddersydde løsninger for
+						alt fra enkeltpersonforetak til store konsern.
 					</p>
 					<ul role="list" class="mt-8 max-w-xl space-y-8 text-gray-600 dark:text-gray-400">
 						<li class="flex gap-x-3">
-							<span class="mt-1 h-5 w-5 flex-none text-blue-700 dark:text-blue-400" aria-hidden="true">•</span>
+							<span
+								class="mt-1 h-5 w-5 flex-none text-blue-700 dark:text-blue-400"
+								aria-hidden="true">•</span
+							>
 							<span>
-								<strong class="font-semibold text-gray-900 dark:text-white">Lokal tilstedeværelse.</strong> Med kontorer
-								over hele Norge er vi alltid nær deg.
+								<strong class="font-semibold text-gray-900 dark:text-white"
+									>Lokal tilstedeværelse.</strong
+								> Med kontorer over hele Norge er vi alltid nær deg.
 							</span>
 						</li>
 						<li class="flex gap-x-3">
-							<span class="mt-1 h-5 w-5 flex-none text-blue-700 dark:text-blue-400" aria-hidden="true">•</span>
+							<span
+								class="mt-1 h-5 w-5 flex-none text-blue-700 dark:text-blue-400"
+								aria-hidden="true">•</span
+							>
 							<span>
-								<strong class="font-semibold text-gray-900 dark:text-white">Bransjeekspertise.</strong> Våre rådgivere har
-								dyp innsikt i ulike bransjer.
+								<strong class="font-semibold text-gray-900 dark:text-white"
+									>Bransjeekspertise.</strong
+								> Våre rådgivere har dyp innsikt i ulike bransjer.
 							</span>
 						</li>
 						<li class="flex gap-x-3">
-							<span class="mt-1 h-5 w-5 flex-none text-blue-700 dark:text-blue-400" aria-hidden="true">•</span>
+							<span
+								class="mt-1 h-5 w-5 flex-none text-blue-700 dark:text-blue-400"
+								aria-hidden="true">•</span
+							>
 							<span>
-								<strong class="font-semibold text-gray-900 dark:text-white">Digitale løsninger.</strong> Moderne verktøy
-								for effektiv økonomistyring.
+								<strong class="font-semibold text-gray-900 dark:text-white"
+									>Digitale løsninger.</strong
+								> Moderne verktøy for effektiv økonomistyring.
 							</span>
 						</li>
 					</ul>
@@ -171,16 +196,25 @@
 		<div class="mx-auto max-w-2xl lg:max-w-none">
 			<div class="mt-16 grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
 				{#each products as product}
-						<div class="flex flex-col card-soft transition-transform hover:scale-105">
-						<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+					<div class="flex flex-col card-soft transition-transform hover:scale-105">
+						<dt
+							class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white"
+						>
 							{#if browser && Icon}
-								<Icon icon={product.icon} width="24" height="24" class="flex-none text-blue-700 dark:text-blue-400" />
+								<Icon
+									icon={product.icon}
+									width="24"
+									height="24"
+									class="flex-none text-blue-700 dark:text-blue-400"
+								/>
 							{:else}
 								<span class="w-6 h-6"> </span>
 							{/if}
 							{product.name}
 						</dt>
-						<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
+						<dd
+							class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300"
+						>
 							<p class="flex-auto">{product.description}</p>
 							<p class="mt-6">
 								<a
@@ -205,15 +239,15 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Fordeler for bedriftskunder
-			</h2>
+			<h2 class="section-title">Fordeler for bedriftskunder</h2>
 			<p class="section-lead">
 				Som bedriftskunde i HavBank får du tilgang til en rekke tjenester og fordeler som gjør
 				hverdagen enklere.
 			</p>
 		</div>
-		<dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+		<dl
+			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4"
+		>
 			{#each features as feature}
 				<div class="card-soft">
 					<dt class="flex items-center gap-x-3 font-semibold text-gray-900 dark:text-white">
@@ -242,10 +276,8 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-		<h2 class="section-title">
-			Trygg partner for din bedrift
-		</h2>
-		<p class="section-lead">
+			<h2 class="section-title">Trygg partner for din bedrift</h2>
+			<p class="section-lead">
 				HavBank er underlagt tilsyn av Finanstilsynet og følger alle norske og internasjonale
 				reguleringer for banktjenester.
 			</p>
@@ -254,35 +286,47 @@
 			<div class="grid max-w-xl grid-cols-1 gap-4 lg:max-w-none lg:grid-cols-2">
 				<div class="flex flex-col gap-4">
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
-						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+						<h3
+							class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white"
+						>
 							{#if browser && Icon}
-								<Icon icon="heroicons:shield-check" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+								<Icon
+									icon="heroicons:shield-check"
+									class="h-6 w-6 text-blue-700 dark:text-blue-400"
+								/>
 							{/if}
 							Compliance og sikkerhet
 						</h3>
 						<p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
-							Vi følger strenge sikkerhetsrutiner og har omfattende systemer for å forebygge økonomisk
-							kriminalitet og hvitvasking. Alle transaksjoner overvåkes kontinuerlig.
+							Vi følger strenge sikkerhetsrutiner og har omfattende systemer for å forebygge
+							økonomisk kriminalitet og hvitvasking. Alle transaksjoner overvåkes kontinuerlig.
 						</p>
 					</div>
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
-						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+						<h3
+							class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white"
+						>
 							{#if browser && Icon}
 								<Icon icon="heroicons:sparkles" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							Bærekraftig finans
 						</h3>
 						<p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
-							Vi tilbyr grønne finansieringsløsninger og rådgivning om bærekraftig forretningsdrift i
-							tråd med EUs taksonomi og norske retningslinjer.
+							Vi tilbyr grønne finansieringsløsninger og rådgivning om bærekraftig forretningsdrift
+							i tråd med EUs taksonomi og norske retningslinjer.
 						</p>
 					</div>
 				</div>
 				<div class="flex flex-col gap-4">
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
-						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+						<h3
+							class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white"
+						>
 							{#if browser && Icon}
-								<Icon icon="heroicons:globe-europe" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+								<Icon
+									icon="heroicons:globe-europe"
+									class="h-6 w-6 text-blue-700 dark:text-blue-400"
+								/>
 							{/if}
 							Internasjonal handel
 						</h3>
@@ -292,9 +336,14 @@
 						</p>
 					</div>
 					<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
-						<h3 class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+						<h3
+							class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white"
+						>
 							{#if browser && Icon}
-								<Icon icon="heroicons:lock-closed" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
+								<Icon
+									icon="heroicons:lock-closed"
+									class="h-6 w-6 text-blue-700 dark:text-blue-400"
+								/>
 							{/if}
 							Digital sikkerhet
 						</h3>
@@ -310,9 +359,7 @@
 
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8 pb-24 sm:pb-32">
 		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="section-title">
-				Kom i gang med HavBank
-			</h2>
+			<h2 class="section-title">Kom i gang med HavBank</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Ta kontakt med oss for en uforpliktende samtale om hvordan vi kan hjelpe din bedrift.
 			</p>
@@ -347,18 +394,19 @@
 	<!-- Trust and Compliance Section -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Sikkerhet og etterlevelse
-			</h2>
+			<h2 class="section-title">Sikkerhet og etterlevelse</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-				HavBank er underlagt strenge regulatoriske krav og følger alle relevante lover og forskrifter for norske banker.
+				HavBank er underlagt strenge regulatoriske krav og følger alle relevante lover og
+				forskrifter for norske banker.
 			</p>
 		</div>
 
 		<!-- Certifications Grid -->
 		<div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 			{#each certifications as cert}
-				<div class="flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg text-center">
+				<div
+					class="flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg text-center"
+				>
 					{#if browser && Icon}
 						<Icon icon={cert.icon} class="w-12 h-12 text-blue-700 dark:text-blue-400 mb-4" />
 					{/if}
@@ -388,11 +436,11 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle banktjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av Finanstilsynet. 
-				Innskudd er sikret gjennom Bankenes Sikringsfond opptil 2 millioner kroner. 
-				Lån og kreditter forutsetter kredittgodkjenning og tilfredsstillende sikkerhet. 
-				Priser og vilkår er veiledende og kan endres i henhold til markedsforhold og bankens retningslinjer.
+				Alle banktjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av
+				Finanstilsynet. Innskudd er sikret gjennom Bankenes Sikringsfond opptil 2 millioner kroner.
+				Lån og kreditter forutsetter kredittgodkjenning og tilfredsstillende sikkerhet. Priser og
+				vilkår er veiledende og kan endres i henhold til markedsforhold og bankens retningslinjer.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

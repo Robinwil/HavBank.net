@@ -1,7 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-    import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
+	import Icon from '@iconify/svelte';
 
 	const sections = [
 		{
@@ -174,9 +173,7 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 	<header class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-16 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Din sikkerhet er vår høyeste prioritet
-				</h1>
+				<h1 class="page-title">Din sikkerhet er vår høyeste prioritet</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					HavBank investerer kontinuerlig i markedsledende sikkerhetsteknologi og rutiner for å
 					beskytte våre kunders verdier og data. Vi følger de strengeste sikkerhetsstandardene i
@@ -196,7 +193,11 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 					aria-label="Gå til {section.title}"
 				>
 					{#if browser && Icon}
-						<Icon icon={section.icon} class="mr-2 h-5 w-5 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+						<Icon
+							icon={section.icon}
+							class="mr-2 h-5 w-5 text-blue-600 dark:text-blue-400"
+							aria-hidden="true"
+						/>
 					{/if}
 					{section.title}
 				</a>
@@ -208,20 +209,16 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 	<main class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
 		<div class="space-y-16">
 			{#each sections as section}
-				<section 
-					id={section.id} 
-					class="scroll-mt-16"
-					aria-labelledby={`heading-${section.id}`}
-				>
+				<section id={section.id} class="scroll-mt-16" aria-labelledby={`heading-${section.id}`}>
 					<div class="flex items-center gap-x-3 mb-6">
 						{#if browser && Icon}
-							<Icon 
-								icon={section.icon} 
-								class="h-8 w-8 text-blue-600 dark:text-blue-400" 
+							<Icon
+								icon={section.icon}
+								class="h-8 w-8 text-blue-600 dark:text-blue-400"
 								aria-hidden="true"
 							/>
 						{/if}
-						<h2 
+						<h2
 							id={`heading-${section.id}`}
 							class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
 						>
@@ -229,6 +226,8 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 						</h2>
 					</div>
 					<div class="prose prose-lg dark:prose-invert max-w-none">
+						<!-- `content` is static text authored in this file above, not user input. -->
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						{@html section.content.replace(/\n/g, '<br>')}
 					</div>
 				</section>
@@ -240,21 +239,26 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
 		<div class="relative overflow-hidden rounded-3xl shadow-2xl">
 			<!-- Background Pattern -->
-			<div class="absolute inset-0 bg-gradient-to-br from-red-500 via-red-600 to-blue-700 dark:from-red-800 dark:via-red-900 dark:to-blue-900"></div>
+			<div
+				class="absolute inset-0 bg-gradient-to-br from-red-500 via-red-600 to-blue-700 dark:from-red-800 dark:via-red-900 dark:to-blue-900"
+			></div>
 			<div class="absolute inset-0 opacity-10"></div>
 			<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-			
+
 			<!-- Content -->
 			<div class="relative px-6 py-20 sm:p-20">
 				<div class="mx-auto max-w-xl lg:max-w-none">
 					<div class="flex items-center justify-center mb-8">
 						{#if browser && Icon}
 							<div class="p-4 rounded-full bg-red-500/20 backdrop-blur-sm ring-2 ring-red-400/30">
-								<Icon icon="heroicons:exclamation-triangle" class="h-14 w-14 text-white animate-pulse" />
+								<Icon
+									icon="heroicons:exclamation-triangle"
+									class="h-14 w-14 text-white animate-pulse"
+								/>
 							</div>
 						{/if}
 					</div>
-					
+
 					<div class="text-center mb-16">
 						<h2 class="text-4xl font-bold tracking-tight text-white mb-4">Mistenker du svindel?</h2>
 						<p class="mt-4 text-xl leading-8 text-gray-100 max-w-2xl mx-auto">
@@ -266,8 +270,12 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 					<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
 						<!-- Phone -->
 						<div class="relative group">
-							<div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-white/30 to-white/10 dark:from-white/20 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-							<div class="relative p-8 rounded-xl bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors">
+							<div
+								class="absolute -inset-1 rounded-xl bg-gradient-to-r from-white/30 to-white/10 dark:from-white/20 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"
+							></div>
+							<div
+								class="relative p-8 rounded-xl bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+							>
 								<div class="flex items-center gap-4 mb-4">
 									{#if browser && Icon}
 										<div class="p-3 rounded-full bg-red-500/20 ring-2 ring-red-400/30">
@@ -279,15 +287,20 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 								<p class="text-lg text-gray-100 font-medium">
 									+47 00 00 00 00
 									<br />
-									<span class="text-sm text-gray-300/80 font-normal">24/7 for sperring av kort</span>
+									<span class="text-sm text-gray-300/80 font-normal">24/7 for sperring av kort</span
+									>
 								</p>
 							</div>
 						</div>
 
 						<!-- Email -->
 						<div class="relative group">
-							<div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-white/30 to-white/10 dark:from-white/20 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-							<div class="relative p-8 rounded-xl bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors">
+							<div
+								class="absolute -inset-1 rounded-xl bg-gradient-to-r from-white/30 to-white/10 dark:from-white/20 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"
+							></div>
+							<div
+								class="relative p-8 rounded-xl bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+							>
 								<div class="flex items-center gap-4 mb-4">
 									{#if browser && Icon}
 										<div class="p-3 rounded-full bg-red-500/20 ring-2 ring-red-400/30">
@@ -306,8 +319,12 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 
 						<!-- Chat -->
 						<div class="relative group sm:col-span-2 lg:col-span-1">
-							<div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-white/30 to-white/10 dark:from-white/20 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-							<div class="relative p-8 rounded-xl bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors">
+							<div
+								class="absolute -inset-1 rounded-xl bg-gradient-to-r from-white/30 to-white/10 dark:from-white/20 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"
+							></div>
+							<div
+								class="relative p-8 rounded-xl bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+							>
 								<div class="flex items-center gap-4 mb-4">
 									{#if browser && Icon}
 										<div class="p-3 rounded-full bg-red-500/20 ring-2 ring-red-400/30">
@@ -397,4 +414,4 @@ Kontakt oss umiddelbart ved mistanke om svindel eller uautorisert tilgang.`
 	:global(.dark a:hover) {
 		color: theme(colors.blue.300);
 	}
-</style> 
+</style>

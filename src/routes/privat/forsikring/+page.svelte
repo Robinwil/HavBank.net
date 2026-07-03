@@ -1,9 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-    import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
-	
+	import Icon from '@iconify/svelte';
 
 	const products = [
 		{
@@ -123,7 +120,7 @@
 		}
 	});
 
-	function formatCurrency(amount) {
+	function formatCurrency(amount: number) {
 		if (typeof amount !== 'number' || !isFinite(amount)) return 'kr 0';
 		return new Intl.NumberFormat('nb-NO', {
 			style: 'currency',
@@ -133,7 +130,7 @@
 		}).format(amount);
 	}
 
-	function selectProduct(product) {
+	function selectProduct(product: string) {
 		selectedProduct = product;
 		// Reset values based on product
 		switch (product) {
@@ -156,7 +153,10 @@
 		name="description"
 		content="Omfattende forsikringsløsninger for deg og din familie. Innboforsikring, reiseforsikring og livsforsikring med konkurransedyktige priser."
 	/>
-	<meta name="keywords" content="innboforsikring, reiseforsikring, livsforsikring, forsikring, trygghet, norge" />
+	<meta
+		name="keywords"
+		content="innboforsikring, reiseforsikring, livsforsikring, forsikring, trygghet, norge"
+	/>
 	<meta property="og:title" content="Forsikring | HavBank" />
 	<meta
 		property="og:description"
@@ -171,12 +171,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Forsikring for alle livets faser
-				</h1>
+				<h1 class="page-title">Forsikring for alle livets faser</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-					Vi tilbyr omfattende forsikringsløsninger for deg og din familie. Konkurransedyktige priser og
-					rask skadebehandling.
+					Vi tilbyr omfattende forsikringsløsninger for deg og din familie. Konkurransedyktige
+					priser og rask skadebehandling.
 				</p>
 				<div class="mt-10 flex items-center gap-x-6">
 					<a
@@ -185,7 +183,10 @@
 					>
 						Bli kunde
 					</a>
-					<a href="#kalkulator" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+					<a
+						href="#kalkulator"
+						class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+					>
 						Beregn din pris <span aria-hidden="true">→</span>
 					</a>
 				</div>
@@ -207,7 +208,9 @@
 						</div>
 						<p class="text-gray-600 dark:text-gray-300 mb-4">{product.description}</p>
 						<div class="mb-6">
-							<span class="text-3xl font-bold text-gray-900 dark:text-white">Fra kr {product.rate}</span>
+							<span class="text-3xl font-bold text-gray-900 dark:text-white"
+								>Fra kr {product.rate}</span
+							>
 							<span class="text-gray-600 dark:text-gray-400">/mnd</span>
 						</div>
 						<div class="space-y-6">
@@ -217,10 +220,7 @@
 									{#each product.features as feature}
 										<li class="flex items-start gap-x-2 text-sm text-gray-600 dark:text-gray-300">
 											{#if browser && Icon}
-												<Icon
-													icon="heroicons:check"
-													class="h-5 w-5 text-blue-600 flex-shrink-0"
-												/>
+												<Icon icon="heroicons:check" class="h-5 w-5 text-blue-600 flex-shrink-0" />
 											{/if}
 											{feature}
 										</li>
@@ -233,10 +233,7 @@
 									{#each product.benefits as benefit}
 										<li class="flex items-start gap-x-2 text-sm text-gray-600 dark:text-gray-300">
 											{#if browser && Icon}
-												<Icon
-													icon="heroicons:star"
-													class="h-5 w-5 text-blue-600 flex-shrink-0"
-												/>
+												<Icon icon="heroicons:star" class="h-5 w-5 text-blue-600 flex-shrink-0" />
 											{/if}
 											{benefit}
 										</li>
@@ -257,7 +254,7 @@
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
 				{#each products as product}
-					<button 
+					<button
 						class="product-card {selectedProduct === product.id ? 'active' : ''}"
 						onclick={() => selectProduct(product.id)}
 					>
@@ -301,14 +298,7 @@
 								<label for="age" class="text-sm text-gray-300">Alder</label>
 								<span class="text-sm text-white">{age} år</span>
 							</div>
-							<input
-								type="range"
-								id="age"
-								bind:value={age}
-								min="18"
-								max="70"
-								step="1"
-							/>
+							<input type="range" id="age" bind:value={age} min="18" max="70" step="1" />
 							<div class="flex justify-between text-xs text-gray-500">
 								<span>18 år</span>
 								<span>70 år</span>
@@ -320,7 +310,9 @@
 						<div class="slider-container">
 							<div class="flex justify-between mb-2">
 								<label for="familySize" class="text-sm text-gray-300">Antall personer</label>
-								<span class="text-sm text-white">{familySize} {familySize === 1 ? 'person' : 'personer'}</span>
+								<span class="text-sm text-white"
+									>{familySize} {familySize === 1 ? 'person' : 'personer'}</span
+								>
 							</div>
 							<input
 								type="range"
@@ -354,12 +346,15 @@
 					<div class="bg-blue-900/20 p-4 rounded-lg border border-blue-500/20">
 						<div class="flex items-start gap-3">
 							{#if browser && Icon}
-								<Icon icon="heroicons:information-circle" class="h-5 w-5 text-blue-400 flex-shrink-0" />
+								<Icon
+									icon="heroicons:information-circle"
+									class="h-5 w-5 text-blue-400 flex-shrink-0"
+								/>
 							{/if}
 							<div class="text-sm text-gray-300">
 								<span class="font-medium text-white block mb-1">Viktig informasjon</span>
-								Endelig pris avhenger av flere faktorer og vil bli beregnet nøyaktig ved kjøp. Alle
-								forsikringer har vilkår og dekningsoversikt som må gjennomgås før kjøp.
+								Endelig pris avhenger av flere faktorer og vil bli beregnet nøyaktig ved kjøp. Alle forsikringer
+								har vilkår og dekningsoversikt som må gjennomgås før kjøp.
 							</div>
 						</div>
 					</div>
@@ -395,7 +390,9 @@
 						{/if}
 					</div>
 
-					<button class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors">
+					<button
+						class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors"
+					>
 						Kjøp forsikring
 					</button>
 				</div>
@@ -410,8 +407,8 @@
 				Forsikringene leveres av HavBank Forsikring AS. Alle priser er veiledende. Endelig pris og
 				vilkår vil bli beregnet basert på en fullstendig risikovurdering. For innboforsikring kan
 				faktorer som boligtype, sikkerhetstiltak og tidligere skadehistorikk påvirke prisen. For
-				livsforsikring vil helse og yrke være viktige faktorer. Les alltid forsikringsvilkårene nøye før
-				kjøp.
+				livsforsikring vil helse og yrke være viktige faktorer. Les alltid forsikringsvilkårene nøye
+				før kjøp.
 			</p>
 		</div>
 	</div>
@@ -454,7 +451,7 @@
 		margin: 2rem 0;
 	}
 
-	input[type="range"] {
+	input[type='range'] {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
@@ -467,7 +464,7 @@
 		cursor: pointer;
 	}
 
-	input[type="range"]::-webkit-slider-thumb {
+	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		width: 20px;
 		height: 20px;
@@ -479,7 +476,7 @@
 		margin-top: -9px;
 	}
 
-	input[type="range"]::-moz-range-thumb {
+	input[type='range']::-moz-range-thumb {
 		width: 20px;
 		height: 20px;
 		background: white;
@@ -528,4 +525,4 @@
 		padding: 1rem;
 		margin: 0.5rem;
 	}
-</style> 
+</style>

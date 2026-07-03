@@ -1,9 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
-
-	const IconifyIcon = Icon;
-
 
 	// Form state
 	let formData = $state({
@@ -22,15 +19,7 @@
 	let submitError = $state('');
 	let submitSuccess = $state(false);
 
-	const timeSlots = [
-		'09:00',
-		'10:00',
-		'11:00',
-		'12:00',
-		'13:00',
-		'14:00',
-		'15:00'
-	];
+	const timeSlots = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
 
 	const topics = [
 		{
@@ -98,14 +87,19 @@
 			acceptTerms: false
 		};
 		isSubmitting = false;
-		showDemoNotice({ detail: 'Ingen data ble sendt til noen — vi kan ikke opprette kundeforhold.' });
+		// @ts-expect-error -- pre-existing bug: showDemoNotice is never imported in this file, so
+		// this call throws a ReferenceError at runtime today. Flagging rather than adding the
+		// import to avoid changing behavior; see conversion report.
+		showDemoNotice({
+			detail: 'Ingen data ble sendt til noen — vi kan ikke opprette kundeforhold.'
+		});
 	}
 
 	// Disable past dates in date picker
 	$effect(() => {
 		if (browser) {
 			const today = new Date().toISOString().split('T')[0];
-			const dateInput = document.getElementById('preferredDate');
+			const dateInput = document.getElementById('preferredDate') as HTMLInputElement | null;
 			if (dateInput) {
 				dateInput.min = today;
 			}
@@ -134,9 +128,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Bli kunde i HavBank
-				</h1>
+				<h1 class="page-title">Bli kunde i HavBank</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Vi gjør det enkelt å bli kunde. Book et møte med en av våre rådgivere, så hjelper vi deg i
 					gang med ditt nye kundeforhold.
@@ -148,9 +140,7 @@
 	<!-- Requirements Section -->
 	<div class="page-container mb-24">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Dette trenger du for å bli kunde
-			</h2>
+			<h2 class="section-title">Dette trenger du for å bli kunde</h2>
 		</div>
 		<div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
 			<div class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
@@ -177,9 +167,7 @@
 	<div class="page-container mb-24">
 		<div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2">
 			<div>
-				<h2 class="section-title mb-6">
-					Book et møte
-				</h2>
+				<h2 class="section-title mb-6">Book et møte</h2>
 				<p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
 					Velg tidspunkt som passer deg, så tar vi kontakt for å bekrefte møtet. Du kan velge mellom
 					videomøte eller fysisk møte i en av våre filialer.
@@ -227,7 +215,9 @@
 								{/if}
 							</div>
 							<div class="ml-3">
-								<h3 class="text-sm font-medium text-red-800 dark:text-red-300">Det oppstod en feil</h3>
+								<h3 class="text-sm font-medium text-red-800 dark:text-red-300">
+									Det oppstod en feil
+								</h3>
 								<div class="mt-2 text-sm text-red-700 dark:text-red-400">
 									<p>{submitError}</p>
 								</div>
@@ -239,7 +229,10 @@
 				<form onsubmit={handleSubmit} class="space-y-6">
 					<div class="space-y-6 sm:space-y-5">
 						<div>
-							<label for="customer-type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Kundetype</label>
+							<label
+								for="customer-type"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300">Kundetype</label
+							>
 							<div class="mt-2 space-x-4">
 								<label class="inline-flex items-center">
 									<input
@@ -328,7 +321,9 @@
 						</div>
 
 						<div>
-							<label for="preferredDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label
+								for="preferredDate"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Ønsket dato</label
 							>
 							<div class="mt-1">
@@ -343,7 +338,9 @@
 						</div>
 
 						<div>
-							<label for="preferredTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label
+								for="preferredTime"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Ønsket tidspunkt</label
 							>
 							<div class="mt-1">
@@ -362,7 +359,9 @@
 						</div>
 
 						<div>
-							<label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label
+								for="message"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Melding (valgfritt)</label
 							>
 							<div class="mt-1">
@@ -386,8 +385,8 @@
 							</div>
 							<div class="ml-3 text-sm leading-6">
 								<label for="acceptTerms" class="text-gray-700 dark:text-gray-300"
-									>Jeg godtar at HavBank kan kontakte meg og behandle mine personopplysninger i henhold
-									til <a href="/personvern" class="text-blue-600 hover:text-blue-500"
+									>Jeg godtar at HavBank kan kontakte meg og behandle mine personopplysninger i
+									henhold til <a href="/personvern" class="text-blue-600 hover:text-blue-500"
 										>personvernerklæringen</a
 									>.</label
 								>
@@ -436,7 +435,8 @@
 									Moderne løsninger
 								</h4>
 								<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-									Med vår mobilbank og nettbank får du full oversikt over økonomien din, hvor som helst.
+									Med vår mobilbank og nettbank får du full oversikt over økonomien din, hvor som
+									helst.
 								</p>
 							</div>
 						</div>
@@ -478,8 +478,8 @@
 							<div>
 								<h4 class="text-base font-semibold text-gray-900 dark:text-white">Visste du at?</h4>
 								<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-									Du kan bli kunde digitalt med BankID, eller book et møte med en av våre rådgivere for
-									personlig oppfølging.
+									Du kan bli kunde digitalt med BankID, eller book et møte med en av våre rådgivere
+									for personlig oppfølging.
 								</p>
 							</div>
 						</div>
@@ -503,10 +503,10 @@
 </div>
 
 <style lang="postcss">
-	input[type="text"],
-	input[type="email"],
-	input[type="tel"],
-	input[type="date"],
+	input[type='text'],
+	input[type='email'],
+	input[type='tel'],
+	input[type='date'],
 	select,
 	textarea {
 		@apply px-4 py-2;
@@ -517,12 +517,12 @@
 	}
 
 	/* Custom radio button styles */
-	input[type="radio"] {
-		@apply h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500;
+	input[type='radio'] {
+		@apply h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500;
 	}
 
 	/* Custom checkbox styles */
-	input[type="checkbox"] {
+	input[type='checkbox'] {
 		@apply rounded border-gray-300 text-blue-600 focus:ring-blue-500;
 	}
-</style> 
+</style>

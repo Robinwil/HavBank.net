@@ -1,9 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-    import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
-
-
+	import Icon from '@iconify/svelte';
 
 	const products = [
 		{
@@ -58,18 +55,18 @@
 	];
 
 	const certifications = [
-		{ 
-			name: 'Finanstilsynet', 
+		{
+			name: 'Finanstilsynet',
 			icon: 'heroicons:shield-check',
 			description: 'Under tilsyn av Finanstilsynet'
 		},
-		{ 
-			name: 'Bankenes sikringsfond', 
+		{
+			name: 'Bankenes sikringsfond',
 			icon: 'heroicons:building-library',
 			description: 'Innskudd sikret opptil 2 MNOK'
 		},
-		{ 
-			name: 'ISO 27001', 
+		{
+			name: 'ISO 27001',
 			icon: 'heroicons:lock-closed',
 			description: 'Sertifisert informasjonssikkerhet'
 		}
@@ -154,24 +151,14 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl text-center">
-				<h1 class="page-title">
-					Din personlige bank
-				</h1>
+				<h1 class="page-title">Din personlige bank</h1>
 				<p class="page-lead">
-					Vi tilbyr skreddersydde løsninger for din personlige økonomi. Våre rådgivere hjelper deg med å
-					ta smarte økonomiske valg.
+					Vi tilbyr skreddersydde løsninger for din personlige økonomi. Våre rådgivere hjelper deg
+					med å ta smarte økonomiske valg.
 				</p>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
-					<a
-						href="/bli-kunde"
-						class="btn-primary"
-					>
-						Bli kunde
-					</a>
-					<a
-						href="/bestill-time"
-						class="btn-secondary"
-					>
+					<a href="/bli-kunde" class="btn-primary"> Bli kunde </a>
+					<a href="/bestill-time" class="btn-secondary">
 						Snakk med rådgiver <span aria-hidden="true">→</span>
 					</a>
 				</div>
@@ -188,7 +175,9 @@
 						href={link.href}
 						class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50 dark:hover:bg-gray-800"
 					>
-						<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 group-hover:bg-white dark:group-hover:bg-gray-700">
+						<div
+							class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 group-hover:bg-white dark:group-hover:bg-gray-700"
+						>
 							{#if browser && Icon}
 								<Icon
 									icon={link.icon}
@@ -215,7 +204,9 @@
 			<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
 				{#each products as product}
 					<div class="flex flex-col card-soft transition-transform hover:scale-105">
-						<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+						<dt
+							class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white"
+						>
 							{#if browser && Icon}
 								<Icon
 									icon={product.icon}
@@ -228,7 +219,9 @@
 							{/if}
 							{product.name}
 						</dt>
-						<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
+						<dd
+							class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300"
+						>
 							<p class="flex-auto">{product.description}</p>
 							<ul class="mt-4 space-y-2">
 								{#each product.features as feature}
@@ -301,22 +294,19 @@
 		<div class="page-container">
 			<div class="mx-auto max-w-2xl lg:max-w-none">
 				<div class="text-center">
-				<h2 class="section-title">
-					Trygt og enkelt å være kunde
-				</h2>
-				<p class="section-lead mt-4">
+					<h2 class="section-title">Trygt og enkelt å være kunde</h2>
+					<p class="section-lead mt-4">
 						Som kunde i HavBank får du tilgang til moderne banktjenester og personlig rådgivning.
 					</p>
 				</div>
 				<dl class="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 					{#each stats as stat}
 						<div class="flex flex-col bg-white dark:bg-gray-900 p-8 rounded-lg shadow-sm">
-							<dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400 flex items-center gap-2">
+							<dt
+								class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400 flex items-center gap-2"
+							>
 								{#if browser && Icon}
-									<Icon
-										icon={stat.icon}
-										class="w-5 h-5 text-blue-700 dark:text-blue-400"
-									/>
+									<Icon icon={stat.icon} class="w-5 h-5 text-blue-700 dark:text-blue-400" />
 								{/if}
 								{stat.name}
 							</dt>
@@ -330,12 +320,11 @@
 				<!-- Trust Indicators -->
 				<div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
 					{#each certifications as cert}
-						<div class="flex flex-col items-center p-6 bg-white dark:bg-gray-900 rounded-lg shadow-sm">
+						<div
+							class="flex flex-col items-center p-6 bg-white dark:bg-gray-900 rounded-lg shadow-sm"
+						>
 							{#if browser && Icon}
-								<Icon
-									icon={cert.icon}
-									class="w-12 h-12 text-blue-700 dark:text-blue-400 mb-4"
-								/>
+								<Icon icon={cert.icon} class="w-12 h-12 text-blue-700 dark:text-blue-400 mb-4" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{cert.name}</h3>
 							<p class="text-sm text-center text-gray-600 dark:text-gray-400">
@@ -352,9 +341,7 @@
 	<div class="relative isolate overflow-hidden bg-white dark:bg-gray-900 py-24 sm:py-32">
 		<div class="page-container">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h2 class="section-title">
-					Personlig rådgivning
-				</h2>
+				<h2 class="section-title">Personlig rådgivning</h2>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Våre erfarne rådgivere hjelper deg med å ta smarte økonomiske valg. Vi tilbyr både fysiske
 					møter og digital rådgivning.
@@ -383,9 +370,7 @@
 						</figcaption>
 					</figure>
 				</div>
-				<div
-					class="max-w-xl text-base leading-7 text-gray-700 dark:text-gray-300 lg:col-span-7"
-				>
+				<div class="max-w-xl text-base leading-7 text-gray-700 dark:text-gray-300 lg:col-span-7">
 					<p>Som kunde i HavBank får du tilgang til personlig rådgivning innen:</p>
 					<ul role="list" class="mt-8 max-w-xl space-y-8">
 						<li class="flex gap-x-3">
@@ -394,7 +379,9 @@
 								aria-hidden="true">•</span
 							>
 							<span>
-								<strong class="font-semibold text-gray-900 dark:text-white">Boligfinansiering.</strong>
+								<strong class="font-semibold text-gray-900 dark:text-white"
+									>Boligfinansiering.</strong
+								>
 								Vi hjelper deg med å finne den beste låneløsningen for ditt boligkjøp.
 							</span>
 						</li>
@@ -424,8 +411,8 @@
 						</li>
 					</ul>
 					<p class="mt-8">
-						Book en uforpliktende samtale med en av våre rådgivere i dag. Vi tilbyr både fysiske møter
-						og digital rådgivning via video.
+						Book en uforpliktende samtale med en av våre rådgivere i dag. Vi tilbyr både fysiske
+						møter og digital rådgivning via video.
 					</p>
 					<h3 class="mt-16 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 						Trygghet og sikkerhet
@@ -457,11 +444,12 @@
 	<div class="page-container pb-24">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle banktjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av Finanstilsynet.
-				Innskudd er sikret gjennom Bankenes Sikringsfond opptil 2 millioner kroner. Nominelle og
-				effektive renter er oppgitt per 01.01.2024 og kan endres i henhold til markedsforhold og bankens
-				retningslinjer. For fullstendige vilkår, se vår prisliste og produktinformasjon.
+				Alle banktjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av
+				Finanstilsynet. Innskudd er sikret gjennom Bankenes Sikringsfond opptil 2 millioner kroner.
+				Nominelle og effektive renter er oppgitt per 01.01.2024 og kan endres i henhold til
+				markedsforhold og bankens retningslinjer. For fullstendige vilkår, se vår prisliste og
+				produktinformasjon.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

@@ -1,21 +1,22 @@
-<script>
+<script lang="ts">
 	/**
 	 * Standard section header: optional eyebrow label + title + optional lead text.
 	 * Replaces the repeated eyebrow → h2 → lead paragraph pattern seen across pages.
-	 *
-	 * @prop {string}  [eyebrow='']  - Small coloured label above the title.
-	 * @prop {string}  title         - The section heading text.
-	 * @prop {string}  [lead='']     - Supporting paragraph below the title.
-	 * @prop {boolean} [center=false]- If true, text-center.
-	 * @prop {string}  [class='']    - Extra wrapper classes.
 	 */
-	let {
-		eyebrow = '',
-		title,
-		lead = '',
-		center = false,
-		class: extraClass = ''
-	} = $props();
+	interface Props {
+		/** Small coloured label above the title. */
+		eyebrow?: string;
+		/** The section heading text. */
+		title: string;
+		/** Supporting paragraph below the title. */
+		lead?: string;
+		/** If true, text-center. */
+		center?: boolean;
+		/** Extra wrapper classes. */
+		class?: string;
+	}
+
+	let { eyebrow = '', title, lead = '', center = false, class: extraClass = '' }: Props = $props();
 </script>
 
 <div class="{center ? 'text-center' : ''} {extraClass}">

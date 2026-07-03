@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	let Icon = $state(null);
+	import type IconComponent from '@iconify/svelte';
 
+	let Icon: typeof IconComponent | null = $state(null);
 
 	onMount(async () => {
 		const module = await import('@iconify/svelte');
@@ -104,7 +105,10 @@
 		name="description"
 		content="HavBank tilbyr komplette valuta- og handelsløsninger for bedrifter. Konkurransedyktige kurser, sikring og rådgivning for internasjonal handel."
 	/>
-	<meta name="keywords" content="valutahandel, valutasikring, internasjonal handel, valutakonto, norge" />
+	<meta
+		name="keywords"
+		content="valutahandel, valutasikring, internasjonal handel, valutakonto, norge"
+	/>
 	<meta property="og:title" content="Valuta og handel | HavBank" />
 	<meta
 		property="og:description"
@@ -119,12 +123,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Valuta og internasjonal handel
-				</h1>
+				<h1 class="page-title">Valuta og internasjonal handel</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-					Vi tilbyr komplette løsninger for bedrifter som handler internasjonalt. Fra valutakontoer og
-					sikring til handelsfinansiering og rådgivning.
+					Vi tilbyr komplette løsninger for bedrifter som handler internasjonalt. Fra valutakontoer
+					og sikring til handelsfinansiering og rådgivning.
 				</p>
 			</div>
 		</div>
@@ -138,10 +140,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<div class="flex items-center gap-x-4 mb-6">
 							{#if browser && Icon}
-								<Icon
-									icon={service.icon}
-									class="h-8 w-8 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={service.icon} class="h-8 w-8 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h2 class="text-xl font-semibold text-gray-900 dark:text-white">{service.name}</h2>
 						</div>
@@ -160,12 +159,7 @@
 							{/each}
 						</ul>
 						<div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-							<a
-								href="/kontakt"
-								class="block w-full btn-primary"
-							>
-								Kom i gang
-							</a>
+							<a href="/kontakt" class="block w-full btn-primary"> Kom i gang </a>
 						</div>
 					</div>
 				{/each}
@@ -176,9 +170,7 @@
 	<!-- Trading Features -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Moderne handelsplattform
-			</h2>
+			<h2 class="section-title">Moderne handelsplattform</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vår digitale plattform gir deg alle verktøy du trenger for effektiv valutahandel.
 			</p>
@@ -190,10 +182,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={feature.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={feature.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{feature.name}</h3>
 						</div>
@@ -207,9 +196,7 @@
 	<!-- Compliance Information -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Sikkerhet og etterlevelse
-			</h2>
+			<h2 class="section-title">Sikkerhet og etterlevelse</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi følger strenge regulatoriske krav for å sikre trygge valutatjenester.
 			</p>
@@ -221,10 +208,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={info.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={info.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{info.title}</h3>
 						</div>
@@ -239,15 +223,14 @@
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">{riskDisclosure.title}</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">{riskDisclosure.description}</p>
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				{riskDisclosure.description}
+			</p>
 			<ul class="mt-8 space-y-4">
 				{#each riskDisclosure.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:exclamation-triangle"
-								class="h-6 w-6 text-yellow-500"
-							/>
+							<Icon icon="heroicons:exclamation-triangle" class="h-6 w-6 text-yellow-500" />
 						{/if}
 						<span class="text-gray-600 dark:text-gray-300">{point}</span>
 					</li>
@@ -260,11 +243,12 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle valutatjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av Finanstilsynet.
-				Valutahandel innebærer risiko for tap. Historisk avkastning er ingen garanti for fremtidig
-				avkastning. Priser og betingelser er veiledende og kan endres i henhold til markedsforhold og
-				bankens retningslinjer. For fullstendige vilkår, se vår prisliste og avtalevilkår.
+				Alle valutatjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av
+				Finanstilsynet. Valutahandel innebærer risiko for tap. Historisk avkastning er ingen garanti
+				for fremtidig avkastning. Priser og betingelser er veiledende og kan endres i henhold til
+				markedsforhold og bankens retningslinjer. For fullstendige vilkår, se vår prisliste og
+				avtalevilkår.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

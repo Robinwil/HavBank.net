@@ -1,8 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-    import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
-	
+	import Icon from '@iconify/svelte';
 
 	const products = [
 		{
@@ -94,11 +92,12 @@
 		switch (selectedProduct) {
 			case 'fond':
 				return 0.3; // 0.30% årlig forvaltningsgebyr
-			case 'aksjer':
+			case 'aksjer': {
 				// Estimert kostnad basert på månedlig handel
 				const yearlyTradingCost = 39 * 12;
 				const yearlyInvestment = initialAmount + monthlyAmount * 12;
 				return (yearlyTradingCost / yearlyInvestment) * 100;
+			}
 			case 'aksjesparekonto':
 				return 0; // Ingen direkte kostnader
 			default:
@@ -109,15 +108,16 @@
 	let totalSavings = $derived(() => {
 		const monthlyRate = (expectedReturn - effectiveCost()) / 1200; // Convert to monthly rate
 		const months = years * 12;
-		
+
 		const initialFutureValue = initialAmount * Math.pow(1 + monthlyRate, months);
-		const monthlyFutureValue = monthlyAmount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
-		
+		const monthlyFutureValue =
+			monthlyAmount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+
 		return Math.round(initialFutureValue + monthlyFutureValue);
 	});
 
 	let totalReturn = $derived(() => {
-		const totalDeposits = initialAmount + (monthlyAmount * years * 12);
+		const totalDeposits = initialAmount + monthlyAmount * years * 12;
 		return Math.round(Math.max(0, totalSavings() - totalDeposits));
 	});
 
@@ -130,7 +130,7 @@
 		return Math.round((effectiveCost() / 100) * avgAmount * years);
 	});
 
-	function formatCurrency(amount) {
+	function formatCurrency(amount: number) {
 		if (typeof amount !== 'number' || !isFinite(amount)) return 'kr 0';
 		return new Intl.NumberFormat('nb-NO', {
 			style: 'currency',
@@ -140,12 +140,12 @@
 		}).format(amount);
 	}
 
-	function formatPercent(value) {
+	function formatPercent(value: number) {
 		if (typeof value !== 'number' || !isFinite(value)) return '0,00 %';
 		return value.toFixed(2).replace('.', ',') + ' %';
 	}
 
-	function selectProduct(product) {
+	function selectProduct(product: string) {
 		selectedProduct = product;
 		// Reset expected return based on product
 		switch (product) {
@@ -168,7 +168,10 @@
 		name="description"
 		content="Invester i fond, aksjer og aksjesparekonto hos HavBank. Konkurransedyktige priser og moderne handelsplattform."
 	/>
-	<meta name="keywords" content="fond, aksjer, aksjesparekonto, investering, børs, sparing, norge" />
+	<meta
+		name="keywords"
+		content="fond, aksjer, aksjesparekonto, investering, børs, sparing, norge"
+	/>
 	<meta property="og:title" content="Investering | HavBank" />
 	<meta
 		property="og:description"
@@ -183,12 +186,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Invester i fremtiden
-				</h1>
+				<h1 class="page-title">Invester i fremtiden</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-					Velg mellom et bredt utvalg av fond og aksjer, eller start med en skatteeffektiv aksjesparekonto.
-					Moderne handelsplattform og konkurransedyktige priser.
+					Velg mellom et bredt utvalg av fond og aksjer, eller start med en skatteeffektiv
+					aksjesparekonto. Moderne handelsplattform og konkurransedyktige priser.
 				</p>
 				<div class="mt-10 flex items-center gap-x-6">
 					<a
@@ -197,7 +198,10 @@
 					>
 						Bli kunde
 					</a>
-					<a href="#kalkulator" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+					<a
+						href="#kalkulator"
+						class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+					>
 						Prøv vår avkastningskalkulator <span aria-hidden="true">→</span>
 					</a>
 				</div>
@@ -220,13 +224,16 @@
 						<p class="text-gray-600 dark:text-gray-300 mb-4">{product.description}</p>
 						<div class="mb-6">
 							{#if product.name === 'Aksjer'}
-								<span class="text-3xl font-bold text-gray-900 dark:text-white">Fra kr {product.rate}</span>
+								<span class="text-3xl font-bold text-gray-900 dark:text-white"
+									>Fra kr {product.rate}</span
+								>
 								<span class="text-gray-600 dark:text-gray-400">per handel</span>
 							{:else if product.name === 'Aksjesparekonto'}
 								<span class="text-3xl font-bold text-gray-900 dark:text-white">0 kr</span>
 								<span class="text-gray-600 dark:text-gray-400">i opprettelse</span>
 							{:else}
-								<span class="text-3xl font-bold text-gray-900 dark:text-white">{product.rate}%</span>
+								<span class="text-3xl font-bold text-gray-900 dark:text-white">{product.rate}%</span
+								>
 								<span class="text-gray-600 dark:text-gray-400">årlig gebyr</span>
 							{/if}
 						</div>
@@ -237,10 +244,7 @@
 									{#each product.features as feature}
 										<li class="flex items-start gap-x-2 text-sm text-gray-600 dark:text-gray-300">
 											{#if browser && Icon}
-												<Icon
-													icon="heroicons:check"
-													class="h-5 w-5 text-blue-600 flex-shrink-0"
-												/>
+												<Icon icon="heroicons:check" class="h-5 w-5 text-blue-600 flex-shrink-0" />
 											{/if}
 											{feature}
 										</li>
@@ -253,10 +257,7 @@
 									{#each product.benefits as benefit}
 										<li class="flex items-start gap-x-2 text-sm text-gray-600 dark:text-gray-300">
 											{#if browser && Icon}
-												<Icon
-													icon="heroicons:star"
-													class="h-5 w-5 text-blue-600 flex-shrink-0"
-												/>
+												<Icon icon="heroicons:star" class="h-5 w-5 text-blue-600 flex-shrink-0" />
 											{/if}
 											{benefit}
 										</li>
@@ -277,7 +278,7 @@
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
 				{#each products as product}
-					<button 
+					<button
 						class="product-card {selectedProduct === product.id ? 'active' : ''}"
 						onclick={() => selectProduct(product.id)}
 					>
@@ -339,14 +340,7 @@
 							<label for="yearsInput" class="text-sm text-gray-300">Antall år</label>
 							<span class="text-sm text-white">{years} år</span>
 						</div>
-						<input
-							type="range"
-							id="yearsInput"
-							bind:value={years}
-							min="1"
-							max="40"
-							step="1"
-						/>
+						<input type="range" id="yearsInput" bind:value={years} min="1" max="40" step="1" />
 						<div class="flex justify-between text-xs text-gray-500">
 							<span>1 år</span>
 							<span>40 år</span>
@@ -355,7 +349,9 @@
 
 					<div class="slider-container">
 						<div class="flex justify-between mb-2">
-							<label for="expectedReturn" class="text-sm text-gray-300">Forventet årlig avkastning</label>
+							<label for="expectedReturn" class="text-sm text-gray-300"
+								>Forventet årlig avkastning</label
+							>
 							<span class="text-sm text-white">{expectedReturn}%</span>
 						</div>
 						<input
@@ -375,12 +371,15 @@
 					<div class="bg-blue-900/20 p-4 rounded-lg border border-blue-500/20">
 						<div class="flex items-start gap-3">
 							{#if browser && Icon}
-								<Icon icon="heroicons:information-circle" class="h-5 w-5 text-blue-400 flex-shrink-0" />
+								<Icon
+									icon="heroicons:information-circle"
+									class="h-5 w-5 text-blue-400 flex-shrink-0"
+								/>
 							{/if}
 							<div class="text-sm text-gray-300">
 								<span class="font-medium text-white block mb-1">Viktig informasjon</span>
-								Historisk avkastning er ingen garanti for fremtidig avkastning. Investeringer i
-								verdipapirer kan både øke og falle i verdi.
+								Historisk avkastning er ingen garanti for fremtidig avkastning. Investeringer i verdipapirer
+								kan både øke og falle i verdi.
 							</div>
 						</div>
 					</div>
@@ -389,7 +388,10 @@
 				<div>
 					<div
 						class="results-circle"
-						style="--progress: {Math.min((totalReturn() / Math.max(totalSavings(), 1)) * 100, 100)}%"
+						style="--progress: {Math.min(
+							(totalReturn() / Math.max(totalSavings(), 1)) * 100,
+							100
+						)}%"
 					>
 						<div class="results-content">
 							<div class="text-3xl font-bold text-white">{formatCurrency(totalSavings())}</div>
@@ -419,7 +421,9 @@
 						</div>
 					</div>
 
-					<button class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors">
+					<button
+						class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors"
+					>
 						Start investeringen
 					</button>
 				</div>
@@ -431,11 +435,11 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32 pb-24">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Historisk avkastning er ingen garanti for fremtidig avkastning. Investeringer i verdipapirer kan
-				både øke og falle i verdi, og det er ikke sikkert at du får tilbake hele det investerte beløpet.
-				Før du tar investeringsbeslutninger bør du sette deg grundig inn i de finansielle instrumentene
-				og risikoene knyttet til disse. ASK (Aksjesparekonto) er underlagt gjeldende skatteregler, og
-				endringer i disse kan påvirke dine investeringer.
+				Historisk avkastning er ingen garanti for fremtidig avkastning. Investeringer i verdipapirer
+				kan både øke og falle i verdi, og det er ikke sikkert at du får tilbake hele det investerte
+				beløpet. Før du tar investeringsbeslutninger bør du sette deg grundig inn i de finansielle
+				instrumentene og risikoene knyttet til disse. ASK (Aksjesparekonto) er underlagt gjeldende
+				skatteregler, og endringer i disse kan påvirke dine investeringer.
 			</p>
 		</div>
 	</div>
@@ -478,7 +482,7 @@
 		margin: 2rem 0;
 	}
 
-	input[type="range"] {
+	input[type='range'] {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
@@ -490,7 +494,7 @@
 		outline: none;
 	}
 
-	input[type="range"]::-webkit-slider-thumb {
+	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		width: 20px;
 		height: 20px;
@@ -502,7 +506,7 @@
 		margin-top: -9px;
 	}
 
-	input[type="range"]::-moz-range-thumb {
+	input[type='range']::-moz-range-thumb {
 		width: 20px;
 		height: 20px;
 		background: white;
@@ -551,4 +555,4 @@
 		padding: 1rem;
 		margin: 0.5rem;
 	}
-</style> 
+</style>

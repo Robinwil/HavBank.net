@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
@@ -82,7 +82,11 @@
 			name: 'AS (0–10 ansatte)',
 			description:
 				'For små og mellomstore aksjeselskaper. Standard bedriftspakke med nettbank og betalingskort.',
-			features: ['Nettbank med roller', 'Integrert regnskap (Tripletex, Fiken, Visma)', 'Vipps Bedrift'],
+			features: [
+				'Nettbank med roller',
+				'Integrert regnskap (Tripletex, Fiken, Visma)',
+				'Vipps Bedrift'
+			],
 			icon: 'heroicons:briefcase',
 			cta: 'Kom i gang'
 		},
@@ -113,7 +117,7 @@
 		{ label: 'Bedriftskort (Visa Business)', value: 'kr 450 / år' }
 	];
 
-	function handleSubmit(event) {
+	function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		if (!formData.acceptTerms) return;
 		submitting = true;
@@ -168,7 +172,9 @@
 				Digital prosess uten papir. De fleste er ferdige innen 15 minutter.
 			</p>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3">
+		<div
+			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3"
+		>
 			{#each steps as step}
 				<div class="card-soft flex flex-col">
 					<div class="flex items-center gap-x-4">
@@ -178,10 +184,7 @@
 							{step.number}
 						</div>
 						{#if browser && Icon}
-							<Icon
-								icon={step.icon}
-								class="h-6 w-6 text-blue-900 dark:text-blue-400"
-							/>
+							<Icon icon={step.icon} class="h-6 w-6 text-blue-900 dark:text-blue-400" />
 						{/if}
 					</div>
 					<h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-white">{step.title}</h3>
@@ -200,7 +203,9 @@
 				mulig.
 			</p>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:max-w-none">
+		<div
+			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:max-w-none"
+		>
 			{#each requirements as req}
 				<div class="flex gap-x-4">
 					<div class="icon-box">
@@ -223,19 +228,14 @@
 	<div class="page-container mb-24">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">Velg type virksomhet</h2>
-			<p class="section-lead">
-				Vi tilpasser onboardingen etter selskapsform og størrelse.
-			</p>
+			<p class="section-lead">Vi tilpasser onboardingen etter selskapsform og størrelse.</p>
 		</div>
 		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:max-w-none">
 			{#each segments as segment}
 				<div class="card-elevated flex flex-col">
 					<div class="flex items-center gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon={segment.icon}
-								class="h-8 w-8 text-blue-900 dark:text-blue-400"
-							/>
+							<Icon icon={segment.icon} class="h-8 w-8 text-blue-900 dark:text-blue-400" />
 						{/if}
 						<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{segment.name}</h3>
 					</div>
@@ -296,14 +296,13 @@
 
 	<!-- Compliance callout -->
 	<div class="page-container mb-24">
-		<div class="mx-auto max-w-3xl rounded-md border border-blue-200 dark:border-blue-900/50 bg-blue-50 dark:bg-blue-900/10 p-6">
+		<div
+			class="mx-auto max-w-3xl rounded-md border border-blue-200 dark:border-blue-900/50 bg-blue-50 dark:bg-blue-900/10 p-6"
+		>
 			<div class="flex gap-x-3">
 				<div class="flex-shrink-0">
 					{#if browser && Icon}
-						<Icon
-							icon="heroicons:shield-check"
-							class="h-6 w-6 text-blue-900 dark:text-blue-400"
-						/>
+						<Icon icon="heroicons:shield-check" class="h-6 w-6 text-blue-900 dark:text-blue-400" />
 					{/if}
 				</div>
 				<div>
@@ -335,8 +334,7 @@
 					<div>
 						<label
 							for="companyForm"
-							class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-							>Selskapsform</label
+							class="block text-sm font-medium text-gray-700 dark:text-gray-300">Selskapsform</label
 						>
 						<div class="mt-2">
 							<select
@@ -356,16 +354,22 @@
 
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
 						<div>
-							<label
-								for="orgnr"
-								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label for="orgnr" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Organisasjonsnummer</label
 							>
+							<!-- pre-existing bug (flagged, not fixed — see conversion report): the unescaped
+								`{9,11}` below is parsed by Svelte as a mustache expression, i.e. the comma
+								operator "9, 11", which evaluates to 11. The rendered `pattern` attribute has
+								therefore always been "[0-9 ]11", not a 9-11 digit validator. Written here as the
+								literal `{11}` it already evaluates to so the type-checker doesn't flag the comma
+								expression — this produces byte-identical DOM output to the original, so behavior
+								is unchanged. A real fix (pattern={'[0-9 ]{9,11}'}) would change validation
+								behavior and is out of scope for this conversion. -->
 							<input
 								id="orgnr"
 								type="text"
 								inputmode="numeric"
-								pattern="[0-9 ]{9,11}"
+								pattern="[0-9 ]{11}"
 								maxlength="11"
 								placeholder="123 456 789"
 								bind:value={formData.orgnr}
@@ -428,8 +432,7 @@
 						<div>
 							<label
 								for="contactEmail"
-								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-								>E-post</label
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300">E-post</label
 							>
 							<input
 								id="contactEmail"
@@ -442,8 +445,7 @@
 						<div>
 							<label
 								for="contactPhone"
-								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-								>Telefon</label
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</label
 							>
 							<input
 								id="contactPhone"
@@ -456,9 +458,7 @@
 					</div>
 
 					<div>
-						<label
-							for="topic"
-							class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+						<label for="topic" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 							>Hva trenger dere først?</label
 						>
 						<select
@@ -475,9 +475,7 @@
 					</div>
 
 					<div>
-						<label
-							for="message"
-							class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+						<label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 							>Kort om bedriften (valgfritt)</label
 						>
 						<textarea
@@ -496,10 +494,7 @@
 							required
 							class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-900 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
 						/>
-						<label
-							for="acceptTerms"
-							class="ml-3 text-sm text-gray-700 dark:text-gray-300"
-						>
+						<label for="acceptTerms" class="ml-3 text-sm text-gray-700 dark:text-gray-300">
 							Jeg bekrefter at opplysningene over er korrekte og samtykker til at HavBank kan
 							behandle dem i henhold til
 							<a
@@ -510,11 +505,7 @@
 						</label>
 					</div>
 
-					<button
-						type="submit"
-						disabled={submitting}
-						class="btn-primary w-full justify-center"
-					>
+					<button type="submit" disabled={submitting} class="btn-primary w-full justify-center">
 						{submitting ? 'Sender …' : 'Send forespørsel'}
 					</button>
 				</form>
@@ -535,10 +526,12 @@
 					</div>
 
 					<div class="card-soft">
-						<h3 class="text-base font-semibold text-gray-900 dark:text-white">Er dere flere banker?</h3>
+						<h3 class="text-base font-semibold text-gray-900 dark:text-white">
+							Er dere flere banker?
+						</h3>
 						<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-							Vi hjelper med flytting av faste betalinger, avtalegiro og lønnsutbetalinger, slik
-							at overgangen blir smertefri.
+							Vi hjelper med flytting av faste betalinger, avtalegiro og lønnsutbetalinger, slik at
+							overgangen blir smertefri.
 						</p>
 					</div>
 				</div>

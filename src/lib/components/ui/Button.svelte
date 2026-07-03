@@ -1,16 +1,30 @@
-<script>
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
+
+	type ButtonVariant = 'primary' | 'secondary' | 'white' | 'outline' | 'ghost';
+	type ButtonSize = 'sm' | 'md' | 'lg';
+
 	/**
 	 * Reusable button / link component.
 	 *
-	 * Renders as <a> when `href` is provided, otherwise as <button>.
-	 *
-	 * @prop {string}  [href]            - When set, renders an anchor tag.
-	 * @prop {'button'|'submit'|'reset'} [type='button'] - HTML button type.
-	 * @prop {'primary'|'secondary'|'white'|'outline'|'ghost'} [variant='primary']
-	 * @prop {'sm'|'md'|'lg'} [size='md']
-	 * @prop {string}  [class='']        - Extra classes to merge.
-	 * @prop {boolean} [disabled=false]
+	 * Renders as <a> when `href` is provided, otherwise as <button>. `rest` is typed against the
+	 * common `HTMLElement` attributes (rather than button- or anchor-specific ones) so the same
+	 * spread works on either tag.
 	 */
+	interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class'> {
+		/** When set, renders an anchor tag. */
+		href?: string;
+		/** HTML button type. */
+		type?: HTMLButtonAttributes['type'];
+		variant?: ButtonVariant;
+		size?: ButtonSize;
+		/** Extra classes to merge. */
+		class?: string;
+		disabled?: boolean;
+		children?: Snippet;
+	}
+
 	let {
 		href = undefined,
 		type = 'button',
@@ -20,7 +34,7 @@
 		disabled = false,
 		children,
 		...rest
-	} = $props();
+	}: Props = $props();
 
 	const sizeClasses = {
 		sm: 'px-3 py-2 text-xs',
@@ -46,11 +60,13 @@
 		secondary: ''
 	};
 
-	const isInline = variant === 'secondary';
+	const isInline = $derived(variant === 'secondary');
 
-	const className = isInline
-		? `inline-flex items-center gap-1 text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-blue-900 dark:text-gray-100 dark:hover:text-blue-400 ${extraClass}`
-		: `inline-flex items-center justify-center font-semibold ${sizeClasses[size]} ${variantClasses[variant]} ${extraClass}`;
+	const className = $derived(
+		isInline
+			? `inline-flex items-center gap-1 text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-blue-900 dark:text-gray-100 dark:hover:text-blue-400 ${extraClass}`
+			: `inline-flex items-center justify-center font-semibold ${sizeClasses[size]} ${variantClasses[variant]} ${extraClass}`
+	);
 </script>
 
 {#if href}

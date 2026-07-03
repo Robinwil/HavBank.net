@@ -1,8 +1,7 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 
-	const IconifyIcon = Icon;
 	const services = [
 		{
 			name: 'Kjøp og salg',
@@ -134,7 +133,10 @@
 		name="description"
 		content="HavBank tilbyr profesjonell næringsmegling med fokus på verdiskaping. Lisensiert eiendomsmegling under Finanstilsynets tilsyn."
 	/>
-	<meta name="keywords" content="næringsmegling, næringseiendom, eiendomsmegling, kontorlokaler, norge" />
+	<meta
+		name="keywords"
+		content="næringsmegling, næringseiendom, eiendomsmegling, kontorlokaler, norge"
+	/>
 	<meta property="og:title" content="Næringsmegling | HavBank" />
 	<meta
 		property="og:description"
@@ -149,9 +151,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Næringsmegling
-				</h1>
+				<h1 class="page-title">Næringsmegling</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Vi tilbyr profesjonell megling av næringseiendom med fokus på verdiskaping og sikre
 					transaksjoner. Våre meglere har lang erfaring og solid lokalkunnskap.
@@ -175,10 +175,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<div class="flex items-center gap-x-4 mb-6">
 							{#if browser && Icon}
-								<Icon
-									icon={service.icon}
-									class="h-8 w-8 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={service.icon} class="h-8 w-8 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-xl font-semibold text-gray-900 dark:text-white">{service.name}</h3>
 						</div>
@@ -204,14 +201,10 @@
 						<div class="mt-auto">
 							<div class="border-t border-gray-200 dark:border-gray-700 pt-6">
 								<p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
-									<span class="font-medium">Honorar:</span> {service.pricing}
+									<span class="font-medium">Honorar:</span>
+									{service.pricing}
 								</p>
-								<a
-									href="/kontakt"
-									class="block w-full btn-primary"
-								>
-									Kontakt oss
-								</a>
+								<a href="/kontakt" class="block w-full btn-primary"> Kontakt oss </a>
 							</div>
 						</div>
 					</div>
@@ -223,9 +216,7 @@
 	<!-- Expertise Areas -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Spesialkompetanse
-			</h2>
+			<h2 class="section-title">Spesialkompetanse</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi har bred erfaring innen alle typer næringseiendom.
 			</p>
@@ -237,10 +228,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={area.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={area.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{area.title}</h3>
 						</div>
@@ -266,10 +254,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={step.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={step.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<div class="flex items-center">
 								<span
@@ -295,10 +280,7 @@
 				{#each marketInfo.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:chart-bar"
-								class="h-6 w-6 text-blue-700 dark:text-blue-400"
-							/>
+							<Icon icon="heroicons:chart-bar" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 						{/if}
 						<span class="text-gray-600 dark:text-gray-300">{point}</span>
 					</li>
@@ -310,9 +292,7 @@
 	<!-- Compliance Information -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Sikkerhet og etterlevelse
-			</h2>
+			<h2 class="section-title">Sikkerhet og etterlevelse</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi følger alle lover og forskrifter for eiendomsmegling.
 			</p>
@@ -324,10 +304,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={info.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={info.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{info.title}</h3>
 						</div>
@@ -342,15 +319,14 @@
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">{riskDisclosure.title}</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">{riskDisclosure.description}</p>
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				{riskDisclosure.description}
+			</p>
 			<ul class="mt-8 space-y-4">
 				{#each riskDisclosure.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:exclamation-triangle"
-								class="h-6 w-6 text-yellow-500"
-							/>
+							<Icon icon="heroicons:exclamation-triangle" class="h-6 w-6 text-yellow-500" />
 						{/if}
 						<span class="text-gray-600 dark:text-gray-300">{point}</span>
 					</li>
@@ -363,11 +339,12 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle meglertjenester tilbys av HavBank Næringsmegling AS (org.nr. 924 850 772), under tilsyn av
-				Finanstilsynet. Honorarer og betingelser er veiledende og kan endres i henhold til oppdragets art
-				og omfang. For fullstendige vilkår, se vår oppdragsavtale. Alle verdivurderinger er indikative og
-				ikke bindende. Historisk avkastning er ingen garanti for fremtidig avkastning.
+				Alle meglertjenester tilbys av HavBank Næringsmegling AS (org.nr. 924 850 772), under tilsyn
+				av Finanstilsynet. Honorarer og betingelser er veiledende og kan endres i henhold til
+				oppdragets art og omfang. For fullstendige vilkår, se vår oppdragsavtale. Alle
+				verdivurderinger er indikative og ikke bindende. Historisk avkastning er ingen garanti for
+				fremtidig avkastning.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

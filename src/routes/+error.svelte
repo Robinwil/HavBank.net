@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
@@ -9,7 +9,9 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<div class="min-h-[50vh] bg-white dark:bg-gray-900 px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+<div
+	class="min-h-[50vh] bg-white dark:bg-gray-900 px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8"
+>
 	<div class="mx-auto max-w-max">
 		<main class="sm:flex">
 			<p class="text-4xl font-bold tracking-tight text-blue-900 dark:text-blue-100 sm:text-5xl">

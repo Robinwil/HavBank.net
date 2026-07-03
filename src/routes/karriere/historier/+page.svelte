@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 
@@ -63,9 +63,7 @@
 	];
 
 	let filtered = $derived(
-		selectedCategory === 'Alle'
-			? stories
-			: stories.filter((s) => s.category === selectedCategory)
+		selectedCategory === 'Alle' ? stories : stories.filter((s) => s.category === selectedCategory)
 	);
 </script>
 
@@ -86,9 +84,9 @@
 				<p class="section-eyebrow">Karriere</p>
 				<h1 class="page-title mt-2">Historier fra HavBank</h1>
 				<p class="page-lead">
-					Seks ansatte, seks ulike roller. Les hvordan hverdagen faktisk ser ut — fra graduate
-					som har rotert gjennom tre avdelinger til seniorleder som har fulgt samme kundeportefølje
-					i ti år.
+					Seks ansatte, seks ulike roller. Les hvordan hverdagen faktisk ser ut — fra graduate som
+					har rotert gjennom tre avdelinger til seniorleder som har fulgt samme kundeportefølje i ti
+					år.
 				</p>
 				<div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
 					<a href="/karriere" class="btn-primary">Se ledige stillinger</a>
@@ -120,10 +118,7 @@
 
 	<!-- Stories grid -->
 	<div class="page-container mb-24">
-		<ul
-			role="list"
-			class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
-		>
+		<ul role="list" class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
 			{#each filtered as story (story.id)}
 				<li class="card-elevated flex flex-col">
 					<div
@@ -185,8 +180,8 @@
 	<div class="page-container">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Sitatene er gjengitt med samtykke fra ansatte. Ansettelsesforhold og roller kan endres
-				over tid. HavBank AS (org.nr. 924 850 771) følger Finansforbundets tariffavtale og
+				Sitatene er gjengitt med samtykke fra ansatte. Ansettelsesforhold og roller kan endres over
+				tid. HavBank AS (org.nr. 924 850 771) følger Finansforbundets tariffavtale og
 				arbeidsmiljøloven.
 			</p>
 		</div>

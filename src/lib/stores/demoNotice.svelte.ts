@@ -11,23 +11,30 @@
 const DEFAULT_MESSAGE =
 	'Dette er en fiktiv nettside laget for utdanningsformål. Ingen reelle banktjenester tilbys.';
 
-export const demoNoticeState = $state({
-	/** @type {boolean} */
+interface DemoNoticeState {
+	isOpen: boolean;
+	message: string;
+	/** Optional extra line, e.g. "Søknaden er ikke sendt inn." */
+	detail: string | null;
+}
+
+export const demoNoticeState: DemoNoticeState = $state({
 	isOpen: false,
-	/** @type {string} */
 	message: DEFAULT_MESSAGE,
-	/** @type {string | null} Optional extra line, e.g. "Søknaden er ikke sendt inn." */
 	detail: null
 });
+
+interface ShowDemoNoticeOptions {
+	detail?: string | null;
+	message?: string;
+}
 
 /**
  * Open the demo notice. Pass a `detail` string to add a contextual second
  * line (for example: "Søknaden er ikke sendt inn." or "Rapporten er ikke
  * tilgjengelig for nedlasting."). The base message stays the same.
- *
- * @param {{ detail?: string | null, message?: string }} [options]
  */
-export function showDemoNotice(options = {}) {
+export function showDemoNotice(options: ShowDemoNoticeOptions = {}) {
 	demoNoticeState.message = options.message ?? DEFAULT_MESSAGE;
 	demoNoticeState.detail = options.detail ?? null;
 	demoNoticeState.isOpen = true;

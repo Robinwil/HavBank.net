@@ -1,9 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
-
-	const IconifyIcon = Icon;
-    
 
 	const accountTypes = [
 		{
@@ -84,9 +81,15 @@
 		name="description"
 		content="HavBank tilbyr trygge og effektive bedriftskontoer med moderne betalingsløsninger. Velg mellom ulike kontotyper tilpasset din bedrifts behov."
 	/>
-	<meta name="keywords" content="bedriftskonto, næringslivskonto, bankkonto bedrift, nettbank, norge" />
+	<meta
+		name="keywords"
+		content="bedriftskonto, næringslivskonto, bankkonto bedrift, nettbank, norge"
+	/>
 	<meta property="og:title" content="Bedriftskonto | HavBank" />
-	<meta property="og:description" content="Trygge og effektive bedriftskontoer med moderne betalingsløsninger." />
+	<meta
+		property="og:description"
+		content="Trygge og effektive bedriftskontoer med moderne betalingsløsninger."
+	/>
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://havbank.net/bedrift/konto" />
 </svelte:head>
@@ -96,9 +99,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Bedriftskonto
-				</h1>
+				<h1 class="page-title">Bedriftskonto</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Velg en bedriftskonto som passer din virksomhet. Alle våre kontoer kommer med moderne
 					nettbank, mobilbank og integrasjonsmuligheter mot regnskapssystemer.
@@ -115,10 +116,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<div class="flex items-center gap-x-4 mb-6">
 							{#if browser && Icon}
-								<Icon
-									icon={account.icon}
-									class="h-8 w-8 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={account.icon} class="h-8 w-8 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h2 class="text-xl font-semibold text-gray-900 dark:text-white">{account.name}</h2>
 						</div>
@@ -137,13 +135,10 @@
 							{/each}
 						</ul>
 						<div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-							<p class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">{account.price}</p>
-							<a
-								href="/kontakt"
-								class="block w-full btn-primary"
-							>
-								Kom i gang
-							</a>
+							<p class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+								{account.price}
+							</p>
+							<a href="/kontakt" class="block w-full btn-primary"> Kom i gang </a>
 						</div>
 					</div>
 				{/each}
@@ -154,9 +149,7 @@
 	<!-- Security Features -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Sikkerhet i verdensklasse
-			</h2>
+			<h2 class="section-title">Sikkerhet i verdensklasse</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi tar sikkerheten på alvor og følger de strengeste standardene for bankvirksomhet i Norge.
 			</p>
@@ -168,10 +161,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={feature.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={feature.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{feature.name}</h3>
 						</div>
@@ -207,9 +197,10 @@
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				Alle kontoer og tjenester tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av
-				Finanstilsynet. Priser og betingelser er veiledende og kan endres i henhold til markedsforhold og
-				bankens retningslinjer. For fullstendige vilkår, se vår prisliste og kontoavtale.
+				Finanstilsynet. Priser og betingelser er veiledende og kan endres i henhold til
+				markedsforhold og bankens retningslinjer. For fullstendige vilkår, se vår prisliste og
+				kontoavtale.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

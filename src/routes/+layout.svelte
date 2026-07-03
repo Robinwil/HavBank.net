@@ -1,29 +1,31 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 	import { afterNavigate } from '$app/navigation';
-	import { onMount } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 	import { cn } from '$lib/utils';
 	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
 	import DisclaimerModal from '$lib/components/DisclaimerModal.svelte';
 	import DemoNoticeToast from '$lib/components/DemoNoticeToast.svelte';
 	import SecurityContactDialog from '$lib/components/SecurityContactDialog.svelte';
 	import Icon from '@iconify/svelte';
-	import '../lib/icons.js';  // Import offline icons configuration
-	
-	let { children } = $props();
-	
+	import '../lib/icons.js'; // Import offline icons configuration
+
+	let { children }: { children: Snippet } = $props();
+
+	type ThemePreference = 'system' | 'light' | 'dark';
+
 	let isMenuOpen = $state(false);
 	let isThemeMenuOpen = $state(false);
-	let themePreference = $state('system');
+	let themePreference = $state<ThemePreference>('system');
 	let isDarkMode = $state(false);
 	let isScrolling = $state(false);
-	
+
 	const THEME_STORAGE_KEY = 'havbank-theme';
-	
+
 	let previousPath = $state('');
-	
+
 	$effect(() => {
 		if (browser && previousPath !== $page.url.pathname) {
 			if (previousPath !== '') {
@@ -53,13 +55,13 @@
 			};
 		}
 	});
-	
-	const themeOptions = [
+
+	const themeOptions: { value: ThemePreference; label: string; icon: string }[] = [
 		{ value: 'system', label: 'System', icon: 'heroicons:computer-desktop' },
 		{ value: 'light', label: 'Lyst', icon: 'heroicons:sun' },
 		{ value: 'dark', label: 'Mørkt', icon: 'heroicons:moon' }
 	];
-	
+
 	const navigation = [
 		{ name: 'Hjem', href: '/' },
 		{ name: 'Privat', href: '/privat' },
@@ -81,7 +83,7 @@
 		document.documentElement.style.colorScheme = isDarkMode ? 'dark' : 'light';
 	}
 
-	function setTheme(theme) {
+	function setTheme(theme: ThemePreference) {
 		themePreference = theme;
 		isThemeMenuOpen = false;
 		if (browser) {
@@ -99,7 +101,9 @@
 	}
 
 	function getThemeIcon(theme = themePreference) {
-		return themeOptions.find((option) => option.value === theme)?.icon ?? 'heroicons:computer-desktop';
+		return (
+			themeOptions.find((option) => option.value === theme)?.icon ?? 'heroicons:computer-desktop'
+		);
 	}
 
 	onMount(() => {
@@ -132,7 +136,7 @@
 	});
 
 	// Handle keyboard navigation
-	function handleKeyDown(event) {
+	function handleKeyDown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			isMenuOpen = false;
 			isThemeMenuOpen = false;
@@ -172,9 +176,9 @@
 		<nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Hovednavigasjon">
 			<div class="flex h-16 items-center justify-between">
 				<div class="flex items-center">
-					<a 
-						href="/" 
-						class="flex items-center text-2xl font-bold text-blue-900 dark:text-blue-100 hover:text-blue-800 dark:hover:text-blue-200" 
+					<a
+						href="/"
+						class="flex items-center text-2xl font-bold text-blue-900 dark:text-blue-100 hover:text-blue-800 dark:hover:text-blue-200"
 						aria-label="HavBank hjemmeside"
 					>
 						{#if browser && Icon}
@@ -188,10 +192,10 @@
 						<a
 							href={item.href}
 							class={cn(
-								"flex items-center text-sm font-medium px-3 py-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800",
+								'flex items-center text-sm font-medium px-3 py-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800',
 								$page.url.pathname === item.href
-									? "text-blue-900 dark:text-blue-100 bg-blue-50 dark:bg-blue-900/10"
-									: "text-gray-700 dark:text-gray-300"
+									? 'text-blue-900 dark:text-blue-100 bg-blue-50 dark:bg-blue-900/10'
+									: 'text-gray-700 dark:text-gray-300'
 							)}
 							aria-current={$page.url.pathname === item.href ? 'page' : undefined}
 						>
@@ -233,10 +237,10 @@
 									<button
 										type="button"
 										class={cn(
-											"flex w-full items-center gap-x-2 px-4 py-2 text-sm text-left hover:bg-gray-50 dark:hover:bg-gray-700",
+											'flex w-full items-center gap-x-2 px-4 py-2 text-sm text-left hover:bg-gray-50 dark:hover:bg-gray-700',
 											themePreference === option.value
-												? "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-												: "text-gray-700 dark:text-gray-300"
+												? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100'
+												: 'text-gray-700 dark:text-gray-300'
 										)}
 										role="menuitemradio"
 										aria-checked={themePreference === option.value}
@@ -314,15 +318,13 @@
 						{item.name}
 					</a>
 				{/each}
-				<a href="/login" class="btn-primary w-full mt-2">
-					Logg inn
-				</a>
+				<a href="/login" class="btn-primary w-full mt-2"> Logg inn </a>
 			</nav>
 		</div>
 	{/if}
 
-	<main 
-		id="main-content" 
+	<main
+		id="main-content"
 		class="min-h-[calc(100vh-4rem)] transition-opacity duration-500 ease-in-out"
 		class:opacity-90={isScrolling}
 	>
@@ -335,28 +337,39 @@
 	<footer class="bg-gray-50 dark:bg-gray-900">
 		<div class="page-container py-12 sm:py-16">
 			<div class="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-5">
-				
 				<!-- Privat -->
 				<div class="lg:col-span-1">
 					<h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Privat</h3>
 					<ul role="list" class="mt-6 space-y-4">
 						<li>
-							<a href="/privat/boliglan" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/privat/boliglan"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Boliglån
 							</a>
 						</li>
 						<li>
-							<a href="/privat/sparing" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/privat/sparing"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Sparing
 							</a>
 						</li>
 						<li>
-							<a href="/privat/kort" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/privat/kort"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Kort
 							</a>
 						</li>
 						<li>
-							<a href="/privat/forsikring" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/privat/forsikring"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Forsikring
 							</a>
 						</li>
@@ -368,22 +381,34 @@
 					<h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Bedrift</h3>
 					<ul role="list" class="mt-6 space-y-4">
 						<li>
-							<a href="/bedrift/konto" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/bedrift/konto"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Bedriftskonto
 							</a>
 						</li>
 						<li>
-							<a href="/bedrift/finansiering" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/bedrift/finansiering"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Finansiering
 							</a>
 						</li>
 						<li>
-							<a href="/bedrift/cash-management" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/bedrift/cash-management"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Cash Management
 							</a>
 						</li>
 						<li>
-							<a href="/bedrift/valuta" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/bedrift/valuta"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Valuta
 							</a>
 						</li>
@@ -395,22 +420,34 @@
 					<h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Selskap</h3>
 					<ul role="list" class="mt-6 space-y-4">
 						<li>
-							<a href="/om-oss" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/om-oss"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Om oss
 							</a>
 						</li>
 						<li>
-							<a href="/karriere" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/karriere"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Karriere
 							</a>
 						</li>
 						<li>
-							<a href="/baerekraft" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/baerekraft"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Bærekraft
 							</a>
 						</li>
 						<li>
-							<a href="/investor" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/investor"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Investorrelasjoner
 							</a>
 						</li>
@@ -422,27 +459,42 @@
 					<h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Hjelp</h3>
 					<ul role="list" class="mt-6 space-y-4">
 						<li>
-							<a href="/kontakt" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/kontakt"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Kundeservice
 							</a>
 						</li>
 						<li>
-							<a href="/sikkerhet" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/sikkerhet"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Sikkerhet
 							</a>
 						</li>
 						<li>
-							<a href="/personvern" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/personvern"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Personvern
 							</a>
 						</li>
 						<li>
-							<a href="/tilgjengelighet" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/tilgjengelighet"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Tilgjengelighet
 							</a>
 						</li>
 						<li>
-							<a href="/om-prosjektet" class="text-sm leading-6 text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-200 font-medium">
+							<a
+								href="/om-prosjektet"
+								class="text-sm leading-6 text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-200 font-medium"
+							>
 								Om prosjektet (ikke en ekte bank)
 							</a>
 						</li>
@@ -450,7 +502,9 @@
 				</div>
 
 				<!-- Contact -->
-				<div class="sm:col-span-2 lg:col-span-1 border-t border-gray-900/10 dark:border-gray-100/10 pt-8 sm:border-t-0 sm:pt-0">
+				<div
+					class="sm:col-span-2 lg:col-span-1 border-t border-gray-900/10 dark:border-gray-100/10 pt-8 sm:border-t-0 sm:pt-0"
+				>
 					<h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Kontakt oss</h3>
 					<ul role="list" class="mt-6 space-y-4">
 						<li class="text-sm leading-6 text-gray-600 dark:text-gray-400">
@@ -460,7 +514,10 @@
 							Åpningstider: 07:00–23:00
 						</li>
 						<li>
-							<a href="/bestill-time" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+							<a
+								href="/bestill-time"
+								class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+							>
 								Bestill rådgivning
 							</a>
 						</li>
@@ -476,15 +533,16 @@
 			>
 				<p class="text-sm leading-6 text-red-900 dark:text-red-100">
 					<strong class="font-semibold">HavBank er ikke en ekte bank.</strong>
-					Nettsiden er et fiktivt hobbyprosjekt uten konsesjon fra Finanstilsynet, uten
-					organisasjonsnummer og uten reelle banktjenester.
+					Nettsiden er et fiktivt hobbyprosjekt uten konsesjon fra Finanstilsynet, uten organisasjonsnummer
+					og uten reelle banktjenester.
 					<a
 						href="/om-prosjektet"
 						class="font-semibold underline underline-offset-4 decoration-2 hover:text-red-800 dark:hover:text-red-200"
 					>
 						Les hele redegjørelsen på «Om prosjektet»
 					</a>
-					· <a
+					·
+					<a
 						href="https://www.finanstilsynet.no/nyhetsarkiv/nyheter/2026/finanstilsynet-advarer-mot-havbank/"
 						target="_blank"
 						rel="noopener noreferrer"

@@ -1,11 +1,23 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
-	let currentType = $state('open');
-	let formData = $state({
+
+	type ApplicationType = 'open' | 'student' | 'internship';
+	type FileDropZone = 'motivation' | 'cv' | 'portfolio';
+
+	interface ApplicationFormData {
+		name: string;
+		email: string;
+		phone: string;
+		motivation: string;
+		motivationFile: File | null;
+		cv: File | null;
+		portfolio: File[];
+	}
+
+	let currentType = $state<ApplicationType>('open');
+	let formData = $state<ApplicationFormData>({
 		name: '',
 		email: '',
 		phone: '',
@@ -14,36 +26,38 @@
 		cv: null,
 		portfolio: []
 	});
-	let submitStatus = $state('idle');
+	let submitStatus = $state<'idle' | 'loading' | 'success'>('idle');
 	let errorMessage = $state('');
-	let dragActive = $state(false);
-	let motivationInputType = $state('text');
+	let dragActive = $state<FileDropZone | false>(false);
+	let motivationInputType = $state<'text' | 'file'>('text');
 
 	// Application types configuration
-	const applicationTypes = {
+	const applicationTypes: Record<ApplicationType, { title: string; description: string }> = {
 		open: {
 			title: 'Send åpen søknad',
-			description: 'Er du interessert i å jobbe hos oss? Send oss en åpen søknad, så tar vi kontakt når relevante stillinger dukker opp.'
+			description:
+				'Er du interessert i å jobbe hos oss? Send oss en åpen søknad, så tar vi kontakt når relevante stillinger dukker opp.'
 		},
 		student: {
 			title: 'Student og nyutdannet',
-			description: 'Vi er alltid på jakt etter dyktige studenter og nyutdannede som vil starte sin karriere hos oss.'
+			description:
+				'Vi er alltid på jakt etter dyktige studenter og nyutdannede som vil starte sin karriere hos oss.'
 		},
 		internship: {
 			title: 'Internship',
-			description: 'Få verdifull erfaring gjennom vårt internship-program. Vi tilbyr spennende muligheter året rundt.'
+			description:
+				'Få verdifull erfaring gjennom vårt internship-program. Vi tilbyr spennende muligheter året rundt.'
 		}
 	};
 
 	$effect(() => {
 		const type = $page.url.searchParams.get('type') || 'open';
-		if (applicationTypes[type]) {
-			currentType = type;
+		if (type in applicationTypes) {
+			currentType = type as ApplicationType;
 		}
 	});
 
-
-	function handleSubmit(event) {
+	function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		submitStatus = 'loading';
 		errorMessage = '';
@@ -67,9 +81,12 @@
 		}, 1500);
 	}
 
-	function handleFileChange(event, type) {
+	function handleFileChange(
+		event: Event & { currentTarget: EventTarget & HTMLInputElement },
+		type: 'cv' | 'portfolio'
+	) {
 		if (type === 'portfolio') {
-			const files = Array.from(event.target.files);
+			const files = Array.from(event.currentTarget.files ?? []);
 			if (files.length > 0) {
 				const newFiles = [...formData.portfolio, ...files];
 				if (newFiles.length <= 10) {
@@ -77,32 +94,32 @@
 				}
 			}
 		} else {
-			const file = event.target.files[0];
+			const file = event.currentTarget.files?.[0];
 			if (file) {
 				formData[type] = file;
 			}
 		}
 	}
 
-	function handleDragEnter(e, type) {
+	function handleDragEnter(e: DragEvent, type: FileDropZone) {
 		e.preventDefault();
 		e.stopPropagation();
 		dragActive = type;
 	}
 
-	function handleDragLeave(e) {
+	function handleDragLeave(e: DragEvent) {
 		e.preventDefault();
 		e.stopPropagation();
 		dragActive = false;
 	}
 
-	function handleDrop(e, type) {
+	function handleDrop(e: DragEvent, type: 'cv' | 'portfolio') {
 		e.preventDefault();
 		e.stopPropagation();
 		dragActive = false;
-		
+
 		if (type === 'portfolio') {
-			const files = Array.from(e.dataTransfer.files);
+			const files = Array.from(e.dataTransfer?.files ?? []);
 			if (files.length > 0) {
 				const newFiles = [...formData.portfolio, ...files];
 				if (newFiles.length <= 10) {
@@ -110,32 +127,34 @@
 				}
 			}
 		} else {
-			const file = e.dataTransfer.files[0];
+			const file = e.dataTransfer?.files[0];
 			if (file) {
 				formData[type] = file;
 			}
 		}
 	}
 
-	function handleMotivationFileChange(event) {
-		const file = event.target.files[0];
+	function handleMotivationFileChange(
+		event: Event & { currentTarget: EventTarget & HTMLInputElement }
+	) {
+		const file = event.currentTarget.files?.[0];
 		if (file) {
 			formData.motivationFile = file;
 		}
 	}
 
-	function handleMotivationDrop(e) {
+	function handleMotivationDrop(e: DragEvent) {
 		e.preventDefault();
 		e.stopPropagation();
 		dragActive = false;
-		
-		const file = e.dataTransfer.files[0];
+
+		const file = e.dataTransfer?.files[0];
 		if (file) {
 			formData.motivationFile = file;
 		}
 	}
 
-	function removePortfolioFile(index) {
+	function removePortfolioFile(index: number) {
 		formData.portfolio = formData.portfolio.filter((_, i) => i !== index);
 	}
 </script>
@@ -147,8 +166,13 @@
 </svelte:head>
 
 <div class="relative isolate overflow-hidden">
-	<div class="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
-		<div class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-tr from-blue-800 to-blue-900 opacity-20" style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"></div>
+	<div
+		class="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]"
+	>
+		<div
+			class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-tr from-blue-800 to-blue-900 opacity-20"
+			style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"
+		></div>
 	</div>
 
 	<!-- Navigation -->
@@ -159,7 +183,8 @@
 					<li>
 						<a
 							href="/karriere/soknad?type={type}"
-							class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md {currentType === type 
+							class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md {currentType ===
+							type
 								? 'bg-blue-900 text-white dark:bg-blue-800'
 								: 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 shadow-sm ring-1 ring-gray-900/5 dark:ring-white/5 hover:bg-gray-50 dark:hover:bg-gray-700'} transition-colors"
 							aria-current={currentType === type ? 'page' : undefined}
@@ -186,12 +211,17 @@
 
 			<form class="space-y-8" onsubmit={handleSubmit}>
 				<!-- Personal Information -->
-				<div class="space-y-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 ring-1 ring-gray-900/5 dark:ring-white/10">
+				<div
+					class="space-y-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 ring-1 ring-gray-900/5 dark:ring-white/10"
+				>
 					<h2 class="text-xl font-semibold text-gray-900 dark:text-white">Kontaktinformasjon</h2>
-					
+
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
 						<div>
-							<label for="application-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+							<label
+								for="application-name"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							>
 								Navn
 							</label>
 							<input
@@ -206,7 +236,10 @@
 						</div>
 
 						<div>
-							<label for="application-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+							<label
+								for="application-email"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							>
 								E-post
 							</label>
 							<input
@@ -223,11 +256,15 @@
 				</div>
 
 				<!-- Motivation -->
-				<div class="space-y-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 ring-1 ring-gray-900/5 dark:ring-white/10">
+				<div
+					class="space-y-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 ring-1 ring-gray-900/5 dark:ring-white/10"
+				>
 					<div class="flex justify-between items-center">
 						<h2 class="text-xl font-semibold text-gray-900 dark:text-white">Din søknad</h2>
 						<div class="flex items-center gap-2">
-							<span id="uploadLabel" class="text-sm text-gray-600 dark:text-gray-400">Last opp fil</span>
+							<span id="uploadLabel" class="text-sm text-gray-600 dark:text-gray-400"
+								>Last opp fil</span
+							>
 							<button
 								type="button"
 								class={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
@@ -236,9 +273,10 @@
 								role="switch"
 								aria-checked={motivationInputType === 'file'}
 								aria-labelledby="uploadLabel"
-								onclick={() => motivationInputType = motivationInputType === 'text' ? 'file' : 'text'}
+								onclick={() =>
+									(motivationInputType = motivationInputType === 'text' ? 'file' : 'text')}
 							>
-								<span 
+								<span
 									aria-hidden="true"
 									class={`${
 										motivationInputType === 'file' ? 'translate-x-5' : 'translate-x-0'
@@ -250,7 +288,10 @@
 					</div>
 
 					<div>
-						<label for="application-motivation" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+						<label
+							for="application-motivation"
+							class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+						>
 							Søknadstekst
 						</label>
 						<div class="mt-1">
@@ -270,7 +311,7 @@
 									role="region"
 									aria-labelledby="motivation-file-label"
 									class={`relative rounded-lg border-2 border-dashed p-4 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors ${
-										dragActive === 'motivation' 
+										dragActive === 'motivation'
 											? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
 											: 'border-gray-300 dark:border-gray-700'
 									}`}
@@ -295,7 +336,9 @@
 									>
 										<div class="text-center">
 											{#if formData.motivationFile}
-												<div class="flex items-center justify-center text-blue-600 dark:text-blue-400">
+												<div
+													class="flex items-center justify-center text-blue-600 dark:text-blue-400"
+												>
 													{#if browser && Icon}
 														<Icon icon="heroicons:document-check" class="h-8 w-8" />
 													{/if}
@@ -307,13 +350,17 @@
 													Klikk for å endre
 												</p>
 											{:else}
-												<div class="flex items-center justify-center text-gray-400 dark:text-gray-600">
+												<div
+													class="flex items-center justify-center text-gray-400 dark:text-gray-600"
+												>
 													{#if browser && Icon}
 														<Icon icon="heroicons:document-plus" class="h-8 w-8" />
 													{/if}
 												</div>
 												<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-													Dra og slipp eller <span class="text-blue-600 dark:text-blue-400">velg fil</span>
+													Dra og slipp eller <span class="text-blue-600 dark:text-blue-400"
+														>velg fil</span
+													>
 												</p>
 												<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
 													PDF, TXT, DOC, DOCX, RTF, ODT
@@ -328,13 +375,18 @@
 				</div>
 
 				<!-- Attachments -->
-				<div class="space-y-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 ring-1 ring-gray-900/5 dark:ring-white/10">
+				<div
+					class="space-y-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 ring-1 ring-gray-900/5 dark:ring-white/10"
+				>
 					<h2 class="text-xl font-semibold text-gray-900 dark:text-white">Vedlegg</h2>
 
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
 						<!-- CV Upload -->
 						<div>
-							<label for="cv" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+							<label
+								for="cv"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+							>
 								CV (PDF)
 							</label>
 							<div
@@ -358,13 +410,12 @@
 									onchange={(e) => handleFileChange(e, 'cv')}
 									class="sr-only"
 								/>
-								<label
-									for="cv"
-									class="cursor-pointer"
-								>
+								<label for="cv" class="cursor-pointer">
 									<div class="text-center">
 										{#if formData.cv}
-											<div class="flex items-center justify-center text-blue-600 dark:text-blue-400">
+											<div
+												class="flex items-center justify-center text-blue-600 dark:text-blue-400"
+											>
 												{#if browser && Icon}
 													<Icon icon="heroicons:document-check" class="h-8 w-8" />
 												{/if}
@@ -372,17 +423,19 @@
 											<p class="mt-2 text-sm text-gray-900 dark:text-white">
 												{formData.cv.name}
 											</p>
-											<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-												Klikk for å endre
-											</p>
+											<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Klikk for å endre</p>
 										{:else}
-											<div class="flex items-center justify-center text-gray-400 dark:text-gray-600">
+											<div
+												class="flex items-center justify-center text-gray-400 dark:text-gray-600"
+											>
 												{#if browser && Icon}
 													<Icon icon="heroicons:document-plus" class="h-8 w-8" />
 												{/if}
 											</div>
 											<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-												Dra og slipp eller <span class="text-blue-600 dark:text-blue-400">velg fil</span>
+												Dra og slipp eller <span class="text-blue-600 dark:text-blue-400"
+													>velg fil</span
+												>
 											</p>
 										{/if}
 									</div>
@@ -392,7 +445,10 @@
 
 						<!-- Portfolio Upload -->
 						<div>
-							<label for="portfolio" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+							<label
+								for="portfolio"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+							>
 								Portfolio/Andre vedlegg ({formData.portfolio.length}/10)
 							</label>
 							<div
@@ -417,21 +473,22 @@
 									class="sr-only"
 									disabled={formData.portfolio.length >= 10}
 								/>
-								<label
-									for="portfolio"
-									class="cursor-pointer"
-								>
+								<label for="portfolio" class="cursor-pointer">
 									<div class="text-center">
 										{#if formData.portfolio.length > 0}
 											<div class="flex flex-col gap-2">
-												<div class="flex items-center justify-center text-blue-600 dark:text-blue-400">
+												<div
+													class="flex items-center justify-center text-blue-600 dark:text-blue-400"
+												>
 													{#if browser && Icon}
 														<Icon icon="heroicons:document-check" class="h-8 w-8" />
 													{/if}
 												</div>
 												<div class="space-y-2">
 													{#each formData.portfolio as file, index}
-														<div class="flex items-center justify-between text-sm bg-white/50 dark:bg-gray-700/50 rounded p-2">
+														<div
+															class="flex items-center justify-between text-sm bg-white/50 dark:bg-gray-700/50 rounded p-2"
+														>
 															<span class="truncate max-w-[200px]">{file.name}</span>
 															<button
 																type="button"
@@ -447,7 +504,9 @@
 												</div>
 												{#if formData.portfolio.length < 10}
 													<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-														Dra og slipp eller <span class="text-blue-600 dark:text-blue-400">velg flere filer</span>
+														Dra og slipp eller <span class="text-blue-600 dark:text-blue-400"
+															>velg flere filer</span
+														>
 													</p>
 												{:else}
 													<p class="mt-2 text-sm text-red-500 dark:text-red-400">
@@ -456,13 +515,17 @@
 												{/if}
 											</div>
 										{:else}
-											<div class="flex items-center justify-center text-gray-400 dark:text-gray-600">
+											<div
+												class="flex items-center justify-center text-gray-400 dark:text-gray-600"
+											>
 												{#if browser && Icon}
 													<Icon icon="heroicons:document-plus" class="h-8 w-8" />
 												{/if}
 											</div>
 											<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-												Dra og slipp eller <span class="text-blue-600 dark:text-blue-400">velg filer</span>
+												Dra og slipp eller <span class="text-blue-600 dark:text-blue-400"
+													>velg filer</span
+												>
 											</p>
 										{/if}
 									</div>
@@ -530,17 +593,17 @@
 		animation: checkmark 0.3s ease-in-out forwards;
 	}
 
-	button[role="switch"] {
+	button[role='switch'] {
 		position: relative;
 		transition: background-color 0.2s ease-in-out;
 	}
 
-	button[role="switch"] span {
+	button[role='switch'] span {
 		will-change: transform;
 		transform: translateX(0);
 	}
 
-	button[role="switch"][aria-checked="true"] span {
+	button[role='switch'][aria-checked='true'] span {
 		transform: translateX(20px);
 	}
-</style> 
+</style>

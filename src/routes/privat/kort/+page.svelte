@@ -1,8 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-    import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
-
+	import Icon from '@iconify/svelte';
 
 	const creditCards = [
 		{
@@ -104,7 +102,10 @@
 		name="description"
 		content="HavBank tilbyr kredittkort med 45 dagers betalingsutsettelse, reiseforsikring og ingen årsavgift første år. Velg mellom våre tre korttyper."
 	/>
-	<meta name="keywords" content="kredittkort, reiseforsikring, betalingskort, cashback, bank, norge" />
+	<meta
+		name="keywords"
+		content="kredittkort, reiseforsikring, betalingskort, cashback, bank, norge"
+	/>
 	<meta property="og:title" content="Kredittkort | HavBank" />
 	<meta
 		property="og:description"
@@ -119,12 +120,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Kredittkort
-				</h1>
+				<h1 class="page-title">Kredittkort</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-					Våre kredittkort gir deg fleksibilitet og trygghet på reisen. Velg mellom tre ulike kort med
-					omfattende forsikringer og gode fordeler.
+					Våre kredittkort gir deg fleksibilitet og trygghet på reisen. Velg mellom tre ulike kort
+					med omfattende forsikringer og gode fordeler.
 				</p>
 				<div class="mt-10 flex items-center gap-x-6">
 					<a
@@ -133,7 +132,10 @@
 					>
 						Søk om kort
 					</a>
-					<a href="#forsikring" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+					<a
+						href="#forsikring"
+						class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+					>
 						Se forsikringer <span aria-hidden="true">→</span>
 					</a>
 				</div>
@@ -168,11 +170,15 @@
 							</div>
 							<div>
 								<dt class="text-sm text-gray-500 dark:text-gray-400">Kredittgrense</dt>
-								<dd class="text-lg font-semibold text-gray-900 dark:text-white">{card.creditLimit}</dd>
+								<dd class="text-lg font-semibold text-gray-900 dark:text-white">
+									{card.creditLimit}
+								</dd>
 							</div>
 							<div>
 								<dt class="text-sm text-gray-500 dark:text-gray-400">Nominell rente</dt>
-								<dd class="text-lg font-semibold text-gray-900 dark:text-white">{card.interestRate}%</dd>
+								<dd class="text-lg font-semibold text-gray-900 dark:text-white">
+									{card.interestRate}%
+								</dd>
 							</div>
 						</div>
 						<div class="space-y-6">
@@ -228,9 +234,7 @@
 	<!-- Insurance Section -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32" id="forsikring">
 		<div class="mx-auto max-w-2xl lg:max-w-none">
-			<h2 class="section-title mb-6">
-				Omfattende reiseforsikring
-			</h2>
+			<h2 class="section-title mb-6">Omfattende reiseforsikring</h2>
 			<p class="text-lg text-gray-600 dark:text-gray-300 mb-12">
 				Alle våre kredittkort kommer med reiseforsikring. Platinum og Gold inkluderer også
 				familiedekning.
@@ -246,7 +250,9 @@
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{insurance.title}</h3>
 						</div>
 						<p class="text-gray-600 dark:text-gray-300 mb-4">{insurance.description}</p>
-						<p class="text-sm font-medium text-gray-900 dark:text-white">Dekning: {insurance.coverage}</p>
+						<p class="text-sm font-medium text-gray-900 dark:text-white">
+							Dekning: {insurance.coverage}
+						</p>
 					</div>
 				{/each}
 			</div>
@@ -257,12 +263,12 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32 pb-24">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Effektiv rente 23,9 % (v/15.000,- o/12 mnd. Totalt 16.789,-). Alle priser og betingelser er per
-				01.01.2024 og kan endres. Kredittgiver forbeholder seg retten til å avslå søknader.
+				Effektiv rente 23,9 % (v/15.000,- o/12 mnd. Totalt 16.789,-). Alle priser og betingelser er
+				per 01.01.2024 og kan endres. Kredittgiver forbeholder seg retten til å avslå søknader.
 				Reiseforsikringen gjelder når minimum 50% av reisens kostnader er betalt med kortet.
-				Familiedekning gjelder for Platinum og Gold kort. For fullstendige vilkår, se vår prisliste og
-				kortavtale.
+				Familiedekning gjelder for Platinum og Gold kort. For fullstendige vilkår, se vår prisliste
+				og kortavtale.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

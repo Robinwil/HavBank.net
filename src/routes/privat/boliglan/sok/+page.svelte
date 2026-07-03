@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
@@ -6,17 +6,13 @@
 
 	let submitting = $state(false);
 
-	function parseNumberParam(value, fallback) {
+	function parseNumberParam(value: string | null, fallback: number) {
 		const n = Number(value);
 		return Number.isFinite(n) && n > 0 ? n : fallback;
 	}
 
-	let initialLoanAmount = $derived(
-		parseNumberParam($page.url.searchParams.get('belop'), 3400000)
-	);
-	let initialLoanTerm = $derived(
-		parseNumberParam($page.url.searchParams.get('lopetid'), 25)
-	);
+	let initialLoanAmount = $derived(parseNumberParam($page.url.searchParams.get('belop'), 3400000));
+	let initialLoanTerm = $derived(parseNumberParam($page.url.searchParams.get('lopetid'), 25));
 
 	let formData = $state({
 		purpose: 'kjop',
@@ -41,7 +37,7 @@
 		formData.loanTerm = initialLoanTerm;
 	});
 
-	function formatCurrency(amount) {
+	function formatCurrency(amount: number) {
 		if (!Number.isFinite(amount)) return 'kr 0';
 		return new Intl.NumberFormat('nb-NO', {
 			style: 'currency',
@@ -51,7 +47,7 @@
 		}).format(amount);
 	}
 
-	function handleSubmit(event) {
+	function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		if (!formData.acceptTerms || !formData.acceptCredit) return;
 		submitting = true;
@@ -76,7 +72,8 @@
 		{
 			step: '3',
 			title: 'Foreløpig svar',
-			description: 'Du får foreløpig svar på e-post innen 2 virkedager, med finansieringsbevis hvis godkjent.'
+			description:
+				'Du får foreløpig svar på e-post innen 2 virkedager, med finansieringsbevis hvis godkjent.'
 		},
 		{
 			step: '4',
@@ -175,9 +172,7 @@
 							</p>
 						</div>
 						<div>
-							<label
-								for="equity"
-								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label for="equity" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Egenkapital</label
 							>
 							<div class="mt-2">
@@ -219,8 +214,7 @@
 						<div>
 							<label
 								for="housingType"
-								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-								>Boligtype</label
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300">Boligtype</label
 							>
 							<select
 								id="housingType"
@@ -324,8 +318,7 @@
 							<div>
 								<label
 									for="firstName"
-									class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-									>Fornavn</label
+									class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fornavn</label
 								>
 								<input
 									id="firstName"
@@ -352,8 +345,7 @@
 							<div>
 								<label
 									for="email"
-									class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-									>E-post</label
+									class="block text-sm font-medium text-gray-700 dark:text-gray-300">E-post</label
 								>
 								<input
 									id="email"
@@ -366,8 +358,7 @@
 							<div>
 								<label
 									for="phone"
-									class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-									>Mobil</label
+									class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mobil</label
 								>
 								<input
 									id="phone"
@@ -413,7 +404,9 @@
 						</label>
 					</div>
 
-					<div class="rounded-md border border-blue-200 dark:border-blue-900/50 bg-blue-50 dark:bg-blue-900/10 p-4">
+					<div
+						class="rounded-md border border-blue-200 dark:border-blue-900/50 bg-blue-50 dark:bg-blue-900/10 p-4"
+					>
 						<div class="flex gap-x-3">
 							{#if browser && Icon}
 								<Icon
@@ -445,7 +438,9 @@
 			<aside class="lg:pl-4">
 				<div class="sticky top-8 space-y-6">
 					<div class="card-elevated">
-						<h2 class="text-base font-semibold text-gray-900 dark:text-white">Hva skjer etter jeg sender?</h2>
+						<h2 class="text-base font-semibold text-gray-900 dark:text-white">
+							Hva skjer etter jeg sender?
+						</h2>
 						<ol class="mt-6 space-y-5">
 							{#each nextSteps as s}
 								<li class="flex gap-x-3">
@@ -512,8 +507,8 @@
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8 space-y-3">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				<strong class="text-gray-900 dark:text-white">Effektiv rente-eksempel:</strong>
-				Effektiv rente 4,27 % ved nominell rente 4,15 %, lån kr 2 000 000, nedbetalingstid 25 år.
-				Kostnad kr 1 282 000. Totalt å betale kr 3 282 000.
+				Effektiv rente 4,27 % ved nominell rente 4,15 %, lån kr 2 000 000, nedbetalingstid 25 år. Kostnad
+				kr 1 282 000. Totalt å betale kr 3 282 000.
 			</p>
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				HavBank AS (org.nr. 924 850 771) er under tilsyn av Finanstilsynet. Søknader behandles i

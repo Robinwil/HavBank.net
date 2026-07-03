@@ -1,14 +1,12 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-    import Icon from '@iconify/svelte';
-	let IconifyIcon = Icon;
+	import Icon from '@iconify/svelte';
 
-
-	function handleNavClick(e) {
-		const href = e.currentTarget.getAttribute('href');
+	function handleNavClick(e: MouseEvent & { currentTarget: HTMLAnchorElement }) {
+		const href = e.currentTarget.getAttribute('href')!;
 		if (href.startsWith('#')) {
 			e.preventDefault();
-			const element = document.querySelector(href);
+			const element = document.querySelector<HTMLElement>(href);
 			if (element) {
 				window.scrollTo({
 					top: element.offsetTop - 100, // Offset for header
@@ -124,9 +122,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-16 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Banktjenester for alle
-				</h1>
+				<h1 class="page-title">Banktjenester for alle</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					HavBank jobber kontinuerlig for å gjøre våre tjenester tilgjengelige for alle. Vi følger
 					prinsippene for universell utforming og tilbyr løsninger som er tilpasset ulike behov.
@@ -146,7 +142,11 @@
 					aria-label="Gå til {section.title}"
 				>
 					{#if browser && Icon}
-						<Icon icon={section.icon} class="mr-2 h-5 w-5 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+						<Icon
+							icon={section.icon}
+							class="mr-2 h-5 w-5 text-blue-600 dark:text-blue-400"
+							aria-hidden="true"
+						/>
 					{/if}
 					{section.title}
 				</a>
@@ -158,20 +158,16 @@
 	<main class="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
 		<div class="space-y-16">
 			{#each sections as section}
-				<section 
-					id={section.id} 
-					class="scroll-mt-16"
-					aria-labelledby={`heading-${section.id}`}
-				>
+				<section id={section.id} class="scroll-mt-16" aria-labelledby={`heading-${section.id}`}>
 					<div class="flex items-center gap-x-3 mb-6">
 						{#if browser && Icon}
-							<Icon 
-								icon={section.icon} 
-								class="h-8 w-8 text-blue-600 dark:text-blue-400" 
+							<Icon
+								icon={section.icon}
+								class="h-8 w-8 text-blue-600 dark:text-blue-400"
 								aria-hidden="true"
 							/>
 						{/if}
-						<h2 
+						<h2
 							id={`heading-${section.id}`}
 							class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
 						>
@@ -179,6 +175,8 @@
 						</h2>
 					</div>
 					<div class="prose prose-lg dark:prose-invert max-w-none">
+						<!-- `content` is static text authored in this file above, not user input. -->
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						{@html section.content.replace(/\n/g, '<br>')}
 					</div>
 				</section>
@@ -192,8 +190,8 @@
 			<div class="mx-auto max-w-2xl text-center">
 				<h2 class="text-3xl font-bold tracking-tight text-white">Trenger du hjelp?</h2>
 				<p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-					Vi er her for å hjelpe deg med å finne de beste løsningene for dine behov. Kontakt oss for en
-					uforpliktende samtale.
+					Vi er her for å hjelpe deg med å finne de beste løsningene for dine behov. Kontakt oss for
+					en uforpliktende samtale.
 				</p>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
 					<a
@@ -267,4 +265,4 @@
 	:global(.dark .prose ul li::before) {
 		color: theme(colors.blue.400);
 	}
-</style> 
+</style>

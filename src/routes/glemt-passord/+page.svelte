@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
@@ -9,7 +9,7 @@
 		showDemoNotice({ detail: 'Gjenoppretting med BankID er ikke koblet til noe reelt system.' });
 	}
 
-	function handleEmailSubmit(event) {
+	function handleEmailSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Ingen e-post blir sendt.' });
 	}
@@ -29,10 +29,7 @@
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="text-center">
 			{#if browser && Icon}
-				<Icon
-					icon="heroicons:key"
-					class="mx-auto h-12 w-12 text-blue-900 dark:text-blue-100"
-				/>
+				<Icon icon="heroicons:key" class="mx-auto h-12 w-12 text-blue-900 dark:text-blue-100" />
 			{/if}
 			<h1 class="mt-6 section-title text-center">Glemt passord eller brukernavn?</h1>
 			<p class="mt-3 text-base text-gray-600 dark:text-gray-300">
@@ -57,9 +54,9 @@
 						</h2>
 						<div class="mt-2 text-sm text-blue-700 dark:text-blue-100">
 							<p>
-								Del aldri passord, PIN eller BankID-koder. HavBank spør aldri om dette på
-								e-post, SMS eller telefon. Vi ringer deg aldri for å be deg godkjenne innlogging
-								eller overføringer.
+								Del aldri passord, PIN eller BankID-koder. HavBank spør aldri om dette på e-post,
+								SMS eller telefon. Vi ringer deg aldri for å be deg godkjenne innlogging eller
+								overføringer.
 							</p>
 						</div>
 					</div>
@@ -94,9 +91,7 @@
 					<span>Har du ikke BankID?</span>
 					{#if browser && Icon}
 						<Icon
-							icon={showBankIDAlternative
-								? 'heroicons:chevron-up'
-								: 'heroicons:chevron-down'}
+							icon={showBankIDAlternative ? 'heroicons:chevron-up' : 'heroicons:chevron-down'}
 							class="h-5 w-5"
 						/>
 					{/if}
@@ -107,9 +102,7 @@
 						id="bankid-alternative"
 						class="mt-4 rounded-md border border-gray-200 dark:border-gray-700 p-4 space-y-3 text-sm text-gray-700 dark:text-gray-300"
 					>
-						<p>
-							Du trenger BankID for å gjenopprette tilgang på egen hånd. Slik bestiller du:
-						</p>
+						<p>Du trenger BankID for å gjenopprette tilgang på egen hånd. Slik bestiller du:</p>
 						<ol class="list-decimal pl-5 space-y-2">
 							<li>
 								Logg inn på BankID-portalen til en bank der du allerede er kunde, eller besøk
@@ -121,8 +114,8 @@
 								>.
 							</li>
 							<li>
-								Bestill BankID på mobil eller kodebrikke. Bekreftelse sendes som anbefalt post
-								via Posten.
+								Bestill BankID på mobil eller kodebrikke. Bekreftelse sendes som anbefalt post via
+								Posten.
 							</li>
 							<li>Aktiver BankID og kom tilbake hit for å gjenopprette passordet.</li>
 						</ol>
@@ -154,10 +147,7 @@
 
 				<form class="mt-6 space-y-4" onsubmit={handleEmailSubmit}>
 					<div>
-						<label
-							for="email"
-							class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-						>
+						<label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
 							E-postadresse registrert hos HavBank
 						</label>
 						<div class="mt-1">
@@ -175,15 +165,17 @@
 						Send meg brukernavn
 					</button>
 					<p class="text-xs text-gray-500 dark:text-gray-400">
-						Finnes e-posten i systemet, får du en melding innen få minutter. Tilgang settes
-						aldri tilbake uten signering med BankID.
+						Finnes e-posten i systemet, får du en melding innen få minutter. Tilgang settes aldri
+						tilbake uten signering med BankID.
 					</p>
 				</form>
 			</div>
 		</div>
 
 		<!-- Emergency / contact strip -->
-		<div class="mt-6 rounded-md border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-900/10 p-4">
+		<div
+			class="mt-6 rounded-md border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-900/10 p-4"
+		>
 			<div class="flex">
 				<div class="flex-shrink-0">
 					{#if browser && Icon}
@@ -199,7 +191,8 @@
 						Ring sperretelefonen på
 						<a
 							href="tel:+4700000000"
-							class="font-semibold underline decoration-dotted underline-offset-2">+47 00 00 00 00</a
+							class="font-semibold underline decoration-dotted underline-offset-2"
+							>+47 00 00 00 00</a
 						>
 						— døgnåpent. Les mer på
 						<a

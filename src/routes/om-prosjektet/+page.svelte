@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { openSecurityContact } from '$lib/stores/securityContact.svelte.js';
@@ -151,8 +151,16 @@
 			sameAs: FINANSTILSYNET_URL
 		},
 		mentions: [
-			{ '@type': 'GovernmentOrganization', name: 'Finanstilsynet', url: 'https://www.finanstilsynet.no/' },
-			{ '@type': 'GovernmentOrganization', name: 'Brønnøysundregistrene', url: 'https://www.brreg.no/' },
+			{
+				'@type': 'GovernmentOrganization',
+				name: 'Finanstilsynet',
+				url: 'https://www.finanstilsynet.no/'
+			},
+			{
+				'@type': 'GovernmentOrganization',
+				name: 'Brønnøysundregistrene',
+				url: 'https://www.brreg.no/'
+			},
 			{ '@type': 'Organization', name: 'BankID Norge', url: 'https://www.bankid.no/' }
 		],
 		citation: [
@@ -192,7 +200,7 @@
 	};
 
 	/** Escape `<`/`>` and `&` so the serialised JSON can't break out of the script tag. */
-	function toJsonLd(data) {
+	function toJsonLd(data: unknown) {
 		return JSON.stringify(data)
 			.replace(/</g, '\\u003c')
 			.replace(/>/g, '\\u003e')
@@ -279,17 +287,12 @@
 		<p class="page-lead">
 			Finanstilsynet publiserte en offentlig advarsel mot HavBank 6. mars 2026. Advarselen er
 			berettiget, og saken er senere omtalt av blant andre FinansWatch, BankID Norge og SkimSafe.
-			Her forklarer vi hva prosjektet faktisk er, hvorfor nettsiden eksisterer, og hvordan du
-			selv kan verifisere at det ikke foregår noen reell bankvirksomhet her.
+			Her forklarer vi hva prosjektet faktisk er, hvorfor nettsiden eksisterer, og hvordan du selv
+			kan verifisere at det ikke foregår noen reell bankvirksomhet her.
 		</p>
 
 		<div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-			<a
-				href={FINANSTILSYNET_URL}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="btn-primary"
-			>
+			<a href={FINANSTILSYNET_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
 				{#if browser && Icon}
 					<Icon
 						icon="heroicons:arrow-top-right-on-square"
@@ -306,10 +309,7 @@
 	</header>
 
 	<!-- Quick facts row -->
-	<section
-		class="mt-12 sm:mt-16 grid gap-4 sm:grid-cols-3"
-		aria-label="Kjappe fakta om HavBank"
-	>
+	<section class="mt-12 sm:mt-16 grid gap-4 sm:grid-cols-3" aria-label="Kjappe fakta om HavBank">
 		{#each facts as fact}
 			<div class="card-elevated">
 				<div class="flex items-start gap-3">
@@ -379,16 +379,18 @@
 				<p>
 					<time datetime={advarselIso}>Fredag {advarselLabel}</time> publiserte Finanstilsynet en
 					offentlig advarsel mot HavBank. Der peker tilsynet på at nettsiden tilbyr
-					<em>«lån, investeringstjenester og eiendomsmeglings­tjenester og formidler
-					forsikringstjenester ulovlig»</em>, at foretaket ikke oppgir organisasjons­nummer,
-					og at det ikke er registrert i Brønnøysundregisteret.
+					<em
+						>«lån, investeringstjenester og eiendomsmeglings­tjenester og formidler
+						forsikringstjenester ulovlig»</em
+					>, at foretaket ikke oppgir organisasjons­nummer, og at det ikke er registrert i
+					Brønnøysundregisteret.
 				</p>
 				<blockquote>
 					<p>
 						«Foretaket er ikke reelt og er med all sannsynlighet kun satt opp for å svindle
-						forbrukere. […] HavBank har ikke slik tillatelse og virksomheten drives dermed
-						ulovlig. Finanstilsynet advarer derfor mot å benytte seg av tjenester fra, eller
-						inngå avtaler med HavBank.»
+						forbrukere. […] HavBank har ikke slik tillatelse og virksomheten drives dermed ulovlig.
+						Finanstilsynet advarer derfor mot å benytte seg av tjenester fra, eller inngå avtaler
+						med HavBank.»
 					</p>
 					<footer>
 						—
@@ -400,8 +402,8 @@
 				<p class="text-sm text-gray-500 dark:text-gray-400">
 					Merk: første del av sitatet («Foretaket er ikke reelt … svindle forbrukere») er faktuelt
 					uriktig. HavBank er ikke satt opp for å svindle noen — det er et åpent hobbyprosjekt. At
-					det likevel fremstår slik for tilsynet er et tegn på at vi ikke var tydelige nok, ikke
-					at vurderingen er urimelig.
+					det likevel fremstår slik for tilsynet er et tegn på at vi ikke var tydelige nok, ikke at
+					vurderingen er urimelig.
 				</p>
 			</section>
 
@@ -435,7 +437,9 @@
 									{item.dateLabel}
 								</time>
 							</div>
-							<p class="mt-2 text-base sm:text-lg font-semibold text-gray-900 dark:text-white leading-snug">
+							<p
+								class="mt-2 text-base sm:text-lg font-semibold text-gray-900 dark:text-white leading-snug"
+							>
 								<a
 									href={item.url}
 									target="_blank"
@@ -460,24 +464,25 @@
 						type="button"
 						onclick={openSecurityContact}
 						class="underline underline-offset-4 text-blue-900 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200"
-					>tipse oss</button>.
+						>tipse oss</button
+					>.
 				</p>
 			</section>
 
 			<section id="var-respons">
 				<h2>Vår respons</h2>
 				<p>
-					<strong>Finanstilsynet har helt rett.</strong> Det er fantastisk at de fant nettsiden,
-					og det er akkurat slik et fungerende tilsyn skal opptre. En nettside som ser ut som en
-					norsk bank uten tydelig avsender <em>skal</em> utløse en advarsel — det er hele poenget
-					med føre-var-prinsippet i finansregulering.
+					<strong>Finanstilsynet har helt rett.</strong> Det er fantastisk at de fant nettsiden, og
+					det er akkurat slik et fungerende tilsyn skal opptre. En nettside som ser ut som en norsk
+					bank uten tydelig avsender <em>skal</em> utløse en advarsel — det er hele poenget med føre-var-prinsippet
+					i finansregulering.
 				</p>
 				<p>
 					Samtidig er vi oppriktig lei oss for at prosjektet har vært uklart nok til å utløse en
 					offisiell sak. Vi skulle vært tydeligere på at dette er et hobbyprosjekt — i selve
 					grensesnittet, i footeren, og i metadata. Det er nå rettet opp med en obligatorisk
-					advarsel som vises på første besøk, lenke til Finanstilsynets advarsel i bunnen av
-					siden, og denne artikkelen.
+					advarsel som vises på første besøk, lenke til Finanstilsynets advarsel i bunnen av siden,
+					og denne artikkelen.
 				</p>
 				<p>
 					Takk, Finanstilsynet, for at dere passer på. Og beklager hvis saken har brukt unødvendig
@@ -489,21 +494,28 @@
 				<h2>Teknisk bakgrunn</h2>
 				<p>
 					I skrivende stund er HavBank.net en ren frontend — bygget med
-					<a href="https://svelte.dev/docs/kit/introduction" target="_blank" rel="noopener noreferrer">SvelteKit</a>
+					<a
+						href="https://svelte.dev/docs/kit/introduction"
+						target="_blank"
+						rel="noopener noreferrer">SvelteKit</a
+					>
 					og Tailwind CSS, uten noen form for kundedata-behandling. Det betyr at:
 				</p>
 				<ul>
 					<li>Innloggingsskjemaet sender ingen forespørsler og autentiserer ingen.</li>
 					<li>«Bli kunde»-skjemaene lagrer ingen data og sender ikke e-post.</li>
-					<li>Det finnes ingen database, ingen API, og ingen tredjepartsintegrasjoner mot banktjenester.</li>
+					<li>
+						Det finnes ingen database, ingen API, og ingen tredjepartsintegrasjoner mot
+						banktjenester.
+					</li>
 					<li>Alle tall (renter, produkter, statistikk) er påfunnet for illustrasjonens skyld.</li>
 				</ul>
 				<p>
-					<strong>Vi kommer ikke til å legge til backend</strong> som håndterer personopplysninger,
-					reelle transaksjoner eller ekte innlogging. Det er ikke planen, og det er ikke målet med
-					prosjektet. Samtidig er det i teorien alltid mulig at kode endres — og nettopp derfor er
-					Finanstilsynets advarsel en helt rimelig føre-var-handling, uansett hvilken tilstand
-					koden befinner seg i til enhver tid.
+					<strong>Vi kommer ikke til å legge til backend</strong> som håndterer personopplysninger, reelle
+					transaksjoner eller ekte innlogging. Det er ikke planen, og det er ikke målet med prosjektet.
+					Samtidig er det i teorien alltid mulig at kode endres — og nettopp derfor er Finanstilsynets
+					advarsel en helt rimelig føre-var-handling, uansett hvilken tilstand koden befinner seg i til
+					enhver tid.
 				</p>
 			</section>
 
@@ -516,12 +528,18 @@
 				<ol>
 					<li>
 						<strong>Brønnøysundregistrene:</strong> Søk etter «HavBank» i
-						<a href="https://www.brreg.no/" target="_blank" rel="noopener noreferrer">Brønnøysundregistrene</a>
+						<a href="https://www.brreg.no/" target="_blank" rel="noopener noreferrer"
+							>Brønnøysundregistrene</a
+						>
 						— det finnes ingen oppføring.
 					</li>
 					<li>
 						<strong>Finanstilsynets konsesjonsregister:</strong> HavBank finnes ikke i
-						<a href="https://www.finanstilsynet.no/konsesjon/" target="_blank" rel="noopener noreferrer">konsesjonsregisteret</a>
+						<a
+							href="https://www.finanstilsynet.no/konsesjon/"
+							target="_blank"
+							rel="noopener noreferrer">konsesjonsregisteret</a
+						>
 						for banker.
 					</li>
 					<li>
@@ -531,12 +549,12 @@
 						</a>.
 					</li>
 					<li>
-						<strong>Tekniske spor:</strong> Ta en titt i nettleserens utviklerverktøy (F12). Du vil
-						se at ingen fetch-forespørsler går ut når du prøver å logge inn eller sende et skjema.
+						<strong>Tekniske spor:</strong> Ta en titt i nettleserens utviklerverktøy (F12). Du vil se
+						at ingen fetch-forespørsler går ut når du prøver å logge inn eller sende et skjema.
 					</li>
 					<li>
-						<strong>Kildekoden:</strong> Prosjektet er åpent — du kan lese all kode og bekrefte at
-						det ikke finnes noen serverside-logikk for banktjenester.
+						<strong>Kildekoden:</strong> Prosjektet er åpent — du kan lese all kode og bekrefte at det
+						ikke finnes noen serverside-logikk for banktjenester.
 					</li>
 				</ol>
 				<p>
@@ -548,9 +566,7 @@
 
 			<section id="veien-videre">
 				<h2>Veien videre</h2>
-				<p>
-					Konkrete grep som er gjort eller planlegges:
-				</p>
+				<p>Konkrete grep som er gjort eller planlegges:</p>
 				<ul>
 					<li>Obligatorisk advarsel som må bekreftes ved første besøk i en ny nettlesersesjon.</li>
 					<li>Denne artikkelen, lenket fra advarselen og fra footeren på alle sider.</li>
@@ -566,12 +582,13 @@
 					>
 						Ta gjerne kontakt.
 					</button>
-					Sikkerhetsforskere og automatiserte skannere finner samme kontaktinformasjon —
-					inkludert PGP-nøkkel og fingeravtrykk — i vår maskinlesbare
+					Sikkerhetsforskere og automatiserte skannere finner samme kontaktinformasjon — inkludert PGP-nøkkel
+					og fingeravtrykk — i vår maskinlesbare
 					<a
 						href="/.well-known/security.txt"
 						class="font-mono text-blue-900 dark:text-blue-300 underline underline-offset-4 hover:text-blue-800 dark:hover:text-blue-200"
-					>/.well-known/security.txt</a>
+						>/.well-known/security.txt</a
+					>
 					etter RFC 9116.
 				</p>
 			</section>
@@ -590,20 +607,13 @@
 		class="mt-16 sm:mt-20 rounded-2xl bg-blue-900 dark:bg-blue-950 px-6 py-10 sm:px-10 sm:py-14 text-white"
 	>
 		<div class="max-w-3xl">
-			<h2 class="text-2xl sm:text-3xl font-bold">
-				Les advarselen fra Finanstilsynet direkte
-			</h2>
+			<h2 class="text-2xl sm:text-3xl font-bold">Les advarselen fra Finanstilsynet direkte</h2>
 			<p class="mt-3 text-blue-100 text-base sm:text-lg leading-relaxed">
 				Vi anbefaler at du leser Finanstilsynets originale advarsel. Den er den offisielle kilden,
 				og den forklarer hvorfor tilsynet reagerer på nettsider som denne.
 			</p>
 			<div class="mt-6">
-				<a
-					href={FINANSTILSYNET_URL}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="btn-white"
-				>
+				<a href={FINANSTILSYNET_URL} target="_blank" rel="noopener noreferrer" class="btn-white">
 					{#if browser && Icon}
 						<Icon
 							icon="heroicons:arrow-top-right-on-square"

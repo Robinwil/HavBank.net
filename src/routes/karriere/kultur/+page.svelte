@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 
@@ -6,8 +6,7 @@
 		{
 			name: 'Kundefokus',
 			icon: 'heroicons:building-office',
-			description:
-				'Vi setter kundens behov først, og tar beslutninger som tjener dem på lang sikt.'
+			description: 'Vi setter kundens behov først, og tar beslutninger som tjener dem på lang sikt.'
 		},
 		{
 			name: 'Sikkerhet',
@@ -124,7 +123,9 @@
 				testes i hverdagen, ikke bare henges i ramme.
 			</p>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:max-w-none lg:grid-cols-4">
+		<div
+			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:max-w-none lg:grid-cols-4"
+		>
 			{#each values as value}
 				<div class="card-soft">
 					<div class="icon-box">
@@ -145,11 +146,11 @@
 	<div class="page-container mb-24">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">Slik er hverdagen</h2>
-			<p class="section-lead">
-				Fleksibilitet, faglig tyngde og plass til livet utenfor jobb.
-			</p>
+			<p class="section-lead">Fleksibilitet, faglig tyngde og plass til livet utenfor jobb.</p>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3">
+		<div
+			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3"
+		>
 			{#each workdayColumns as col}
 				<div class="flex flex-col">
 					<div class="icon-box">
@@ -227,9 +228,7 @@
 	<div class="page-container mb-24">
 		<div class="rounded-2xl bg-blue-900 dark:bg-blue-800 px-6 py-12 sm:p-12">
 			<div class="mx-auto max-w-2xl text-center">
-				<h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-					Er du nysgjerrig?
-				</h2>
+				<h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Er du nysgjerrig?</h2>
 				<p class="mx-auto mt-4 max-w-xl text-base text-blue-100">
 					Se ledige stillinger, eller send oss en åpen søknad om du ikke finner den rette.
 				</p>
@@ -247,9 +246,9 @@
 	<div class="page-container">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				HavBank AS (org.nr. 924 850 771) er en IA-bedrift og arbeider aktivt mot
-				aktivitets- og redegjørelsesplikten. Tall hentet fra bærekraftsrapport 2024 og intern
-				HR-statistikk per 31. desember 2024.
+				HavBank AS (org.nr. 924 850 771) er en IA-bedrift og arbeider aktivt mot aktivitets- og
+				redegjørelsesplikten. Tall hentet fra bærekraftsrapport 2024 og intern HR-statistikk per 31.
+				desember 2024.
 			</p>
 		</div>
 	</div>

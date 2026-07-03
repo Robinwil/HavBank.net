@@ -1,11 +1,7 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
 
-	const IconifyIcon = Icon;
-
-    
 	const financingProducts = [
 		{
 			name: 'Driftskreditt',
@@ -108,7 +104,10 @@
 		name="description"
 		content="HavBank tilbyr fleksible finansieringsløsninger for bedrifter. Fra driftskreditt til langsiktige investeringslån, tilpasset din bedrifts behov."
 	/>
-	<meta name="keywords" content="bedriftslån, finansiering, driftskreditt, investeringslån, norge" />
+	<meta
+		name="keywords"
+		content="bedriftslån, finansiering, driftskreditt, investeringslån, norge"
+	/>
 	<meta property="og:title" content="Bedriftsfinansiering | HavBank" />
 	<meta
 		property="og:description"
@@ -123,12 +122,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Bedriftsfinansiering
-				</h1>
+				<h1 class="page-title">Bedriftsfinansiering</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-					Vi tilbyr skreddersydde finansieringsløsninger for norske bedrifter. Våre erfarne rådgivere
-					hjelper deg å finne den beste løsningen for din bedrift.
+					Vi tilbyr skreddersydde finansieringsløsninger for norske bedrifter. Våre erfarne
+					rådgivere hjelper deg å finne den beste løsningen for din bedrift.
 				</p>
 			</div>
 		</div>
@@ -142,10 +139,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<div class="flex items-center gap-x-4 mb-6">
 							{#if browser && Icon}
-								<Icon
-									icon={product.icon}
-									class="h-8 w-8 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={product.icon} class="h-8 w-8 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h2 class="text-xl font-semibold text-gray-900 dark:text-white">{product.name}</h2>
 						</div>
@@ -160,7 +154,7 @@
 											<Icon
 												icon="heroicons:check"
 												class="h-5 w-5 text-blue-700 dark:text-blue-400 mt-0.5"
-												/>
+											/>
 										{/if}
 										<span class="text-gray-600 dark:text-gray-300">{feature}</span>
 									</li>
@@ -177,19 +171,14 @@
 											<Icon
 												icon="heroicons:shield-check"
 												class="h-5 w-5 text-blue-700 dark:text-blue-400 mt-0.5"
-												/>
+											/>
 										{/if}
 										<span class="text-gray-600 dark:text-gray-300">{requirement}</span>
 									</li>
 								{/each}
 							</ul>
 							<div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-								<a
-									href="/kontakt"
-									class="block w-full btn-primary"
-								>
-									Søk om finansiering
-								</a>
+								<a href="/kontakt" class="block w-full btn-primary"> Søk om finansiering </a>
 							</div>
 						</div>
 					</div>
@@ -213,10 +202,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={step.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={step.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<div class="flex items-center">
 								<span
@@ -238,15 +224,14 @@
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">{riskDisclosure.title}</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">{riskDisclosure.description}</p>
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				{riskDisclosure.description}
+			</p>
 			<ul class="mt-8 space-y-4">
 				{#each riskDisclosure.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:exclamation-triangle"
-								class="h-6 w-6 text-yellow-500"
-							/>
+							<Icon icon="heroicons:exclamation-triangle" class="h-6 w-6 text-yellow-500" />
 						{/if}
 						<span class="text-gray-600 dark:text-gray-300">{point}</span>
 					</li>
@@ -258,7 +243,9 @@
 	<!-- Legal Information -->
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{legalInfo.title}</h2>
+			<h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+				{legalInfo.title}
+			</h2>
 			<ul class="mt-8 space-y-4">
 				{#each legalInfo.points as point}
 					<li class="flex gap-x-3">
@@ -280,10 +267,10 @@
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				Alle finansieringsløsninger tilbys av HavBank AS (org.nr. 924 850 771), under tilsyn av
-				Finanstilsynet. Lån og kreditter forutsetter kredittgodkjenning og tilfredsstillende sikkerhet.
-				Priser og betingelser er veiledende og kan endres i henhold til markedsforhold og bankens
-				retningslinjer. For fullstendige vilkår, se vår prisliste og låneavtale.
+				Finanstilsynet. Lån og kreditter forutsetter kredittgodkjenning og tilfredsstillende
+				sikkerhet. Priser og betingelser er veiledende og kan endres i henhold til markedsforhold og
+				bankens retningslinjer. For fullstendige vilkår, se vår prisliste og låneavtale.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

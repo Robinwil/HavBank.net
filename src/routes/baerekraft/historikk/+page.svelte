@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
-	function handleDemoDownload(event) {
+	function handleDemoDownload(event: MouseEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Bærekraftsrapporten er ikke tilgjengelig for nedlasting.' });
 	}
@@ -131,9 +131,9 @@
 				<p class="section-eyebrow">Rapportarkiv</p>
 				<h1 class="page-title mt-2">Bærekraftsrapporter — historikk</h1>
 				<p class="page-lead">
-					HavBank rapporterer i henhold til GRI Standards, TCFD og EU-taksonomien.
-					Klimaregnskapet er utarbeidet etter GHG-protokollen og verifisert med begrenset
-					sikkerhet av KPMG AS siden 2022.
+					HavBank rapporterer i henhold til GRI Standards, TCFD og EU-taksonomien. Klimaregnskapet
+					er utarbeidet etter GHG-protokollen og verifisert med begrenset sikkerhet av KPMG AS siden
+					2022.
 				</p>
 				<div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
 					<a href="/baerekraft" class="btn-secondary">
@@ -152,8 +152,8 @@
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">Last ned rapportene</h2>
 			<p class="section-lead">
-				Alle rapporter publiseres både på norsk bokmål og engelsk. PDF-versjonene er
-				tilgjengelig i et format som er tilrettelagt for skjermlesere (WCAG 2.1 AA).
+				Alle rapporter publiseres både på norsk bokmål og engelsk. PDF-versjonene er tilgjengelig i
+				et format som er tilrettelagt for skjermlesere (WCAG 2.1 AA).
 			</p>
 		</div>
 		<div class="mx-auto mt-12 max-w-4xl space-y-4">
@@ -163,10 +163,7 @@
 						<div class="flex gap-x-4">
 							<div class="icon-box">
 								{#if browser && Icon}
-									<Icon
-										icon="heroicons:document-chart-bar"
-										class="h-6 w-6 text-white"
-									/>
+									<Icon icon="heroicons:document-chart-bar" class="h-6 w-6 text-white" />
 								{/if}
 							</div>
 							<div>
@@ -250,7 +247,9 @@
 									<div class="font-medium">{metric.label}</div>
 									<div class="mt-1 text-xs text-gray-500 dark:text-gray-400">{metric.note}</div>
 								</td>
-								<td class="px-4 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+								<td
+									class="px-4 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white"
+								>
 									{metric.values[2024]}
 								</td>
 								<td class="px-4 py-4 text-right text-sm text-gray-700 dark:text-gray-300">
@@ -282,10 +281,7 @@
 					<li class="flex gap-x-4">
 						<div class="icon-box shrink-0">
 							{#if browser && Icon}
-								<Icon
-									icon="heroicons:adjustments-horizontal"
-									class="h-6 w-6 text-white"
-								/>
+								<Icon icon="heroicons:adjustments-horizontal" class="h-6 w-6 text-white" />
 							{/if}
 						</div>
 						<div>
@@ -302,9 +298,7 @@
 	<div class="page-container mb-24">
 		<div class="rounded-2xl bg-blue-900 dark:bg-blue-800 px-6 py-16 sm:p-16">
 			<div class="mx-auto max-w-2xl text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-white">
-					Hold deg oppdatert
-				</h2>
+				<h2 class="text-3xl font-bold tracking-tight text-white">Hold deg oppdatert</h2>
 				<p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-blue-100">
 					Få en e-post når neste bærekraftsrapport publiseres, eller snakk med vår avdeling for
 					bærekraftig finansiering.
@@ -324,9 +318,9 @@
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
 				Bærekraftsrapportene er utarbeidet av HavBank AS (org.nr. 924 850 771). Klimadata er
-				verifisert med begrenset sikkerhet av KPMG AS siden 2022. Tallene oppgis i henhold til
-				GRI Standards, TCFD-anbefalingene og EU-taksonomien. Historiske tall kan være justert
-				som følge av metodeendringer — se noteapparatet i den enkelte rapport.
+				verifisert med begrenset sikkerhet av KPMG AS siden 2022. Tallene oppgis i henhold til GRI
+				Standards, TCFD-anbefalingene og EU-taksonomien. Historiske tall kan være justert som følge
+				av metodeendringer — se noteapparatet i den enkelte rapport.
 			</p>
 		</div>
 	</div>

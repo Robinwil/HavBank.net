@@ -1,10 +1,7 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
-
-	const IconifyIcon = Icon;
-
 
 	// Form state
 	let formData = $state({
@@ -24,15 +21,7 @@
 	let submitError = $state('');
 	let submitSuccess = $state(false);
 
-	const timeSlots = [
-		'09:00',
-		'10:00',
-		'11:00',
-		'12:00',
-		'13:00',
-		'14:00',
-		'15:00'
-	];
+	const timeSlots = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
 
 	const topics = [
 		{
@@ -114,7 +103,7 @@
 	$effect(() => {
 		if (browser) {
 			const today = new Date().toISOString().split('T')[0];
-			const dateInput = document.getElementById('preferredDate');
+			const dateInput = document.getElementById('preferredDate') as HTMLInputElement | null;
 			if (dateInput) {
 				dateInput.min = today;
 			}
@@ -128,7 +117,10 @@
 		name="description"
 		content="Book et møte med våre rådgivere. Vi hjelper deg med lån, sparing, forsikring og andre banktjenester."
 	/>
-	<meta name="keywords" content="rådgivning, bank, møtebooking, kundemøte, finansrådgivning, norge" />
+	<meta
+		name="keywords"
+		content="rådgivning, bank, møtebooking, kundemøte, finansrådgivning, norge"
+	/>
 	<meta property="og:title" content="Bestill time | HavBank" />
 	<meta
 		property="og:description"
@@ -143,12 +135,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Book møte med rådgiver
-				</h1>
+				<h1 class="page-title">Book møte med rådgiver</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-					Våre rådgivere er her for å hjelpe deg med din økonomi. Velg tidspunkt som passer deg best,
-					så tar vi kontakt for å bekrefte møtet.
+					Våre rådgivere er her for å hjelpe deg med din økonomi. Velg tidspunkt som passer deg
+					best, så tar vi kontakt for å bekrefte møtet.
 				</p>
 			</div>
 		</div>
@@ -157,9 +147,7 @@
 	<!-- Meeting Types Section -->
 	<div class="page-container mb-24">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Velg møteform som passer deg
-			</h2>
+			<h2 class="section-title">Velg møteform som passer deg</h2>
 		</div>
 		<div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
 			<div class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
@@ -186,9 +174,7 @@
 	<div class="page-container mb-24">
 		<div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2">
 			<div>
-				<h2 class="section-title mb-6">
-					Book et møte
-				</h2>
+				<h2 class="section-title mb-6">Book et møte</h2>
 				<p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
 					Velg tidspunkt som passer deg, så tar vi kontakt for å bekrefte møtet og avtale møteform.
 				</p>
@@ -235,7 +221,9 @@
 								{/if}
 							</div>
 							<div class="ml-3">
-								<h3 class="text-sm font-medium text-red-800 dark:text-red-300">Det oppstod en feil</h3>
+								<h3 class="text-sm font-medium text-red-800 dark:text-red-300">
+									Det oppstod en feil
+								</h3>
 								<div class="mt-2 text-sm text-red-700 dark:text-red-400">
 									<p>{submitError}</p>
 								</div>
@@ -244,10 +232,19 @@
 					</div>
 				{/if}
 
-				<form onsubmit={handleSubmit} class="space-y-6" preventdefault>
+				<!-- pre-existing bug (flagged, not fixed — see conversion report): `preventdefault` below
+					is a Svelte 3/4 event-modifier leftover with no effect in Svelte 5 (modifiers were
+					removed); handleSubmit never calls event.preventDefault() either, so this form still
+					does a full-page submit today. It's spread in (rather than written as a plain
+					attribute) only so strict mode doesn't reject the unrecognized attribute name — the
+					rendered DOM attribute is unchanged either way. -->
+				<form onsubmit={handleSubmit} class="space-y-6" {...{ preventdefault: true }}>
 					<div class="space-y-6 sm:space-y-5">
 						<div>
-							<label for="customer-type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+							<label
+								for="customer-type"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							>
 								Kundetype
 							</label>
 							<div class="mt-2 space-x-4">
@@ -338,7 +335,9 @@
 						</div>
 
 						<div>
-							<label for="preferredDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label
+								for="preferredDate"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Ønsket dato</label
 							>
 							<div class="mt-1">
@@ -353,7 +352,9 @@
 						</div>
 
 						<div>
-							<label for="preferredTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label
+								for="preferredTime"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Ønsket tidspunkt</label
 							>
 							<div class="mt-1">
@@ -372,7 +373,9 @@
 						</div>
 
 						<div>
-							<label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+							<label
+								for="message"
+								class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Melding (valgfritt)</label
 							>
 							<div class="mt-1">
@@ -396,8 +399,8 @@
 							</div>
 							<div class="ml-3 text-sm leading-6">
 								<label for="acceptTerms" class="text-gray-700 dark:text-gray-300"
-									>Jeg godtar at HavBank kan kontakte meg og behandle mine personopplysninger i henhold
-									til <a href="/personvern" class="text-blue-600 hover:text-blue-500"
+									>Jeg godtar at HavBank kan kontakte meg og behandle mine personopplysninger i
+									henhold til <a href="/personvern" class="text-blue-600 hover:text-blue-500"
 										>personvernerklæringen</a
 									>.</label
 								>
@@ -516,10 +519,10 @@
 </div>
 
 <style lang="postcss">
-	input[type="text"],
-	input[type="email"],
-	input[type="tel"],
-	input[type="date"],
+	input[type='text'],
+	input[type='email'],
+	input[type='tel'],
+	input[type='date'],
 	select,
 	textarea {
 		@apply px-4 py-2;
@@ -530,12 +533,12 @@
 	}
 
 	/* Custom radio button styles */
-	input[type="radio"] {
-		@apply h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500;
+	input[type='radio'] {
+		@apply h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500;
 	}
 
 	/* Custom checkbox styles */
-	input[type="checkbox"] {
+	input[type='checkbox'] {
 		@apply rounded border-gray-300 text-blue-600 focus:ring-blue-500;
 	}
-</style> 
+</style>

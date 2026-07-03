@@ -1,11 +1,10 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { tick } from 'svelte';
 	import Icon from '@iconify/svelte';
 	import { demoNoticeState, hideDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
-	/** @type {HTMLButtonElement | undefined} */
-	let dismissButton = $state();
+	let dismissButton = $state<HTMLButtonElement>();
 
 	$effect(() => {
 		if (!browser) return;
@@ -20,7 +19,7 @@
 		}
 	});
 
-	function handleKeydown(event) {
+	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			event.preventDefault();
 			hideDemoNotice();
@@ -49,7 +48,9 @@
 		<div
 			class="pointer-events-auto w-full max-w-md rounded-xl bg-white dark:bg-gray-900 shadow-2xl ring-1 ring-red-900/20 dark:ring-red-500/30 overflow-hidden"
 		>
-			<div class="flex items-start gap-3 px-5 sm:px-6 py-4 sm:py-5 bg-red-700 dark:bg-red-800 text-white">
+			<div
+				class="flex items-start gap-3 px-5 sm:px-6 py-4 sm:py-5 bg-red-700 dark:bg-red-800 text-white"
+			>
 				{#if browser && Icon}
 					<Icon
 						icon="heroicons:exclamation-triangle"
@@ -61,10 +62,7 @@
 					<p class="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-widest text-red-100">
 						Fiktiv nettside
 					</p>
-					<h2
-						id="demo-notice-title"
-						class="mt-0.5 text-base sm:text-lg font-bold leading-snug"
-					>
+					<h2 id="demo-notice-title" class="mt-0.5 text-base sm:text-lg font-bold leading-snug">
 						Denne handlingen er ikke mulig her
 					</h2>
 				</div>
@@ -101,7 +99,9 @@
 				</p>
 			</div>
 
-			<div class="px-5 sm:px-6 py-3 bg-gray-50 dark:bg-gray-800/60 border-t border-gray-200 dark:border-gray-800 flex justify-end">
+			<div
+				class="px-5 sm:px-6 py-3 bg-gray-50 dark:bg-gray-800/60 border-t border-gray-200 dark:border-gray-800 flex justify-end"
+			>
 				<button
 					bind:this={dismissButton}
 					type="button"

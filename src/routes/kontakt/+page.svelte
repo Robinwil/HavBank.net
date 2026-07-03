@@ -1,11 +1,7 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
-
-	const IconifyIcon = Icon;
-
-
 
 	const contactMethods = [
 		{
@@ -67,7 +63,7 @@
 
 	async function handleSubmit() {
 		isSubmitting = true;
-		await new Promise(resolve => setTimeout(resolve, 400));
+		await new Promise((resolve) => setTimeout(resolve, 400));
 		name = '';
 		email = '';
 		phone = '';
@@ -84,7 +80,10 @@
 		name="description"
 		content="Kontakt HavBank på telefon, chat eller e-post. Vi er tilgjengelige for å hjelpe deg med dine bankbehov."
 	/>
-	<meta name="keywords" content="kontakt, kundeservice, bank, åpningstider, telefon, chat, e-post, norge" />
+	<meta
+		name="keywords"
+		content="kontakt, kundeservice, bank, åpningstider, telefon, chat, e-post, norge"
+	/>
 	<meta property="og:title" content="Kontakt oss | HavBank" />
 	<meta
 		property="og:description"
@@ -99,9 +98,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="page-container py-24 sm:py-32">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Vi er her for å hjelpe
-				</h1>
+				<h1 class="page-title">Vi er her for å hjelpe</h1>
 				<p class="page-lead">
 					Trenger du hjelp? Vi er tilgjengelige døgnet rundt for å hjelpe deg med dine bankbehov.
 					Velg den kontaktmetoden som passer deg best.
@@ -139,8 +136,8 @@
 			<div>
 				<h2 class="section-title mb-6">Send oss en melding</h2>
 				<p class="text-gray-600 dark:text-gray-300 mb-8">
-					Fyll ut skjemaet under, så vil vi kontakte deg så snart som mulig. Vi svarer normalt
-					innen 24 timer på hverdager.
+					Fyll ut skjemaet under, så vil vi kontakte deg så snart som mulig. Vi svarer normalt innen
+					24 timer på hverdager.
 				</p>
 
 				<form onsubmit={handleSubmit} class="space-y-6">
@@ -255,8 +252,8 @@
 						Når er kundeservice åpent?
 					</h3>
 					<p class="text-gray-600 dark:text-gray-300">
-						Vår kundeservice er tilgjengelig på telefon hverdager fra 07:00 til 23:00. Chat og e-post
-						besvares innen 24 timer på hverdager.
+						Vår kundeservice er tilgjengelig på telefon hverdager fra 07:00 til 23:00. Chat og
+						e-post besvares innen 24 timer på hverdager.
 					</p>
 				</div>
 
@@ -275,8 +272,8 @@
 						Hvordan bestiller jeg ny BankID?
 					</h3>
 					<p class="text-gray-600 dark:text-gray-300">
-						Du kan bestille ny BankID ved å logge inn i nettbanken eller ved å kontakte kundeservice.
-						Husk gyldig legitimasjon.
+						Du kan bestille ny BankID ved å logge inn i nettbanken eller ved å kontakte
+						kundeservice. Husk gyldig legitimasjon.
 					</p>
 				</div>
 
@@ -295,9 +292,9 @@
 </div>
 
 <style lang="postcss">
-	input[type="text"],
-	input[type="email"],
-	input[type="tel"],
+	input[type='text'],
+	input[type='email'],
+	input[type='tel'],
 	select,
 	textarea {
 		@apply px-4 py-2;
@@ -306,4 +303,4 @@
 	textarea {
 		@apply resize-none;
 	}
-</style> 
+</style>

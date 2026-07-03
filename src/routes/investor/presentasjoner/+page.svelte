@@ -1,14 +1,14 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
 
-	function handleDemoDownload(event) {
+	function handleDemoDownload(event: MouseEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Presentasjonen er ikke tilgjengelig for nedlasting.' });
 	}
 
-	function handleRegister(event) {
+	function handleRegister(event: MouseEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Påmelding er ikke mulig — ingen data lagres.' });
 	}
@@ -103,8 +103,8 @@
 				<p class="section-eyebrow">Investor Relations</p>
 				<h1 class="page-title mt-2">Presentasjoner og webcast</h1>
 				<p class="page-lead">
-					Kvartalspresentasjoner, Capital Markets Day og generalforsamling — alle tilgjengelig
-					som live webcast og i ettertid som opptak og PDF.
+					Kvartalspresentasjoner, Capital Markets Day og generalforsamling — alle tilgjengelig som
+					live webcast og i ettertid som opptak og PDF.
 				</p>
 				<div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
 					<a href="/investor" class="btn-secondary">
@@ -134,10 +134,7 @@
 						<div class="flex gap-x-4">
 							<div class="icon-box">
 								{#if browser && Icon}
-									<Icon
-										icon="heroicons:calendar-days"
-										class="h-6 w-6 text-white"
-									/>
+									<Icon icon="heroicons:calendar-days" class="h-6 w-6 text-white" />
 								{/if}
 							</div>
 							<div>
@@ -258,7 +255,9 @@
 				<div class="card-soft">
 					<p class="text-base font-semibold text-gray-900 dark:text-white">{a.firm}</p>
 					<p class="mt-1 text-sm text-gray-600 dark:text-gray-300">{a.analyst}</p>
-					<p class="mt-3 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+					<p
+						class="mt-3 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400"
+					>
 						Anbefaling
 					</p>
 					<p class="mt-1 text-sm font-semibold text-blue-900 dark:text-blue-400">
@@ -279,10 +278,7 @@
 				<dl class="mt-4 space-y-2 text-sm">
 					<div class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:envelope"
-								class="h-5 w-5 text-blue-900 dark:text-blue-400"
-							/>
+							<Icon icon="heroicons:envelope" class="h-5 w-5 text-blue-900 dark:text-blue-400" />
 						{/if}
 						<a
 							href="mailto:ir@havbank.net"
@@ -292,10 +288,7 @@
 					</div>
 					<div class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:phone"
-								class="h-5 w-5 text-blue-900 dark:text-blue-400"
-							/>
+							<Icon icon="heroicons:phone" class="h-5 w-5 text-blue-900 dark:text-blue-400" />
 						{/if}
 						<a
 							href="tel:+4700000000"

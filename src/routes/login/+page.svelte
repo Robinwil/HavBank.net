@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
 	import { showDemoNotice } from '$lib/stores/demoNotice.svelte.js';
@@ -9,7 +9,7 @@
 		password: ''
 	});
 
-	function handleSubmit(event) {
+	function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		showDemoNotice({ detail: 'Innlogging er ikke mulig her.' });
 	}
@@ -21,7 +21,10 @@
 
 <svelte:head>
 	<title>Logg inn – HavBank | Sikker pålogging</title>
-	<meta name="description" content="Dette er en fiktiv innloggingsside laget for utdanningsformål. Ingen reelle banktjenester tilbys." />
+	<meta
+		name="description"
+		content="Dette er en fiktiv innloggingsside laget for utdanningsformål. Ingen reelle banktjenester tilbys."
+	/>
 	<meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
@@ -29,11 +32,12 @@
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="text-center">
 			{#if browser && Icon}
-				<Icon icon="heroicons:building-library" class="mx-auto h-12 w-12 text-blue-900 dark:text-blue-100" />
+				<Icon
+					icon="heroicons:building-library"
+					class="mx-auto h-12 w-12 text-blue-900 dark:text-blue-100"
+				/>
 			{/if}
-			<h2 class="mt-6 section-title text-center">
-				Logg inn på nettbank
-			</h2>
+			<h2 class="mt-6 section-title text-center">Logg inn på nettbank</h2>
 		</div>
 	</div>
 
@@ -50,7 +54,8 @@
 						<h3 class="text-sm font-medium text-blue-800 dark:text-blue-200">Sikker pålogging</h3>
 						<div class="mt-2 text-sm text-blue-700 dark:text-blue-100">
 							<p>
-								Vi anbefaler BankID for pålogging til nettbanken. Del aldri ditt fødselsnummer eller passord med andre.
+								Vi anbefaler BankID for pålogging til nettbanken. Del aldri ditt fødselsnummer eller
+								passord med andre.
 							</p>
 						</div>
 					</div>
@@ -81,7 +86,10 @@
 
 			<form class="space-y-6" onsubmit={handleSubmit}>
 				<div>
-					<label for="fodselsnummer" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+					<label
+						for="fodselsnummer"
+						class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+					>
 						Fødselsnummer (11 siffer)
 					</label>
 					<div class="mt-1">
@@ -143,16 +151,17 @@
 					</div>
 
 					<div class="text-sm">
-						<a href="/glemt-passord" class="font-medium text-blue-900 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+						<a
+							href="/glemt-passord"
+							class="font-medium text-blue-900 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+						>
 							Glemt passord?
 						</a>
 					</div>
 				</div>
 
 				<div>
-					<button type="submit" class="flex w-full justify-center btn-primary">
-						Logg inn
-					</button>
+					<button type="submit" class="flex w-full justify-center btn-primary"> Logg inn </button>
 				</div>
 			</form>
 
@@ -191,4 +200,4 @@
 			</div>
 		</div>
 	</div>
-</div> 
+</div>

@@ -1,9 +1,6 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Icon from '@iconify/svelte';
-
-	const IconifyIcon = Icon;
-
 
 	const pensionProducts = [
 		{
@@ -15,11 +12,7 @@
 				'Tilleggssparing 18,1% mellom 7,1G og 12G',
 				'Ansattportal for pensjonsoversikt'
 			],
-			requirements: [
-				'Minimum én ansatt',
-				'Årlig innbetaling',
-				'Rapportering til Skatteetaten'
-			],
+			requirements: ['Minimum én ansatt', 'Årlig innbetaling', 'Rapportering til Skatteetaten'],
 			icon: 'heroicons:banknotes'
 		},
 		{
@@ -31,11 +24,7 @@
 				'Livsvarig utbetaling',
 				'Fleksibel innbetaling'
 			],
-			requirements: [
-				'Minimum fem ansatte',
-				'Langsiktig forpliktelse',
-				'Årlig G-regulering'
-			],
+			requirements: ['Minimum fem ansatte', 'Langsiktig forpliktelse', 'Årlig G-regulering'],
 			icon: 'heroicons:chart-bar'
 		},
 		{
@@ -47,11 +36,7 @@
 				'Inkluderer AFP og folketrygd',
 				'Livsvarig utbetaling'
 			],
-			requirements: [
-				'Solid økonomi',
-				'Langsiktig perspektiv',
-				'Minimum ti ansatte'
-			],
+			requirements: ['Solid økonomi', 'Langsiktig perspektiv', 'Minimum ti ansatte'],
 			icon: 'heroicons:shield-check'
 		}
 	];
@@ -90,7 +75,8 @@
 	const complianceInfo = [
 		{
 			title: 'Lovpålagt tjenestepensjon (OTP)',
-			description: 'Minimum 2% innskuddspensjon for alle ansatte over 20 år med minst 20% stilling.',
+			description:
+				'Minimum 2% innskuddspensjon for alle ansatte over 20 år med minst 20% stilling.',
 			icon: 'heroicons:scale'
 		},
 		{
@@ -133,7 +119,10 @@
 		name="description"
 		content="HavBank tilbyr komplette pensjons- og forsikringsløsninger for bedrifter. Godkjent av Finanstilsynet og i samarbeid med ledende forsikringsselskaper."
 	/>
-	<meta name="keywords" content="pensjon, forsikring, tjenestepensjon, gruppeliv, uførepensjon, norge" />
+	<meta
+		name="keywords"
+		content="pensjon, forsikring, tjenestepensjon, gruppeliv, uførepensjon, norge"
+	/>
 	<meta property="og:title" content="Pensjon og forsikring | HavBank" />
 	<meta
 		property="og:description"
@@ -148,12 +137,10 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Pensjon og forsikring
-				</h1>
+				<h1 class="page-title">Pensjon og forsikring</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-					Vi tilbyr komplette pensjons- og forsikringsløsninger for din bedrift, i samarbeid med Norges
-					ledende forsikringsselskaper. Alle våre løsninger er godkjent av Finanstilsynet.
+					Vi tilbyr komplette pensjons- og forsikringsløsninger for din bedrift, i samarbeid med
+					Norges ledende forsikringsselskaper. Alle våre løsninger er godkjent av Finanstilsynet.
 				</p>
 			</div>
 		</div>
@@ -174,10 +161,7 @@
 					<div class="flex flex-col bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
 						<div class="flex items-center gap-x-4 mb-6">
 							{#if browser && Icon}
-								<Icon
-									icon={product.icon}
-									class="h-8 w-8 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={product.icon} class="h-8 w-8 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-xl font-semibold text-gray-900 dark:text-white">{product.name}</h3>
 						</div>
@@ -216,12 +200,7 @@
 								{/each}
 							</ul>
 							<div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-								<a
-									href="/kontakt"
-									class="block w-full btn-primary"
-								>
-									Få tilbud
-								</a>
+								<a href="/kontakt" class="block w-full btn-primary"> Få tilbud </a>
 							</div>
 						</div>
 					</div>
@@ -233,9 +212,7 @@
 	<!-- Insurance Products -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Forsikringsløsninger
-			</h2>
+			<h2 class="section-title">Forsikringsløsninger</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Sikre dine ansatte og bedriften med våre omfattende forsikringsløsninger.
 			</p>
@@ -247,10 +224,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={product.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={product.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{product.name}</h3>
 						</div>
@@ -279,10 +253,7 @@
 				{#each marketInfo.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:chart-bar"
-								class="h-6 w-6 text-blue-700 dark:text-blue-400"
-							/>
+							<Icon icon="heroicons:chart-bar" class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 						{/if}
 						<span class="text-gray-600 dark:text-gray-300">{point}</span>
 					</li>
@@ -294,9 +265,7 @@
 	<!-- Compliance Information -->
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="section-title">
-				Lovkrav og etterlevelse
-			</h2>
+			<h2 class="section-title">Lovkrav og etterlevelse</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 				Vi sikrer at din bedrift oppfyller alle lovpålagte krav til pensjon og forsikring.
 			</p>
@@ -308,10 +277,7 @@
 					<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
 						<div class="flex items-center gap-x-3 mb-4">
 							{#if browser && Icon}
-								<Icon
-									icon={info.icon}
-									class="h-6 w-6 text-blue-700 dark:text-blue-400"
-								/>
+								<Icon icon={info.icon} class="h-6 w-6 text-blue-700 dark:text-blue-400" />
 							{/if}
 							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{info.title}</h3>
 						</div>
@@ -326,15 +292,14 @@
 	<div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">{riskDisclosure.title}</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">{riskDisclosure.description}</p>
+			<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+				{riskDisclosure.description}
+			</p>
 			<ul class="mt-8 space-y-4">
 				{#each riskDisclosure.points as point}
 					<li class="flex gap-x-3">
 						{#if browser && Icon}
-							<Icon
-								icon="heroicons:exclamation-triangle"
-								class="h-6 w-6 text-yellow-500"
-							/>
+							<Icon icon="heroicons:exclamation-triangle" class="h-6 w-6 text-yellow-500" />
 						{/if}
 						<span class="text-gray-600 dark:text-gray-300">{point}</span>
 					</li>
@@ -347,11 +312,11 @@
 	<div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle pensjons- og forsikringsløsninger tilbys av HavBank AS (org.nr. 924 850 771) i samarbeid med
-				ledende norske forsikringsselskaper, under tilsyn av Finanstilsynet. Priser og betingelser er
-				veiledende og kan endres i henhold til markedsforhold og selskapenes retningslinjer. For
-				fullstendige vilkår, se våre forsikringsvilkår og pensjonsavtaler.
+				Alle pensjons- og forsikringsløsninger tilbys av HavBank AS (org.nr. 924 850 771) i
+				samarbeid med ledende norske forsikringsselskaper, under tilsyn av Finanstilsynet. Priser og
+				betingelser er veiledende og kan endres i henhold til markedsforhold og selskapenes
+				retningslinjer. For fullstendige vilkår, se våre forsikringsvilkår og pensjonsavtaler.
 			</p>
 		</div>
 	</div>
-</div> 
+</div>

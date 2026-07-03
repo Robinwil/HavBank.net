@@ -3,12 +3,7 @@ import { registerWithRegistry } from './register';
 // Fire-and-forget registration with the r01.no fleet registry.
 // Silent if any required env var is missing (e.g. local dev).
 const env = process.env;
-if (
-	env.REGISTRY_URL &&
-	env.REGISTRY_SIGNING_SECRET &&
-	env.REGISTRY_FQDN &&
-	env.REGISTRY_NAME
-) {
+if (env.REGISTRY_URL && env.REGISTRY_SIGNING_SECRET && env.REGISTRY_FQDN && env.REGISTRY_NAME) {
 	registerWithRegistry({
 		fqdn: env.REGISTRY_FQDN,
 		parent_fqdn: env.REGISTRY_PARENT_FQDN,

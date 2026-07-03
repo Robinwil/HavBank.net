@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { tick } from 'svelte';
 	import Icon from '@iconify/svelte';
@@ -12,14 +12,11 @@
 		SECURITY_TXT_URL
 	} from '$lib/stores/securityContact.svelte.js';
 
-	/** @type {HTMLButtonElement | undefined} */
-	let closeButton = $state();
+	let closeButton = $state<HTMLButtonElement>();
 	let emailCopied = $state(false);
 	let keyCopied = $state(false);
-	/** @type {ReturnType<typeof setTimeout> | undefined} */
-	let emailTimer;
-	/** @type {ReturnType<typeof setTimeout> | undefined} */
-	let keyTimer;
+	let emailTimer: ReturnType<typeof setTimeout> | undefined;
+	let keyTimer: ReturnType<typeof setTimeout> | undefined;
 
 	$effect(() => {
 		if (!browser) return;
@@ -38,7 +35,7 @@
 		}
 	});
 
-	async function copy(text, which) {
+	async function copy(text: string, which: 'email' | 'key') {
 		if (!browser) return;
 		try {
 			await navigator.clipboard.writeText(text);
@@ -71,7 +68,7 @@
 		}
 	}
 
-	function handleKeydown(event) {
+	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			event.preventDefault();
 			closeSecurityContact();
@@ -100,7 +97,9 @@
 			class="pointer-events-auto flex w-full max-w-2xl max-h-full sm:max-h-[calc(100vh-3rem)] flex-col bg-white dark:bg-gray-900 shadow-2xl ring-1 ring-blue-900/10 dark:ring-blue-500/20 sm:rounded-2xl overflow-hidden"
 		>
 			<!-- Header -->
-			<div class="shrink-0 flex items-start gap-3 px-5 sm:px-7 py-4 sm:py-5 bg-blue-900 dark:bg-blue-950 text-white">
+			<div
+				class="shrink-0 flex items-start gap-3 px-5 sm:px-7 py-4 sm:py-5 bg-blue-900 dark:bg-blue-950 text-white"
+			>
 				{#if browser && Icon}
 					<Icon
 						icon="heroicons:lock-closed"
@@ -109,13 +108,12 @@
 					/>
 				{/if}
 				<div class="min-w-0 flex-1">
-					<p class="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-widest text-blue-200">
+					<p
+						class="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-widest text-blue-200"
+					>
 						Sikkerhetskontakt · Responsible disclosure
 					</p>
-					<h2
-						id="security-contact-title"
-						class="mt-0.5 text-lg sm:text-xl font-bold leading-snug"
-					>
+					<h2 id="security-contact-title" class="mt-0.5 text-lg sm:text-xl font-bold leading-snug">
 						Ta kontakt om sikkerhet eller misvisende innhold
 					</h2>
 				</div>
@@ -143,8 +141,12 @@
 				</p>
 
 				<!-- Email row -->
-				<div class="rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-50 dark:bg-gray-800/60 p-4">
-					<p class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+				<div
+					class="rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-50 dark:bg-gray-800/60 p-4"
+				>
+					<p
+						class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400"
+					>
 						E-post
 					</p>
 					<div class="mt-2 flex flex-col sm:flex-row sm:items-center gap-3">
@@ -189,10 +191,14 @@
 				</div>
 
 				<!-- PGP key -->
-				<div class="rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-50 dark:bg-gray-800/60 p-4">
+				<div
+					class="rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-50 dark:bg-gray-800/60 p-4"
+				>
 					<div class="flex items-start justify-between gap-3">
 						<div>
-							<p class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+							<p
+								class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400"
+							>
 								PGP-nøkkel (offentlig)
 							</p>
 							<p class="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -216,8 +222,7 @@
 					</div>
 					<pre
 						class="mt-3 max-h-60 overflow-auto rounded-md bg-gray-900 text-gray-100 p-3 text-[0.7rem] sm:text-xs leading-snug font-mono ring-1 ring-gray-700 select-all whitespace-pre"
-						aria-label="PGP public key block"
->{SECURITY_PGP_KEY}</pre>
+						aria-label="PGP public key block">{SECURITY_PGP_KEY}</pre>
 					<span role="status" aria-live="polite" class="sr-only">
 						{keyCopied ? 'PGP-nøkkel kopiert til utklippstavlen.' : ''}
 					</span>
@@ -236,9 +241,7 @@
 							</dd>
 						</div>
 						<div class="flex flex-col sm:flex-row sm:gap-2">
-							<dt class="font-semibold text-gray-700 dark:text-gray-300 shrink-0">
-								Verifiser:
-							</dt>
+							<dt class="font-semibold text-gray-700 dark:text-gray-300 shrink-0">Verifiser:</dt>
 							<dd class="text-gray-600 dark:text-gray-400">
 								Samme nøkkel er publisert på
 								<a
@@ -263,7 +266,8 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						class="font-mono underline underline-offset-4 hover:text-blue-800 dark:hover:text-blue-300"
-					>/.well-known/security.txt</a>
+						>/.well-known/security.txt</a
+					>
 					(RFC 9116).
 				</p>
 			</div>
@@ -272,11 +276,7 @@
 			<div
 				class="shrink-0 px-5 sm:px-7 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/60 border-t border-gray-200 dark:border-gray-800 flex justify-end"
 			>
-				<button
-					type="button"
-					class="btn-primary px-5 py-2 text-sm"
-					onclick={closeSecurityContact}
-				>
+				<button type="button" class="btn-primary px-5 py-2 text-sm" onclick={closeSecurityContact}>
 					Lukk
 				</button>
 			</div>

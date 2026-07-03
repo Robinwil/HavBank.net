@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount, tick } from 'svelte';
 	import Icon from '@iconify/svelte';
@@ -6,8 +6,7 @@
 	const STORAGE_KEY = 'havbank-disclaimer-dismissed';
 
 	let isOpen = $state(false);
-	/** @type {HTMLButtonElement | undefined} */
-	let acknowledgeButton = $state();
+	let acknowledgeButton = $state<HTMLButtonElement>();
 
 	onMount(() => {
 		if (!browser) return;
@@ -45,7 +44,7 @@
 		isOpen = false;
 	}
 
-	function handleKeydown(event) {
+	function handleKeydown(event: KeyboardEvent) {
 		// Deliberately NOT closing on Escape — the user must actively acknowledge.
 		if (event.key === 'Tab') {
 			event.preventDefault();
@@ -68,7 +67,9 @@
 			class="relative flex w-full max-w-3xl max-h-full sm:max-h-[calc(100vh-3rem)] flex-col bg-white dark:bg-gray-900 shadow-2xl ring-1 ring-red-900/20 dark:ring-red-500/30 sm:rounded-2xl overflow-hidden"
 		>
 			<!-- Header (sticky at top of flex column, red palette reserved for fraud/security warnings). -->
-			<div class="shrink-0 bg-red-700 dark:bg-red-800 px-5 sm:px-8 md:px-10 py-4 sm:py-6 text-white">
+			<div
+				class="shrink-0 bg-red-700 dark:bg-red-800 px-5 sm:px-8 md:px-10 py-4 sm:py-6 text-white"
+			>
 				<div class="flex items-start gap-3 sm:gap-4">
 					{#if browser && Icon}
 						<Icon
@@ -78,7 +79,9 @@
 						/>
 					{/if}
 					<div class="min-w-0">
-						<p class="text-[0.65rem] sm:text-xs md:text-sm font-semibold uppercase tracking-widest text-red-100">
+						<p
+							class="text-[0.65rem] sm:text-xs md:text-sm font-semibold uppercase tracking-widest text-red-100"
+						>
 							Viktig advarsel · Les før du fortsetter
 						</p>
 						<h2
@@ -98,11 +101,15 @@
 			>
 				<p class="text-gray-900 dark:text-white font-semibold text-base sm:text-lg md:text-xl">
 					HavBank.net er et
-					<span class="underline decoration-red-600 decoration-2 underline-offset-4">fiktivt hobbyprosjekt</span>
+					<span class="underline decoration-red-600 decoration-2 underline-offset-4"
+						>fiktivt hobbyprosjekt</span
+					>
 					— ingen reell bank, ingen finansielle tjenester, ingen kundeforhold.
 				</p>
 
-				<div class="rounded-lg bg-red-50 dark:bg-red-950/40 ring-1 ring-red-200 dark:ring-red-900/50 p-3 sm:p-4 md:p-5">
+				<div
+					class="rounded-lg bg-red-50 dark:bg-red-950/40 ring-1 ring-red-200 dark:ring-red-900/50 p-3 sm:p-4 md:p-5"
+				>
 					<p class="font-semibold text-red-900 dark:text-red-200 text-sm sm:text-base">
 						Finanstilsynet har publisert en offentlig advarsel mot HavBank.
 					</p>
@@ -131,8 +138,8 @@
 						Vi beklager — vi var ikke tydelige nok
 					</h3>
 					<p>
-						Vi skulle vært direkte og tydelige på at dette kun er et designprosjekt. Det var vi ikke,
-						og det beklager vi oppriktig overfor alle som har blitt forvirret av nettsiden.
+						Vi skulle vært direkte og tydelige på at dette kun er et designprosjekt. Det var vi
+						ikke, og det beklager vi oppriktig overfor alle som har blitt forvirret av nettsiden.
 					</p>
 					<p class="font-semibold text-gray-900 dark:text-white">
 						Finanstilsynet har helt rett — det er fantastisk at de fant nettsiden, og det er akkurat
@@ -142,10 +149,10 @@
 						Det er helt forståelig at de reagerer på en nettside som ser ut som en bank uten tydelig
 						avsender. En eventuell backend, skjema eller innloggingsflyt kan dessuten legges til
 						senere — advarselen er derfor en fullt rimelig føre-var-handling. Samtidig finnes det
-						andre signaler som også peker mot at dette er et hobbyprosjekt: åpen kildekode på GitHub,
-						manglende organisasjonsnummer, manglende oppføring i Enhetsregisteret, og tekniske spor
-						(for eksempel at den nåværende versjonen er en ren SvelteKit-statisk-side uten server).
-						Vi skulle gjort det enda lettere å finne denne informasjonen.
+						andre signaler som også peker mot at dette er et hobbyprosjekt: åpen kildekode på
+						GitHub, manglende organisasjonsnummer, manglende oppføring i Enhetsregisteret, og
+						tekniske spor (for eksempel at den nåværende versjonen er en ren SvelteKit-statisk-side
+						uten server). Vi skulle gjort det enda lettere å finne denne informasjonen.
 					</p>
 					<p>
 						Takk, Finanstilsynet, for at dere passer på. Og beklager hvis hobbyprosjektet mitt har
@@ -153,7 +160,9 @@
 					</p>
 				</div>
 
-				<p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800 pt-3 sm:pt-4">
+				<p
+					class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800 pt-3 sm:pt-4"
+				>
 					Ved å klikke <strong>OK</strong> bekrefter du at du forstår at HavBank ikke er en reell bank,
 					ikke har konsesjon fra Finanstilsynet, og at ingen handling på denne siden har noen finansiell
 					konsekvens.
@@ -164,7 +173,9 @@
 			<div
 				class="shrink-0 px-5 sm:px-8 md:px-10 py-3 sm:py-5 bg-gray-50 dark:bg-gray-800/60 border-t border-gray-200 dark:border-gray-800 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4"
 			>
-				<div class="flex flex-col sm:flex-row gap-2 sm:gap-5 text-xs sm:text-sm text-center sm:text-left">
+				<div
+					class="flex flex-col sm:flex-row gap-2 sm:gap-5 text-xs sm:text-sm text-center sm:text-left"
+				>
 					<a
 						href="/om-prosjektet"
 						onclick={acknowledge}

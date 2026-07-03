@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	
-	let Icon = $state(null);
+	import type IconComponent from '@iconify/svelte';
+
+	let Icon: typeof IconComponent | null = $state(null);
 
 	onMount(async () => {
 		const module = await import('@iconify/svelte');
@@ -93,7 +94,6 @@
 	let years = $state(5);
 	let loanAmount = $state(2500000);
 	let hasIncome = $state(false);
-	let age = $state(25);
 
 	// Derived values using runes
 	let effectiveRate = $derived(() => {
@@ -111,7 +111,10 @@
 		if (selectedProduct === 'lan') {
 			const monthlyRate = effectiveRate() / (100 * 12);
 			const months = years * 12;
-			return Math.round((loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1));
+			return Math.round(
+				(loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+					(Math.pow(1 + monthlyRate, months) - 1)
+			);
 		}
 		return 0;
 	});
@@ -120,7 +123,8 @@
 		if (selectedProduct === 'bsu') {
 			const monthlyRate = effectiveRate() / 1200;
 			const months = years * 12;
-			const monthlyFutureValue = monthlyAmount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+			const monthlyFutureValue =
+				monthlyAmount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
 			return Math.round(monthlyFutureValue);
 		}
 		return 0;
@@ -134,7 +138,7 @@
 		return 0;
 	});
 
-	function formatCurrency(amount) {
+	function formatCurrency(amount: number) {
 		if (typeof amount !== 'number' || !isFinite(amount)) return 'kr 0';
 		return new Intl.NumberFormat('nb-NO', {
 			style: 'currency',
@@ -144,12 +148,12 @@
 		}).format(amount);
 	}
 
-	function formatPercent(value) {
+	function formatPercent(value: number) {
 		if (typeof value !== 'number' || !isFinite(value)) return '0,00 %';
 		return value.toFixed(2).replace('.', ',') + ' %';
 	}
 
-	function selectProduct(product) {
+	function selectProduct(product: string) {
 		selectedProduct = product;
 	}
 </script>
@@ -160,7 +164,10 @@
 		name="description"
 		content="Spesialtilpassede banktjenester for unge under 34 år. BSU med markedets beste rente, gratis bankkort og gunstig førstehjemslån."
 	/>
-	<meta name="keywords" content="ungdomsbank, BSU, førstehjemslån, gratis bankkort, ung, student, norge" />
+	<meta
+		name="keywords"
+		content="ungdomsbank, BSU, førstehjemslån, gratis bankkort, ung, student, norge"
+	/>
 	<meta property="og:title" content="Ungdomsbank | HavBank" />
 	<meta
 		property="og:description"
@@ -175,9 +182,7 @@
 	<div class="relative isolate overflow-hidden">
 		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
 			<div class="mx-auto max-w-2xl lg:mx-0">
-				<h1 class="page-title">
-					Bank for unge
-				</h1>
+				<h1 class="page-title">Bank for unge</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
 					Vi gir deg markedets beste BSU-rente, gratis bankkort og gunstig førstehjemslån. Alt
 					skreddersydd for deg under 34 år.
@@ -189,7 +194,10 @@
 					>
 						Bli kunde
 					</a>
-					<a href="#kalkulator" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+					<a
+						href="#kalkulator"
+						class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+					>
 						Prøv kalkulatoren <span aria-hidden="true">→</span>
 					</a>
 				</div>
@@ -215,7 +223,8 @@
 								<span class="text-3xl font-bold text-gray-900 dark:text-white">Gratis</span>
 								<span class="text-gray-600 dark:text-gray-400">for deg under 34</span>
 							{:else}
-								<span class="text-3xl font-bold text-gray-900 dark:text-white">{product.rate}%</span>
+								<span class="text-3xl font-bold text-gray-900 dark:text-white">{product.rate}%</span
+								>
 								<span class="text-gray-600 dark:text-gray-400">rente</span>
 							{/if}
 						</div>
@@ -226,10 +235,7 @@
 									{#each product.features as feature}
 										<li class="flex items-start gap-x-2 text-sm text-gray-600 dark:text-gray-300">
 											{#if browser && Icon}
-												<Icon
-													icon="heroicons:check"
-													class="h-5 w-5 text-blue-600 flex-shrink-0"
-												/>
+												<Icon icon="heroicons:check" class="h-5 w-5 text-blue-600 flex-shrink-0" />
 											{/if}
 											{feature}
 										</li>
@@ -242,10 +248,7 @@
 									{#each product.benefits as benefit}
 										<li class="flex items-start gap-x-2 text-sm text-gray-600 dark:text-gray-300">
 											{#if browser && Icon}
-												<Icon
-													icon="heroicons:star"
-													class="h-5 w-5 text-blue-600 flex-shrink-0"
-												/>
+												<Icon icon="heroicons:star" class="h-5 w-5 text-blue-600 flex-shrink-0" />
 											{/if}
 											{benefit}
 										</li>
@@ -266,7 +269,7 @@
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
 				{#each products as product}
-					<button 
+					<button
 						class="product-card {selectedProduct === product.id ? 'active' : ''}"
 						onclick={() => selectProduct(product.id)}
 					>
@@ -361,7 +364,10 @@
 					<div class="bg-blue-900/20 p-4 rounded-lg border border-blue-500/20">
 						<div class="flex items-start gap-3">
 							{#if browser && Icon}
-								<Icon icon="heroicons:information-circle" class="h-5 w-5 text-blue-400 flex-shrink-0" />
+								<Icon
+									icon="heroicons:information-circle"
+									class="h-5 w-5 text-blue-400 flex-shrink-0"
+								/>
 							{/if}
 							<div class="text-sm text-gray-300">
 								<span class="font-medium text-white block mb-1">Viktig informasjon</span>
@@ -383,7 +389,9 @@
 				<div>
 					<div
 						class="results-circle"
-						style="--progress: {selectedProduct === 'bsu' ? Math.min((monthlyAmount / 5000) * 100, 100) : Math.min((loanAmount / 5000000) * 100, 100)}%"
+						style="--progress: {selectedProduct === 'bsu'
+							? Math.min((monthlyAmount / 5000) * 100, 100)
+							: Math.min((loanAmount / 5000000) * 100, 100)}%"
 					>
 						<div class="results-content">
 							{#if selectedProduct === 'bsu'}
@@ -435,7 +443,9 @@
 						{/if}
 					</div>
 
-					<button class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors">
+					<button
+						class="w-full mt-8 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors"
+					>
 						{#if selectedProduct === 'bsu'}
 							Start sparingen
 						{:else if selectedProduct === 'lan'}
@@ -453,11 +463,11 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-32 pb-24">
 		<div class="border-t border-gray-200 dark:border-gray-700 pt-8">
 			<p class="text-sm text-gray-600 dark:text-gray-400">
-				Alle priser og betingelser gjelder for kunder under 34 år. BSU-konto kan opprettes fra året du
-				fyller 18 til året du fyller 33. Maksimalt sparebeløp er kr 27 500 per år og totalt kr 300 000.
-				Førstehjemslån forutsetter at du ikke har eid bolig tidligere og at boligen skal brukes som
-				primærbolig. Alle lån forutsetter kredittgodkjenning. Nominell rente kan avvike fra oppgitt
-				effektiv rente.
+				Alle priser og betingelser gjelder for kunder under 34 år. BSU-konto kan opprettes fra året
+				du fyller 18 til året du fyller 33. Maksimalt sparebeløp er kr 27 500 per år og totalt kr
+				300 000. Førstehjemslån forutsetter at du ikke har eid bolig tidligere og at boligen skal
+				brukes som primærbolig. Alle lån forutsetter kredittgodkjenning. Nominell rente kan avvike
+				fra oppgitt effektiv rente.
 			</p>
 		</div>
 	</div>
@@ -500,7 +510,7 @@
 		margin: 2rem 0;
 	}
 
-	input[type="range"] {
+	input[type='range'] {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
@@ -511,7 +521,7 @@
 		margin: 1rem 0;
 	}
 
-	input[type="range"]::-webkit-slider-thumb {
+	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		width: 20px;
 		height: 20px;
@@ -523,7 +533,7 @@
 		margin-top: -9px;
 	}
 
-	input[type="range"]::-moz-range-thumb {
+	input[type='range']::-moz-range-thumb {
 		width: 20px;
 		height: 20px;
 		background: white;
@@ -572,4 +582,4 @@
 		padding: 1rem;
 		margin: 0.5rem;
 	}
-</style> 
+</style>
