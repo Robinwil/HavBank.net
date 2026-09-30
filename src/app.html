@@ -4,20 +4,7 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<script nonce="%sveltekit.nonce%">
-			(() => {
-				const storageKey = 'havbank-theme';
-				try {
-					const storedTheme = localStorage.getItem(storageKey);
-					const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-					const useDark = storedTheme === 'dark' || (storedTheme !== 'light' && prefersDark);
-					document.documentElement.classList.toggle('dark', useDark);
-					document.documentElement.style.colorScheme = useDark ? 'dark' : 'light';
-				} catch {
-					// Fall back to the system preference if storage access is unavailable.
-				}
-			})();
-		</script>
+		<script src="%sveltekit.assets%/theme-init.js"></script>
 		%sveltekit.head%
 
 		<meta

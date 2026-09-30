@@ -16,8 +16,21 @@ if (env.REGISTRY_URL && env.REGISTRY_SIGNING_SECRET && env.REGISTRY_FQDN && env.
 	});
 }
 
+// Vulnerability scanners (WordPress/PHP probes, dotfiles, etc.) make up most of the
+// traffic. Answer them with a tiny plain-text 404 instead of rendering the full
+// layout through SvelteKit, which is what kept the Bun heap large.
+const BOT_PROBE =
+	/\.(php\d?|asp|aspx|jsp|cgi|env|ini|sql|bak|old|swp|yml|yaml|pot)$|^\/(wp-|\.(?!well-known)|(wordpress|xmlrpc|phpmyadmin|pma|cgi-bin|vendor)(\/|$))/i;
+
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
+	if (BOT_PROBE.test(event.url.pathname)) {
+		return new Response('Not found', {
+			status: 404,
+			headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' }
+		});
+	}
+
 	try {
 		const response = await resolve(event);
 

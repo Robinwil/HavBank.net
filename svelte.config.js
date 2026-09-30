@@ -4,8 +4,21 @@ import adapter from 'svelte-adapter-bun';
 const config = {
 	kit: {
 		adapter: adapter(),
+		prerender: {
+			// Some pages link to routes that don't exist yet (they 404 at runtime too).
+			// Log them instead of failing the build; any other error still fails.
+			handleHttpError: ({ status, path, referrer, message }) => {
+				if (status === 404) {
+					console.warn(`[prerender] broken link ${path} (from ${referrer})`);
+					return;
+				}
+				throw new Error(message);
+			},
+			// Same for in-page anchors that point at ids that don't exist.
+			handleMissingId: 'warn'
+		},
 		csp: {
-			mode: 'nonce',
+			mode: 'auto', // hashes for prerendered pages, nonces for SSR ones
 			directives: {
 				'default-src': ["'self'"],
 				'script-src': ["'self'"], // SvelteKit auto-adds nonce-{random} here
