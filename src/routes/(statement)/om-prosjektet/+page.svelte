@@ -478,16 +478,11 @@
 					i finansregulering.
 				</p>
 				<p>
-					Samtidig er vi oppriktig lei oss for at prosjektet har vært uklart nok til å utløse en
-					offisiell sak. Vi skulle vært tydeligere på at dette er et hobbyprosjekt: i selve
-					grensesnittet, i footeren, og i metadata. Det er nå rettet opp med en obligatorisk
-					advarsel som vises på første besøk, lenke til Finanstilsynets advarsel i bunnen av siden,
-					og denne artikkelen.
+					Vi skulle vært tydeligere på at dette er et hobbyprosjekt: i selve grensesnittet, i
+					footeren, og i metadata. Det er nå rettet opp med en obligatorisk advarsel som vises på
+					første besøk, lenke til Finanstilsynets advarsel i bunnen av siden, og denne artikkelen.
 				</p>
-				<p>
-					Takk, Finanstilsynet, for at dere passer på. Og beklager hvis saken har brukt unødvendig
-					mye av tilsynets tid og ressurser.
-				</p>
+				<p>Takk, Finanstilsynet, for at dere passer på.</p>
 			</section>
 
 			<section id="teknisk">

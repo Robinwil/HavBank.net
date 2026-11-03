@@ -45,9 +45,10 @@
 				advarsel mot HavBank.
 			</p>
 			<p>
-				Finanstilsynet har helt rett. Samtidig er vi oppriktig lei oss for at prosjektet har vært
-				uklart nok til å utløse en offisiell sak.
+				En nettside som ser ut som en norsk bank uten tydelig avsender skal utløse en advarsel, det
+				er hele poenget med føre-var-prinsippet i finansregulering.
 			</p>
+			<p>Takk, Finanstilsynet, for at dere passer på.</p>
 		</div>
 		<div class="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
 			<a href={FINANSTILSYNET_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">

@@ -134,11 +134,11 @@
 
 				<div class="space-y-3 sm:space-y-4">
 					<h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-						Vi beklager, vi var ikke tydelige nok
+						Vi var ikke tydelige nok
 					</h3>
 					<p>
 						Vi skulle vært direkte og tydelige på at dette kun er et designprosjekt. Det var vi
-						ikke, og det beklager vi oppriktig overfor alle som har blitt forvirret av nettsiden.
+						ikke.
 					</p>
 					<p class="font-semibold text-gray-900 dark:text-white">
 						Finanstilsynet har helt rett. Det er fantastisk at de fant nettsiden, og det er akkurat
@@ -153,10 +153,7 @@
 						tekniske spor (for eksempel at den nåværende versjonen er en ren SvelteKit-statisk-side
 						uten server). Vi skulle gjort det enda lettere å finne denne informasjonen.
 					</p>
-					<p>
-						Takk, Finanstilsynet, for at dere passer på. Og beklager hvis hobbyprosjektet mitt har
-						brukt unødvendig mye ressurser hos dere.
-					</p>
+					<p>Takk, Finanstilsynet, for at dere passer på.</p>
 				</div>
 
 				<p
