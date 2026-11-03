@@ -54,7 +54,7 @@
 		submitting = true;
 		setTimeout(() => {
 			submitting = false;
-			showDemoNotice({ detail: 'Søknaden er ikke sendt inn — ingen data lagres.' });
+			showDemoNotice({ detail: 'Søknaden er ikke sendt inn, ingen data lagres.' });
 		}, 400);
 	}
 
@@ -189,7 +189,7 @@
 								/>
 							</div>
 							<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-								{formatCurrency(formData.equity)} — Finanstilsynet krever minst 15 % egenkapital.
+								{formatCurrency(formData.equity)}. Finanstilsynet krever minst 15 % egenkapital.
 							</p>
 						</div>
 					</div>

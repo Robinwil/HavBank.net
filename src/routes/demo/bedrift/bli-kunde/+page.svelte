@@ -65,7 +65,7 @@
 		{
 			title: 'Kontoinformasjon fra gammel bank',
 			description:
-				'Vi hjelper med automatisk overføring av avtalegiro, eFaktura og lønnsutbetalinger — du trenger bare kontonummeret.',
+				'Vi hjelper med automatisk overføring av avtalegiro, eFaktura og lønnsutbetalinger, du trenger bare kontonummeret.',
 			icon: 'heroicons:arrow-path'
 		}
 	];
@@ -74,7 +74,7 @@
 		{
 			name: 'Enkeltpersonforetak',
 			description:
-				'For selvstendig næringsdrivende. Åpne konto direkte med BankID — ingen fysisk dokumentasjon.',
+				'For selvstendig næringsdrivende. Åpne konto direkte med BankID, ingen fysisk dokumentasjon.',
 			features: ['Digital onboarding', 'Kontoen er klar samme dag', 'Ingen startgebyr'],
 			icon: 'heroicons:user',
 			cta: 'Kom i gang'
@@ -124,7 +124,7 @@
 		submitting = true;
 		setTimeout(() => {
 			submitting = false;
-			showDemoNotice({ detail: 'Søknaden er ikke sendt inn — ingen data lagres.' });
+			showDemoNotice({ detail: 'Søknaden er ikke sendt inn, ingen data lagres.' });
 		}, 300);
 	}
 </script>
@@ -307,7 +307,7 @@
 				</div>
 				<div>
 					<h2 class="text-base font-semibold text-blue-900 dark:text-blue-200">
-						Dette spør vi om — og hvorfor
+						Dette spør vi om, og hvorfor
 					</h2>
 					<p class="mt-2 text-sm leading-6 text-blue-900/80 dark:text-blue-100">
 						Som norsk bank er vi pålagt å kjenne kundene våre (KYC) og identifisere reelle
@@ -358,12 +358,12 @@
 							<label for="orgnr" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
 								>Organisasjonsnummer</label
 							>
-							<!-- pre-existing bug (flagged, not fixed — see conversion report): the unescaped
+							<!-- pre-existing bug (flagged, not fixed, see conversion report): the unescaped
 								`{9,11}` below is parsed by Svelte as a mustache expression, i.e. the comma
 								operator "9, 11", which evaluates to 11. The rendered `pattern` attribute has
 								therefore always been "[0-9 ]11", not a 9-11 digit validator. Written here as the
 								literal `{11}` it already evaluates to so the type-checker doesn't flag the comma
-								expression — this produces byte-identical DOM output to the original, so behavior
+								expression, this produces byte-identical DOM output to the original, so behavior
 								is unchanged. A real fix (pattern={'[0-9 ]{9,11}'}) would change validation
 								behavior and is out of scope for this conversion. -->
 							<input

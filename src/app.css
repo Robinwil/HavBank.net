@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 /* ============================================================
-   HavBank Design System — component layer
+   HavBank Design System: component layer
    Change a token here → updates everywhere it's used.
    ============================================================ */
 @layer components {
@@ -41,7 +41,7 @@
 
 	/* --- Buttons ----------------------------------------------- */
 
-	/** Navy filled button — the main CTA across the site */
+	/** Navy filled button: the main CTA across the site */
 	.btn-primary {
 		@apply inline-flex items-center justify-center rounded-md bg-blue-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900 dark:bg-blue-800 dark:hover:bg-blue-700;
 	}
@@ -58,12 +58,12 @@
 
 	/* --- Cards ------------------------------------------------- */
 
-	/** Subtle gray-tinted card — workhorse card across product pages */
+	/** Subtle gray-tinted card: workhorse card across product pages */
 	.card-soft {
 		@apply rounded-lg bg-gray-50 p-6 dark:bg-gray-800;
 	}
 
-	/** White card with ring + shadow — used for metric / data cards */
+	/** White card with ring + shadow, used for metric / data cards */
 	.card-elevated {
 		@apply rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-800 dark:ring-gray-700;
 	}
@@ -75,7 +75,7 @@
 		@apply flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-900 dark:bg-blue-800;
 	}
 
-	/** Square icon box with colored background — pass color class alongside */
+	/** Square icon box with colored background, pass color class alongside */
 	.icon-box-colored {
 		@apply flex h-12 w-12 shrink-0 items-center justify-center rounded-lg;
 	}

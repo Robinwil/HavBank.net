@@ -72,7 +72,7 @@
 		message = '';
 		category = 'general';
 		isSubmitting = false;
-		showDemoNotice({ detail: 'Henvendelsen er ikke sendt — ingen data lagres.' });
+		showDemoNotice({ detail: 'Henvendelsen er ikke sendt, ingen data lagres.' });
 	}
 </script>
 

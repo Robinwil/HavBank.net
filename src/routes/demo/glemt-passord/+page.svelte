@@ -194,8 +194,7 @@
 							href="tel:+4700000000"
 							class="font-semibold underline decoration-dotted underline-offset-2"
 							>+47 00 00 00 00</a
-						>
-						— døgnåpent. Les mer på
+						>, døgnåpent. Les mer på
 						<a
 							href="/demo/sikkerhet"
 							class="font-semibold underline decoration-dotted underline-offset-2">sikkerhet</a

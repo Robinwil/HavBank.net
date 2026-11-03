@@ -18,7 +18,7 @@
 			name: 'Samfunnsansvar',
 			icon: 'heroicons:user-group',
 			description:
-				'Vi bidrar til bærekraftig utvikling — gjennom grønn finansiering, mangfold og åpenhet.'
+				'Vi bidrar til bærekraftig utvikling, gjennom grønn finansiering, mangfold og åpenhet.'
 		},
 		{
 			name: 'Integritet',
@@ -39,7 +39,7 @@
 			icon: 'heroicons:clock',
 			title: '37,5 timers uke med fleks',
 			description:
-				'Kjernetid 09:00–14:30. Avspasering for overtid er standard — vi betaler ikke for å brenne folk ut.'
+				'Kjernetid 09:00–14:30. Avspasering for overtid er standard, vi betaler ikke for å brenne folk ut.'
 		},
 		{
 			icon: 'heroicons:academic-cap',
@@ -199,7 +199,7 @@
 		<div class="mx-auto max-w-2xl lg:mx-0">
 			<h2 class="section-title">Mangfold i tall</h2>
 			<p class="section-lead">
-				Oppdaterte tall fra bærekraftsrapporten 2024. Vi rapporterer det — også når det er
+				Oppdaterte tall fra bærekraftsrapporten 2024. Vi rapporterer det, også når det er
 				ubehagelig.
 			</p>
 		</div>

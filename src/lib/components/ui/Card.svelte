@@ -7,9 +7,9 @@
 	/**
 	 * Reusable card wrapper.
 	 *
-	 *   soft     — gray-50 bg, rounded-lg, p-6  (workhorse product card)
-	 *   elevated — white bg, ring-1, shadow      (metric / data card)
-	 *   flat     — transparent, border only       (lightweight list item)
+	 *   soft     - gray-50 bg, rounded-lg, p-6  (workhorse product card)
+	 *   elevated - white bg, ring-1, shadow      (metric / data card)
+	 *   flat     - transparent, border only       (lightweight list item)
 	 */
 	interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'class'> {
 		variant?: CardVariant;

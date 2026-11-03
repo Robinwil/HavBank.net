@@ -67,7 +67,7 @@
 		// No network call: nothing is sent anywhere.
 		setTimeout(() => {
 			submitStatus = 'success';
-			showDemoNotice({ detail: 'Søknaden er ikke sendt inn — ingen data lagres.' });
+			showDemoNotice({ detail: 'Søknaden er ikke sendt inn, ingen data lagres.' });
 			// Reset form after success
 			setTimeout(() => {
 				submitStatus = 'idle';

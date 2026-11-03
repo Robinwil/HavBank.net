@@ -10,10 +10,10 @@ Every design token already lives in `src/app.css` under `@layer components`. **U
 
 ## Palette (do not drift)
 
-- **Primary / trust:** `blue-900` (light) · `blue-800` (dark) · `blue-400` for accents on dark bg. This is HavBank's navy — it is the brand.
+- **Primary / trust:** `blue-900` (light) · `blue-800` (dark) · `blue-400` for accents on dark bg. This is HavBank's navy, it is the brand.
 - **Surfaces:** `white` / `gray-50` (light) · `gray-900` / `gray-800` (dark).
 - **Text:** `gray-900` / `gray-600` (light) · `white` / `gray-300` (dark).
-- **Alarm only:** `red-500`–`red-900` — reserved for fraud, sperring av kort, sikkerhetsvarsler. Never for marketing CTAs.
+- **Alarm only:** `red-500`–`red-900`: reserved for fraud, sperring av kort, sikkerhetsvarsler. Never for marketing CTAs.
 - **Sustainability / success:** `green-600`–`green-800` only on `/baerekraft` and "grønt boliglån" contexts.
 - Never introduce a new hue (purple, teal, orange). Banks don't have brand rainbows.
 
@@ -72,7 +72,7 @@ Every top-level page should include: **hero → features/products → stats or t
 
 ## Don't
 
-- Don't inline long utility chains that duplicate an existing `.card-soft` / `.btn-primary` / `.page-title` — refactor to the token.
+- Don't inline long utility chains that duplicate an existing `.card-soft` / `.btn-primary` / `.page-title`: refactor to the token.
 - Don't add animations beyond the existing subtle hover/backdrop-blur patterns. No parallax, no scroll-jacking, no confetti.
 - Don't use stock-photo-style gradient hero images; the existing blue conic blob is the only decorative gradient.
 - Don't introduce component libraries beyond what `package.json` already ships.

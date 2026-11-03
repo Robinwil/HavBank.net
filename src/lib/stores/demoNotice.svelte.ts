@@ -1,6 +1,6 @@
 /**
  * Shared reactive state for the "demo notice" toast that appears whenever a
- * user tries to do something that would require real banking — logging in,
+ * user tries to do something that would require real banking: logging in,
  * BankID authentication, submitting an application, downloading a report, etc.
  *
  * All interactive stubs on the site should call `showDemoNotice()` instead of

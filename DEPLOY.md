@@ -1,4 +1,4 @@
-# Deploy info — `https://havbank.net`
+# Deploy info: `https://havbank.net`
 
 Auto-generated from Coolify state. Edit by hand if Coolify config changes,
 or regenerate from `~/projects/github/www/CLAUDE.md` instructions.
@@ -32,7 +32,7 @@ HavBank isn't a bank site any more. `serve.js` routes everything:
 
 ## Env vars (production)
 
-NIXPACKS_NODE_VERSION (obsolete since the dockerfile migration — safe to remove in Coolify)
+NIXPACKS_NODE_VERSION (obsolete since the dockerfile migration, safe to remove in Coolify)
 
 ## Deploy
 

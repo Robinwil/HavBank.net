@@ -7,7 +7,7 @@
 	const HEADLINE = 'HavBank.net var et fiktivt hobbyprosjekt, ikke en reell bank.';
 	// The same text as the description on /om-prosjektet.
 	const DESCRIPTION =
-		'HavBank.net er et fiktivt hobbyprosjekt — ikke en reell bank. Les prosjekteiers respons på Finanstilsynets advarsel fra 6. mars 2026, teknisk bakgrunn, mediedekning og hvordan du selv kan verifisere at HavBank ikke tilbyr reelle banktjenester.';
+		'HavBank.net er et fiktivt hobbyprosjekt, ikke en reell bank. Les prosjekteiers respons på Finanstilsynets advarsel fra 6. mars 2026, teknisk bakgrunn, mediedekning og hvordan du selv kan verifisere at HavBank ikke tilbyr reelle banktjenester.';
 </script>
 
 <svelte:head>
@@ -31,7 +31,7 @@
 		<h1 class="page-title">{HEADLINE}</h1>
 		<div class="mt-8 space-y-5 text-lg leading-8 text-gray-700 dark:text-gray-300">
 			<p>
-				Nettsiden er laget som en design- og frontend-øvelse — et forsøk på å bygge en troverdig
+				Nettsiden er laget som en design- og frontend-øvelse, et forsøk på å bygge en troverdig
 				norsk bankopplevelse fra bunnen av i SvelteKit, med fokus på tilgjengelighet, dark mode,
 				norske tekstkonvensjoner, og helhetlig informasjonsarkitektur.
 			</p>

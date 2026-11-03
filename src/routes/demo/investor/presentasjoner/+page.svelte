@@ -10,7 +10,7 @@
 
 	function handleRegister(event: MouseEvent) {
 		event.preventDefault();
-		showDemoNotice({ detail: 'Påmelding er ikke mulig — ingen data lagres.' });
+		showDemoNotice({ detail: 'Påmelding er ikke mulig, ingen data lagres.' });
 	}
 
 	const upcoming = [
@@ -102,7 +102,7 @@
 				<p class="section-eyebrow">Investor Relations</p>
 				<h1 class="page-title mt-2">Presentasjoner og webcast</h1>
 				<p class="page-lead">
-					Kvartalspresentasjoner, Capital Markets Day og generalforsamling — alle tilgjengelig som
+					Kvartalspresentasjoner, Capital Markets Day og generalforsamling, alle tilgjengelig som
 					live webcast og i ettertid som opptak og PDF.
 				</p>
 				<div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -229,7 +229,7 @@
 											Se opptak
 										</button>
 									{:else}
-										<span class="text-gray-400 dark:text-gray-500">—</span>
+										<span class="text-gray-400 dark:text-gray-500">-</span>
 									{/if}
 								</td>
 							</tr>

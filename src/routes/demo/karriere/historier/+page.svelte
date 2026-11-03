@@ -13,7 +13,7 @@
 			years: '6 år i HavBank',
 			category: 'Teknologi',
 			quote:
-				'Jeg kom hit fordi jeg ville bygge betalingssystemer som fungerer for folk — ikke bare for aksjonærer. Seks år senere er jeg fortsatt her fordi vi faktisk gjør det.'
+				'Jeg kom hit fordi jeg ville bygge betalingssystemer som fungerer for folk, ikke bare for aksjonærer. Seks år senere er jeg fortsatt her fordi vi faktisk gjør det.'
 		},
 		{
 			id: 'lars',
@@ -40,7 +40,7 @@
 			years: '14 år i HavBank',
 			category: 'Leder',
 			quote:
-				'Det som overrasket meg mest som ny leder var hvor kort vei det er til toppen av huset. Hvis noe er galt, løser vi det — ikke etter måneder i prosjekt.'
+				'Det som overrasket meg mest som ny leder var hvor kort vei det er til toppen av huset. Hvis noe er galt, løser vi det, ikke etter måneder i prosjekt.'
 		},
 		{
 			id: 'nora',
@@ -49,7 +49,7 @@
 			years: '3 år i HavBank',
 			category: 'Teknologi',
 			quote:
-				'Vi jobber med reelle modeller som stopper reelle kriminelle. Det er teknisk utfordrende og moralsk meningsfullt — det er en sjelden kombinasjon.'
+				'Vi jobber med reelle modeller som stopper reelle kriminelle. Det er teknisk utfordrende og moralsk meningsfullt, det er en sjelden kombinasjon.'
 		},
 		{
 			id: 'eirik',
@@ -71,7 +71,7 @@
 	<title>Historier fra HavBank – Karriere</title>
 	<meta
 		name="description"
-		content="Møt seks ansatte i HavBank som forteller hva de faktisk gjør i jobben — fra graduate til 14-åring i huset. Les om kulturen, bredden og graduateprogrammet."
+		content="Møt seks ansatte i HavBank som forteller hva de faktisk gjør i jobben, fra graduate til 14-åring i huset. Les om kulturen, bredden og graduateprogrammet."
 	/>
 </svelte:head>
 
@@ -83,7 +83,7 @@
 				<p class="section-eyebrow">Karriere</p>
 				<h1 class="page-title mt-2">Historier fra HavBank</h1>
 				<p class="page-lead">
-					Seks ansatte, seks ulike roller. Les hvordan hverdagen faktisk ser ut — fra graduate som
+					Seks ansatte, seks ulike roller. Les hvordan hverdagen faktisk ser ut, fra graduate som
 					har rotert gjennom tre avdelinger til seniorleder som har fulgt samme kundeportefølje i ti
 					år.
 				</p>
@@ -161,7 +161,7 @@
 				<div>
 					<p class="text-sm font-semibold uppercase tracking-wide text-blue-200">Graduate 2026</p>
 					<h2 class="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-						Graduateprogrammet 2026 — søknadsfrist 15. oktober
+						Graduateprogrammet 2026: søknadsfrist 15. oktober
 					</h2>
 					<p class="mt-3 max-w-2xl text-base text-blue-100">
 						18 måneder med tre rotasjoner i bankens kjerneområder. 20 plasser. Start august 2026.

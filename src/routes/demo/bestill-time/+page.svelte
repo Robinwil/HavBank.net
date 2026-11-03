@@ -82,7 +82,7 @@
 		submitSuccess = false;
 
 		// Simulate a short round-trip so the loading state is visible, but do NOT
-		// send any data anywhere — this is a fictitious site.
+		// send any data anywhere, this is a fictitious site.
 		await new Promise((resolve) => setTimeout(resolve, 300));
 
 		formData = {
@@ -98,7 +98,7 @@
 			isExistingCustomer: true
 		};
 		isSubmitting = false;
-		showDemoNotice({ detail: 'Møteforespørselen er ikke sendt — ingen data lagres.' });
+		showDemoNotice({ detail: 'Møteforespørselen er ikke sendt, ingen data lagres.' });
 	}
 
 	// Disable past dates in date picker

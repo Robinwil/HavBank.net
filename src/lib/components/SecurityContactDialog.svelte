@@ -40,7 +40,7 @@
 		try {
 			await navigator.clipboard.writeText(text);
 		} catch {
-			// Fallback for environments without clipboard permission —
+			// Fallback for environments without clipboard permission:
 			// select text via a temporary textarea so the user can copy manually.
 			const ta = document.createElement('textarea');
 			ta.value = text;
@@ -52,7 +52,7 @@
 			try {
 				document.execCommand('copy');
 			} catch {
-				// Give up silently — user can still select the visible text.
+				// Give up silently, user can still select the visible text.
 			}
 			document.body.removeChild(ta);
 		}
@@ -259,7 +259,7 @@
 
 				<p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
 					Denne nøkkelen er knyttet til <span class="font-mono">{SECURITY_EMAIL}</span>. Vennligst
-					ikke send ekte personopplysninger (fødselsnummer, kontonummer o.l.) — HavBank behandler
+					ikke send ekte personopplysninger (fødselsnummer, kontonummer o.l.). HavBank behandler
 					ikke slike data. Automatiserte skannere finner samme kontaktinformasjon på
 					<a
 						href={SECURITY_TXT_URL}

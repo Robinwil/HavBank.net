@@ -75,7 +75,7 @@
 		submitError = '';
 		submitSuccess = false;
 
-		// No network call — this is a fictitious site, nothing is sent anywhere.
+		// No network call, this is a fictitious site, nothing is sent anywhere.
 		await new Promise((resolve) => setTimeout(resolve, 300));
 
 		formData = {
@@ -91,7 +91,7 @@
 		};
 		isSubmitting = false;
 		showDemoNotice({
-			detail: 'Ingen data ble sendt til noen — vi kan ikke opprette kundeforhold.'
+			detail: 'Ingen data ble sendt til noen, vi kan ikke opprette kundeforhold.'
 		});
 	}
 

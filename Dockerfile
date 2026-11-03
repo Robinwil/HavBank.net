@@ -10,7 +10,7 @@ RUN bun run build
 # ---- Runtime ----
 FROM oven/bun:1-alpine
 WORKDIR /app
-# svelte-adapter-bun emits a self-contained build/ — no runtime node_modules
+# svelte-adapter-bun emits a self-contained build/, no runtime node_modules
 COPY --from=build --chown=bun:bun /app/build ./build
 COPY --chown=bun:bun serve.js ./serve.js
 USER bun

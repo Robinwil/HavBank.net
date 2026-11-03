@@ -17,7 +17,7 @@
 				isOpen = true;
 			}
 		} catch {
-			// sessionStorage unavailable (strict private mode etc.) — show anyway.
+			// sessionStorage unavailable (strict private mode etc.), show anyway.
 			isOpen = true;
 		}
 	});
@@ -45,7 +45,7 @@
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
-		// Deliberately NOT closing on Escape — the user must actively acknowledge.
+		// Deliberately NOT closing on Escape: the user must actively acknowledge.
 		if (event.key === 'Tab') {
 			event.preventDefault();
 			acknowledgeButton?.focus();
@@ -94,7 +94,7 @@
 				</div>
 			</div>
 
-			<!-- Scrollable body — only this part scrolls when the viewport is short. -->
+			<!-- Scrollable body: only this part scrolls when the viewport is short. -->
 			<div
 				id="disclaimer-body"
 				class="flex-1 min-h-0 overflow-y-auto px-5 sm:px-8 md:px-10 py-5 sm:py-7 space-y-4 sm:space-y-5 text-gray-700 dark:text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed"
@@ -103,8 +103,7 @@
 					HavBank.net er et
 					<span class="underline decoration-red-600 decoration-2 underline-offset-4"
 						>fiktivt hobbyprosjekt</span
-					>
-					— ingen reell bank, ingen finansielle tjenester, ingen kundeforhold.
+					>, ingen reell bank, ingen finansielle tjenester, ingen kundeforhold.
 				</p>
 
 				<div
@@ -135,20 +134,20 @@
 
 				<div class="space-y-3 sm:space-y-4">
 					<h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-						Vi beklager — vi var ikke tydelige nok
+						Vi beklager, vi var ikke tydelige nok
 					</h3>
 					<p>
 						Vi skulle vært direkte og tydelige på at dette kun er et designprosjekt. Det var vi
 						ikke, og det beklager vi oppriktig overfor alle som har blitt forvirret av nettsiden.
 					</p>
 					<p class="font-semibold text-gray-900 dark:text-white">
-						Finanstilsynet har helt rett — det er fantastisk at de fant nettsiden, og det er akkurat
+						Finanstilsynet har helt rett. Det er fantastisk at de fant nettsiden, og det er akkurat
 						sånn de skal opptre.
 					</p>
 					<p>
 						Det er helt forståelig at de reagerer på en nettside som ser ut som en bank uten tydelig
 						avsender. En eventuell backend, skjema eller innloggingsflyt kan dessuten legges til
-						senere — advarselen er derfor en fullt rimelig føre-var-handling. Samtidig finnes det
+						senere. Advarselen er derfor en fullt rimelig føre-var-handling. Samtidig finnes det
 						andre signaler som også peker mot at dette er et hobbyprosjekt: åpen kildekode på
 						GitHub, manglende organisasjonsnummer, manglende oppføring i Enhetsregisteret, og
 						tekniske spor (for eksempel at den nåværende versjonen er en ren SvelteKit-statisk-side
@@ -198,7 +197,7 @@
 					class="btn-primary w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base"
 					onclick={acknowledge}
 				>
-					OK — jeg forstår at dette ikke er en ekte bank
+					OK, jeg forstår at dette ikke er en ekte bank
 				</button>
 			</div>
 		</div>

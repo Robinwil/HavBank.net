@@ -128,7 +128,7 @@
 		<div class="page-container py-16 sm:py-24">
 			<div class="mx-auto max-w-2xl lg:mx-0">
 				<p class="section-eyebrow">Rapportarkiv</p>
-				<h1 class="page-title mt-2">Bærekraftsrapporter — historikk</h1>
+				<h1 class="page-title mt-2">Bærekraftsrapporter: historikk</h1>
 				<p class="page-lead">
 					HavBank rapporterer i henhold til GRI Standards, TCFD og EU-taksonomien. Klimaregnskapet
 					er utarbeidet etter GHG-protokollen og verifisert med begrenset sikkerhet av KPMG AS siden
@@ -319,7 +319,7 @@
 				Bærekraftsrapportene er utarbeidet av HavBank. Klimadata er verifisert med begrenset
 				sikkerhet av KPMG AS siden 2022. Tallene oppgis i henhold til GRI Standards,
 				TCFD-anbefalingene og EU-taksonomien. Historiske tall kan være justert som følge av
-				metodeendringer — se noteapparatet i den enkelte rapport.
+				metodeendringer, se noteapparatet i den enkelte rapport.
 			</p>
 		</div>
 	</div>

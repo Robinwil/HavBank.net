@@ -11,7 +11,7 @@
 
 	function handleSubscribe(event: SubmitEvent) {
 		event.preventDefault();
-		showDemoNotice({ detail: 'Ingen varsler blir sendt — e-postadressen din lagres ikke.' });
+		showDemoNotice({ detail: 'Ingen varsler blir sendt, e-postadressen din lagres ikke.' });
 	}
 
 	const types = ['Alle', 'Kvartal', 'Årsrapport', 'Pillar III'];

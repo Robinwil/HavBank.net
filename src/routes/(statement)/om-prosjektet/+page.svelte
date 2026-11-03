@@ -19,9 +19,9 @@
 	const publishedLabel = '21. april 2026';
 	const modifiedIso = '2026-04-21';
 
-	const HEADLINE = 'HavBank er et hobbyprosjekt — ikke en ekte bank';
+	const HEADLINE = 'HavBank er et hobbyprosjekt, ikke en ekte bank';
 	const DESCRIPTION =
-		'HavBank.net er et fiktivt hobbyprosjekt — ikke en reell bank. Les prosjekteiers respons på Finanstilsynets advarsel fra 6. mars 2026, teknisk bakgrunn, mediedekning og hvordan du selv kan verifisere at HavBank ikke tilbyr reelle banktjenester.';
+		'HavBank.net er et fiktivt hobbyprosjekt, ikke en reell bank. Les prosjekteiers respons på Finanstilsynets advarsel fra 6. mars 2026, teknisk bakgrunn, mediedekning og hvordan du selv kan verifisere at HavBank ikke tilbyr reelle banktjenester.';
 
 	const tableOfContents = [
 		{ id: 'kort-fortalt', label: 'Kort fortalt' },
@@ -67,7 +67,7 @@
 		{
 			icon: 'heroicons:beaker',
 			title: 'Hobbyprosjekt',
-			body: 'HavBank er et privat design- og kodeprosjekt — ingen reell bank.'
+			body: 'HavBank er et privat design- og kodeprosjekt, ingen reell bank.'
 		},
 		{
 			icon: 'heroicons:shield-exclamation',
@@ -77,19 +77,19 @@
 		{
 			icon: 'heroicons:circle-stack',
 			title: 'Ingen data lagres',
-			body: 'Nåværende versjon er statisk — skjema sender ingen informasjon noe sted.'
+			body: 'Nåværende versjon er statisk: skjema sender ingen informasjon noe sted.'
 		}
 	];
 
 	// --- Structured data (JSON-LD) ----------------------------------------
 	//
 	// Two graphs are emitted:
-	//   1. NewsArticle — the primary entity of the page, with author, publisher,
+	//   1. NewsArticle: the primary entity of the page, with author, publisher,
 	//      datePublished, dateModified, canonical URL, language, and explicit
 	//      `about`/`mentions`/`citation` links to Finanstilsynet's warning and
 	//      the press coverage. This is what we want search engines to use when
 	//      surfacing "HavBank" queries next to Finanstilsynet's own result.
-	//   2. BreadcrumbList — trivial trail so Google can render breadcrumbs in
+	//   2. BreadcrumbList: trivial trail so Google can render breadcrumbs in
 	//      the SERP.
 	//
 	// Serialised via JSON.stringify + a conservative escape for `<`/`>` to
@@ -210,7 +210,7 @@
 	// Full <script type="application/ld+json"> tags, ready to be injected via
 	// {@html ...} inside <svelte:head>. We build them here (instead of inline
 	// in the template) so the literal "</" never appears next to "script" in
-	// the same source expression — that keeps every parser in the toolchain
+	// the same source expression, that keeps every parser in the toolchain
 	// happy.
 	const LD_OPEN = '<' + 'script type="application/ld+json">';
 	const LD_CLOSE = '<' + '/script>';
@@ -220,7 +220,7 @@
 </script>
 
 <svelte:head>
-	<title>HavBank er et hobbyprosjekt — ikke en ekte bank | Om prosjektet</title>
+	<title>HavBank er et hobbyprosjekt, ikke en ekte bank | Om prosjektet</title>
 	<meta name="description" content={DESCRIPTION} />
 	<meta
 		name="robots"
@@ -283,7 +283,7 @@
 			</time>
 		</div>
 
-		<h1 class="page-title mt-6">HavBank er et hobbyprosjekt — ikke en ekte bank</h1>
+		<h1 class="page-title mt-6">HavBank er et hobbyprosjekt, ikke en ekte bank</h1>
 		<p class="page-lead">
 			Finanstilsynet publiserte en offentlig advarsel mot HavBank 6. mars 2026. Advarselen er
 			berettiget, og saken er senere omtalt av blant andre FinansWatch, BankID Norge og SkimSafe.
@@ -363,7 +363,7 @@
 				<h2>Kort fortalt</h2>
 				<p>
 					HavBank.net er et <strong>fiktivt hobbyprosjekt</strong>. Nettsiden er laget som en
-					design- og frontend-øvelse — et forsøk på å bygge en troverdig norsk bankopplevelse fra
+					design- og frontend-øvelse, et forsøk på å bygge en troverdig norsk bankopplevelse fra
 					bunnen av i SvelteKit, med fokus på tilgjengelighet, dark mode, norske tekstkonvensjoner,
 					og helhetlig informasjonsarkitektur.
 				</p>
@@ -393,7 +393,7 @@
 						med HavBank.»
 					</p>
 					<footer>
-						—
+						-
 						<a href={FINANSTILSYNET_URL} target="_blank" rel="noopener noreferrer">
 							Finanstilsynet, <time datetime={advarselIso}>{advarselLabel}</time>
 						</a>
@@ -401,7 +401,7 @@
 				</blockquote>
 				<p class="text-sm text-gray-500 dark:text-gray-400">
 					Merk: første del av sitatet («Foretaket er ikke reelt … svindle forbrukere») er faktuelt
-					uriktig. HavBank er ikke satt opp for å svindle noen — det er et åpent hobbyprosjekt. At
+					uriktig. HavBank er ikke satt opp for å svindle noen, det er et åpent hobbyprosjekt. At
 					det likevel fremstår slik for tilsynet er et tegn på at vi ikke var tydelige nok, ikke at
 					vurderingen er urimelig.
 				</p>
@@ -411,7 +411,7 @@
 				<h2>Mediedekning</h2>
 				<p>
 					Advarselen er senere omtalt i norske medier og av aktører i finans- og sikkerhetsbransjen.
-					Vi tar ikke til motmæle mot noen av disse — de gjør akkurat det de skal, og beskriver
+					Vi tar ikke til motmæle mot noen av disse, de gjør akkurat det de skal, og beskriver
 					situasjonen slik den framstår fra utsiden. Her er oversikten vi kjenner til, for full
 					åpenhet:
 				</p>
@@ -474,12 +474,12 @@
 				<p>
 					<strong>Finanstilsynet har helt rett.</strong> Det er fantastisk at de fant nettsiden, og
 					det er akkurat slik et fungerende tilsyn skal opptre. En nettside som ser ut som en norsk
-					bank uten tydelig avsender <em>skal</em> utløse en advarsel — det er hele poenget med føre-var-prinsippet
+					bank uten tydelig avsender <em>skal</em> utløse en advarsel, det er hele poenget med føre-var-prinsippet
 					i finansregulering.
 				</p>
 				<p>
 					Samtidig er vi oppriktig lei oss for at prosjektet har vært uklart nok til å utløse en
-					offisiell sak. Vi skulle vært tydeligere på at dette er et hobbyprosjekt — i selve
+					offisiell sak. Vi skulle vært tydeligere på at dette er et hobbyprosjekt: i selve
 					grensesnittet, i footeren, og i metadata. Det er nå rettet opp med en obligatorisk
 					advarsel som vises på første besøk, lenke til Finanstilsynets advarsel i bunnen av siden,
 					og denne artikkelen.
@@ -493,7 +493,7 @@
 			<section id="teknisk">
 				<h2>Teknisk bakgrunn</h2>
 				<p>
-					I skrivende stund er HavBank.net en ren frontend — bygget med
+					I skrivende stund er HavBank.net en ren frontend, bygget med
 					<a
 						href="https://svelte.dev/docs/kit/introduction"
 						target="_blank"
@@ -513,7 +513,7 @@
 				<p>
 					<strong>Vi kommer ikke til å legge til backend</strong> som håndterer personopplysninger, reelle
 					transaksjoner eller ekte innlogging. Det er ikke planen, og det er ikke målet med prosjektet.
-					Samtidig er det i teorien alltid mulig at kode endres — og nettopp derfor er Finanstilsynets
+					Samtidig er det i teorien alltid mulig at kode endres, og nettopp derfor er Finanstilsynets
 					advarsel en helt rimelig føre-var-handling, uansett hvilken tilstand koden befinner seg i til
 					enhver tid.
 				</p>
@@ -530,8 +530,7 @@
 						<strong>Brønnøysundregistrene:</strong> Søk etter «HavBank» i
 						<a href="https://www.brreg.no/" target="_blank" rel="noopener noreferrer"
 							>Brønnøysundregistrene</a
-						>
-						— det finnes ingen oppføring.
+						>: det finnes ingen oppføring.
 					</li>
 					<li>
 						<strong>Finanstilsynets konsesjonsregister:</strong> HavBank finnes ikke i
@@ -553,7 +552,7 @@
 						at ingen fetch-forespørsler går ut når du prøver å logge inn eller sende et skjema.
 					</li>
 					<li>
-						<strong>Kildekoden:</strong> Prosjektet er åpent — du kan lese all kode og bekrefte at det
+						<strong>Kildekoden:</strong> Prosjektet er åpent: du kan lese all kode og bekrefte at det
 						ikke finnes noen serverside-logikk for banktjenester.
 					</li>
 				</ol>
@@ -582,8 +581,8 @@
 					>
 						Ta gjerne kontakt.
 					</button>
-					Sikkerhetsforskere og automatiserte skannere finner samme kontaktinformasjon — inkludert PGP-nøkkel
-					og fingeravtrykk — i vår maskinlesbare
+					Sikkerhetsforskere og automatiserte skannere finner samme kontaktinformasjon, inkludert PGP-nøkkel
+					og fingeravtrykk, i vår maskinlesbare
 					<a
 						href="/.well-known/security.txt"
 						class="font-mono text-blue-900 dark:text-blue-300 underline underline-offset-4 hover:text-blue-800 dark:hover:text-blue-200"
