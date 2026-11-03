@@ -8,7 +8,7 @@
  * consistent across the entire fictitious site.
  */
 
-const DEFAULT_MESSAGE =
+export const DEFAULT_MESSAGE =
 	'Dette er en fiktiv nettside laget for utdanningsformål. Ingen reelle banktjenester tilbys.';
 
 interface DemoNoticeState {

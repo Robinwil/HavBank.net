@@ -5,42 +5,28 @@
 // to every response, prerendered or server-rendered.
 // Run with `bun --smol serve.js` (see Dockerfile).
 import process from 'node:process';
+import { getHandler } from './build/handler.js';
 
-// TEMPORARY: the site is closed. Every path answers with this page and SvelteKit
-// isn't loaded, so prerendered pages, static files and forms are closed as well.
-// To reopen, revert the commit that added this.
-const STOPPED_PAGE = `<!doctype html>
-<html lang="nb">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Midlertidig stengt</title>
-<style>
-:root { color-scheme: light dark; }
-body { margin: 0; min-height: 100vh; display: grid; place-content: center; padding: 2rem; font-family: system-ui, sans-serif; text-align: center; }
-h1 { margin: 0 0 0.5rem; font-size: 1.5rem; }
-p { margin: 0.25rem 0; }
-</style>
-</head>
-<body>
-<main>
-<h1>Midlertidig stengt</h1>
-<p>Denne nettsiden er midlertidig stengt.</p>
-<p lang="en">This website is temporarily closed.</p>
-</main>
-</body>
-</html>
-`;
+// The site is a statement at `/` and `/om-prosjektet`, with the old site under `/demo`.
+// These run here rather than in hooks.server.ts because prerendered pages and static
+// files never reach the hooks.
 
-const STOPPED_HEADERS = {
-	'Content-Type': 'text/html; charset=utf-8',
-	'Cache-Control': 'no-store',
-	'Retry-After': '86400',
-	'X-Robots-Tag': 'noindex',
-	'Content-Security-Policy':
-		"default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
-};
+// First path segments of the old site. They go to the statement, not to the demo.
+const OLD_PATHS =
+	/^\/(baerekraft|bedrift|bestill-time|bli-kunde|glemt-passord|investor|karriere|kontakt|login|om-oss|personvern|privat|sikkerhet|sparing|tilgjengelighet|tjenester)(\/|$)/;
+
+// Everything else gets noindex: /demo, /_app, errors, and any path added later.
+const INDEXABLE = new Set([
+	'/',
+	'/om-prosjektet',
+	'/robots.txt',
+	'/sitemap.xml',
+	'/favicon.png',
+	'/.well-known/security.txt'
+]);
+
+// Short, so a stale copy can't sit in the CDN for hours.
+const DISCOVERY_PATHS = new Set(['/robots.txt', '/sitemap.xml']);
 
 const SECURITY_HEADERS = {
 	'X-Frame-Options': 'DENY',
@@ -77,22 +63,67 @@ function parseBytes(value) {
 	return mult ? Number(value.slice(0, -1)) * mult : Number(value);
 }
 
+const { fetch: handle, websocket } = getHandler();
+
 const server = Bun.serve({
 	hostname: process.env.HOST ?? '0.0.0.0',
 	port: process.env.PORT ?? '3000',
 	idleTimeout: parseInt(process.env.IDLE_TIMEOUT ?? '10', 10),
 	maxRequestBodySize: parseBytes(process.env.BODY_SIZE_LIMIT ?? '512K'),
-	fetch(req) {
+	async fetch(req, srv) {
+		const { pathname } = new URL(req.url);
+
 		// The Dockerfile's health check needs a 2xx, or Traefik drops the container.
-		if (new URL(req.url).pathname === '/health') {
+		if (pathname === '/health') {
 			return withHeaders(
 				new Response('ok\n', {
-					headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+					headers: {
+						'Content-Type': 'text/plain; charset=utf-8',
+						'Cache-Control': 'no-store',
+						'X-Robots-Tag': 'noindex'
+					}
 				})
 			);
 		}
-		return withHeaders(new Response(STOPPED_PAGE, { status: 503, headers: STOPPED_HEADERS }));
-	}
+		if (OLD_PATHS.test(pathname)) {
+			return withHeaders(
+				new Response(null, {
+					status: 301,
+					// no-store: browsers would keep a cached 301 even after this is undone.
+					headers: { Location: '/', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' }
+				})
+			);
+		}
+
+		// Nothing on this site takes input, so no form can reach the server.
+		if (req.method !== 'GET' && req.method !== 'HEAD') {
+			return withHeaders(
+				new Response('Method Not Allowed\n', {
+					status: 405,
+					headers: {
+						Allow: 'GET, HEAD',
+						'Content-Type': 'text/plain; charset=utf-8',
+						'Cache-Control': 'no-store',
+						'X-Robots-Tag': 'noindex'
+					}
+				})
+			);
+		}
+
+		const res = await handle(req, srv);
+		if (!res) return res; // undefined after a websocket upgrade
+
+		const out = withHeaders(res);
+		if (!INDEXABLE.has(pathname)) out.headers.set('X-Robots-Tag', 'noindex');
+		if (DISCOVERY_PATHS.has(pathname)) out.headers.set('Cache-Control', 'public, max-age=300');
+		// The browser refuses any native form submit, even before the page has hydrated.
+		// A second CSP header only tightens the first.
+		if (pathname === '/demo' || pathname.startsWith('/demo/')) {
+			out.headers.append('Content-Security-Policy', "form-action 'none'");
+		}
+		return out;
+	},
+	...(websocket ? { websocket } : {})
 });
 
 console.log(`Listening on ${server.url}`);

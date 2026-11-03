@@ -14,11 +14,21 @@ or regenerate from `~/projects/github/www/CLAUDE.md` instructions.
 | **Container port**     | `3000`                                                     |
 | **Persistent storage** | none (stateless)                                           |
 
-## Closed for now
+## What's live
 
-Every path answers with a `503` page from `serve.js`; only `/health` answers `200`.
-To reopen: `git revert` the commit that closed it, push, then add `https://havbank.net/`
-back to `fleet-uptime` and the r01.no lists.
+HavBank isn't a bank site any more. `serve.js` routes everything:
+
+- `/` and `/om-prosjektet`: the public statement, indexable, and the only pages in `sitemap.xml`.
+- `/demo/*`: the old site, shared by hand. It's not linked from `/` or in the sitemap. Every response
+  has `X-Robots-Tag: noindex`, and `robots.txt` must not disallow it or crawlers can't see that.
+- Old URLs (`/login`, `/privat/...`): `301` to `/`. Other unknown paths: `404`. `/health`: `200`.
+- Native form submits on `/demo` are blocked by CSP (`form-action 'none'`) on top of `preventDefault`.
+- Any new indexable path has to be added to `INDEXABLE` in `serve.js`; the default is noindex.
+- Routes in `src/routes/demo` link with a literal `/demo/...`. There's no `paths.base`, because that
+  would move `/` and `/om-prosjektet` under `/demo` too.
+- The text under the headline on `/` is copied word for word from `/om-prosjektet`.
+
+`fleet-uptime` checks `https://havbank.net/`. The site stays off the r01.no lists.
 
 ## Env vars (production)
 
