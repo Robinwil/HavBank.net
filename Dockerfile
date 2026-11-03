@@ -19,6 +19,6 @@ ENV NODE_ENV=production PORT=3000 HOST=0.0.0.0 ORIGIN=https://havbank.net \
     PROTOCOL_HEADER=x-forwarded-proto HOST_HEADER=x-forwarded-host
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-  CMD wget -qO- http://127.0.0.1:3000/ || exit 1
+  CMD wget -qO- http://127.0.0.1:3000/health || exit 1
 # --smol: smaller heap, more frequent GC (low-traffic site, capped at 256 MB)
 CMD ["bun", "--smol", "serve.js"]

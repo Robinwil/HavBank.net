@@ -14,6 +14,12 @@ or regenerate from `~/projects/github/www/CLAUDE.md` instructions.
 | **Container port**     | `3000`                                                     |
 | **Persistent storage** | none (stateless)                                           |
 
+## Closed for now
+
+Every path answers with a `503` page from `serve.js`; only `/health` answers `200`.
+To reopen: `git revert` the commit that closed it, push, then add `https://havbank.net/`
+back to `fleet-uptime` and the r01.no lists.
+
 ## Env vars (production)
 
 NIXPACKS_NODE_VERSION (obsolete since the dockerfile migration — safe to remove in Coolify)
